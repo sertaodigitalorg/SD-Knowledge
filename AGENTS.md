@@ -43,14 +43,13 @@ skills/legislagd/SKILL.md
 
 ### 4. Validar Contra SOURCE_OF_TRUTH
 
-Hierarquia de autoridade:
+Hierarquia de autoridade orientada por domínio:
 
-1. **Documento oficial vigente** (decisão formal)
-2. **Documentação funcional oficial** (Google Drive)
-3. **Documentação técnica** (GitHub)
-4. **Manifestos SDKA**
-5. **Knowledge Base derivada**
-6. **Inferência do agente** (nunca substitua as acima)
+- **Institucional/funcional/estratégico/administrativo/jurídico/comercial:** Google Drive
+- **Técnico/arquitetura/código/API/deploy/ADR/Skills/AGENTS:** GitHub
+- **Manifestos:** SD-Knowledge, conforme o escopo
+- **GPT_SOURCE/Markdown exportado:** derivado
+- **Inferência:** nunca substitui o MASTER do domínio
 
 ⚠️ **Nunca invente decisões funcionais ou arquiteturais.**
 

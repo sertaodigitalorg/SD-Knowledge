@@ -38,17 +38,16 @@ products:
 
   sigi_sd:
     name: SIGI-SD
-    type: component
+    type: platform
     status: active
-    parent_product: legislagd
-    description: "Atendimento ao cidadão e protocolo"
+    description: "Sistema de Inteligência Geral de Interações para atendimento ao cidadão e protocolos"
     repository: https://github.com/sertaodigitalorg/SIGI-SD
 
   veredas:
     name: VEREDAS
     type: platform
     status: active
-    description: "Sistema de apoio à gestão e experiência institucional"
+    description: "Plataforma de mobilidade pública inteligente para transporte escolar e saúde"
     repository: https://github.com/sertaodigitalorg/VEREDAS
 
   plataforma360:
@@ -56,7 +55,8 @@ products:
     type: platform
     status: pending-validation
     description: "Plataforma de gestão integrada"
-    repository: null
+    repository: https://github.com/sertaodigitalorg/Plataforma360
+    status_note: "Repositório validado; maturidade funcional permanece pendente de validação"
 
   noticia_sertaneja:
     name: Notícia Sertaneja

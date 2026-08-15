@@ -356,6 +356,8 @@ Componentes/Documentos afetados:
 
 ## Exemplo: TECHNICAL HANDOFF
 
+> **EXEMPLO FICTÍCIO / NÃO NORMATIVO.** Os nomes, endpoints, tabelas, classificações, políticas e decisões abaixo são apenas ilustrativos e não representam implementação real ou decisão oficial do Sertão Digital ou de seus produtos.
+
 ```markdown
 # Prompt Handoff - Novo Fluxo de Aprovação de Proposições
 
@@ -476,6 +478,8 @@ Novo fluxo exige:
 ---
 
 ## Exemplo: FUNCTIONAL HANDOFF
+
+> **EXEMPLO FICTÍCIO / NÃO NORMATIVO.** Os nomes, endpoints, tabelas, classificações, políticas e decisões abaixo são apenas ilustrativos e não representam implementação real ou decisão oficial do Sertão Digital ou de seus produtos.
 
 ```markdown
 # Prompt Handoff - Documentação de Autenticação por Biometria

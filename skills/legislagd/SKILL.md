@@ -142,16 +142,16 @@ Funções administrativas:
 - Contabilidade
 - Patrimônio
 
-Pode ser compartilhado entre Legislativo e Executivo (futuro), mas inicialmente escopoado para Legislativo.
+Existe a mesma base de projeto e-Cidade-SD. No LegislaGD, ela atende funções administrativas do Legislativo. A arquitetura futura do Executivo é separada; qualquer compartilhamento de infraestrutura, banco, identidade, tenant ou dados exige decisão técnica versionada.
 
 ### SIGI-SD
 
-**Sistema de Gestão de Políticas Internas**
+**Sistema de Inteligência Geral de Interações**
 
 Atendimento ao cidadão:
 - Protocolo de atendimento
 - Chatwoot (omnichannel)
-- IA de atendimento
+- Automação e IA conforme implementação validada no repositório SIGI-SD
 - Protocolo integrado
 
 ### Keycloak Legislativo
@@ -361,7 +361,7 @@ Principais:
 
 - LGPD compliance
 - Consentimento para atendimento
-- Direito ao esquecimento
+- Direitos dos titulares e hipóteses de eliminação, retenção e tratamento de dados conforme LGPD e obrigações legais aplicáveis
 
 ### Secrets
 

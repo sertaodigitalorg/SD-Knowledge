@@ -18,6 +18,9 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/).
 
 ### Fixed
 
+- fixed Markdown lint configuration, documented its compatibility baseline, and aligned repository schema usage
+- corrected domain-aware source authority and product catalogue semantics
+- marked detailed Prompt Handoff examples as fictional and non-normative
 - validated repository registry
 - removed unverified technical assumptions
 - clarified normative vs illustrative content

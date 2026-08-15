@@ -6,16 +6,19 @@ Hierarquia de autoridade para resolver conflitos de informação.
 
 ## Princípio Central
 
-Quando múltiplas fontes reportam informações diferentes:
+Quando múltiplas fontes reportam informações diferentes, a precedência é **orientada pelo domínio da informação**, não pela localização genérica do documento.
 
-**Use esta ordem de precedência:**
+1. Classifique a informação como institucional/estratégica, funcional/negócio, técnica/arquitetural, código/API/deploy/ADR, manifesto ou derivada.
+2. Aplique o MASTER daquele domínio:
+   - institucional, funcional, estratégico, administrativo, jurídico e comercial: Google Drive;
+   - técnico, arquitetura, código, API, deploy, ADR, Skills e AGENTS: GitHub;
+   - manifestos: SD-Knowledge, conforme o escopo de cada manifesto;
+   - `GPT_SOURCE` e Markdown exportado: derivados, sem precedência sobre MASTER;
+   - inferência: último nível, nunca substitui uma fonte MASTER.
 
-1. **Documento oficial vigente** — Decisão formal, assinada, em Drive
-2. **Documentação funcional oficial** — Google Drive, decisões estabelecidas
-3. **Documentação técnica** — GitHub, este repo, código comentado
-4. **Manifestos SDKA** — knowledge.yaml, products.yaml, repositories.yaml
-5. **Knowledge Base derivada** — Markdown exportado, contexto compilado
-6. **Inferência do agente** — NUNCA, a menos que nenhuma das acima aplique
+Um documento oficial no Drive não sobrescreve automaticamente uma decisão técnica versionada em código ou ADR. Da mesma forma, o GitHub não sobrescreve uma regra funcional ou institucional oficial do Drive.
+
+Para decisões híbridas, separe os componentes funcional e técnico, aplique o MASTER de cada domínio e execute o Cross-Layer Impact Check. Registre conflito ou pendência quando a conciliação não puder ser concluída.
 
 ---
 
@@ -97,7 +100,7 @@ Inclui:
 - Resumos e índices
 - Contexto portátil
 
-**Regra:** Use como referência apenas. Sempre volte à fonte (1-4 acima).
+**Regra:** Use como referência apenas. Sempre volte ao MASTER do domínio correspondente.
 
 ---
 
@@ -108,9 +111,9 @@ Inclui:
 **Processo:**
 
 1. Identifique as duas fontes
-2. Aplique a hierarquia acima
-3. A source de precedência mais alta é a verdade
-4. Se Drive vs GitHub: confira qual é "funcional" vs "técnico"
+2. Classifique o domínio da informação em conflito
+3. Aplique o MASTER do domínio correspondente
+4. Se Drive vs GitHub: separe componentes funcionais e técnicos
 5. Se ambas são do mesmo tipo: procure por data/versão
 6. Se ainda houver dúvida: abra issue para clarificação
 
@@ -277,13 +280,14 @@ Processo:
    "Keycloak Legislativo — identidade central para LegislaGD.
     Legislativo terá seu próprio Keycloak. Executivo — separado (futuro)."
 
-5. Validação:
-   - Drive é document oficial (precedência 1)
-   - GitHub SKILL reflete Drive (correto, alinhado)
-   - Não há conflito
+5. Validação orientada por domínio:
+   - Drive governa o escopo institucional e funcional da identidade por Poder
+   - GitHub governa a arquitetura e a implementação técnica versionada
+   - A Skill apenas reflete o alinhamento entre os dois domínios; não substitui ADR ou código
+   - Não há conflito somente se os respectivos MASTERS estiverem alinhados
 
-6. Decisão:
-   "Keycloak separado, conforme documento Drive de 2026-08-15"
+6. Conclusão:
+   "Validar separadamente o escopo institucional no Drive e a implementação técnica no GitHub antes de consolidar a decisão."
 ```
 
 ---

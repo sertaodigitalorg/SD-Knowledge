@@ -128,14 +128,13 @@ Esta Skill abrange:
 
 ## Hierarquia de Autoridade
 
-Ao resolver conflitos, use esta ordem:
+Ao resolver conflitos, primeiro classifique o domínio e aplique seu MASTER:
 
-1. **Documento oficial vigente** — decisão formal, assinada
-2. **Documentação funcional oficial** — Google Drive
-3. **Documentação técnica** — GitHub deste repo
-4. **Manifestos SDKA** — knowledge.yaml, products.yaml, etc
-5. **Knowledge Base derivada** — Markdown exportado, contexto
-6. **Inferência do agente** — nunca substitua (1-5)
+- institucional/funcional/estratégico/administrativo/jurídico/comercial: Google Drive;
+- técnico/arquitetura/código/API/deploy/ADR/Skills/AGENTS: GitHub;
+- manifestos: SD-Knowledge, conforme o escopo;
+- conhecimento derivado: referência sem autoridade sobre o MASTER;
+- inferência: nunca substitui uma fonte MASTER.
 
 **Regra:** Nunca invente informação que já existe em fonte oficial.
 
@@ -263,7 +262,7 @@ Antes de consolidar decisão técnica, aplique `docs/TECHNICAL_DECISION_GOVERNAN
 - Conform com LGPD (Lei Geral de Proteção de Dados)
 - Consentimento informado para dados de cidadão
 - Pseudonimização quando possível
-- Direito ao esquecimento respeitado
+- Direitos dos titulares e hipóteses de eliminação, retenção e tratamento conforme LGPD e obrigações legais aplicáveis
 
 ### Vulnerabilidades
 
