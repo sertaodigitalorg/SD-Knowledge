@@ -1,0 +1,27 @@
+repositories:
+  legislagd_core:
+    name: LegislaGD
+    url: null
+    status: pending-validation
+    status_reason: awaiting_institutional_decision
+    
+  sapl_sd:
+    name: SAPL-SD
+    url: null
+    status: pending-validation
+    upstream: https://github.com/interlegis/sapl
+    
+  portalmodelo_sd:
+    name: PortalModelo-SD
+    url: null
+    status: pending-validation
+    
+  ecidade_sd:
+    name: e-Cidade-SD
+    url: null
+    status: pending-validation
+    
+  sigi_sd:
+    name: SIGI-SD
+    url: null
+    status: pending-validation
