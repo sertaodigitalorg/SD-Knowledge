@@ -6,7 +6,7 @@ sources:
     folder_path: "SERTÃO DIGITAL - ACERVO INSTITUCIONAL / 33_BASE_DE_CONHECIMENTO_E_SKILLS"
     status: active
     description: "Master de documentação funcional e institucional"
-    
+
   github_sdka:
     name: "GitHub - SD-Knowledge"
     type: git
@@ -14,14 +14,14 @@ sources:
     repository: "sertaodigitalorg/SD-Knowledge"
     status: active
     description: "Master de documentação técnica, Skills, schemas"
-    
+
   public_documentation:
     name: "Documentos Públicos"
     type: web
     authority: reference
     status: active
     description: "Legislação, padrões abertos, RFCs"
-    
+
   generated_context:
     name: "Contexto Derivado"
     type: derived

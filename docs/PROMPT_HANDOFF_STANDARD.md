@@ -72,6 +72,10 @@ origin_source:
 
 reason: [motivo-sucinto]
         # Exemplo: Novo requisito de autenticação multifator
+
+access_state: NOT_FOUND | READ_DENIED | WRITE_DENIED | ACCESS_UNKNOWN | SOURCE_UNAVAILABLE | NOT_APPLICABLE
+
+security_classification: [classificação aplicável]
 ```
 
 ### Seção de Contexto
@@ -146,6 +150,10 @@ Exemplo FUNCTIONAL:
 ### Seção de Validação
 
 ```
+## Resultado Esperado
+
+[Descrever o estado final verificável que o agente receptor deve produzir]
+
 ## Critérios de Validação
 
 Como confirmar que a mudança foi implementada corretamente:
@@ -287,6 +295,12 @@ Exemplo:
 
 ---
 
+## Resultado Esperado
+
+[Estado final verificável]
+
+---
+
 ## Impacto Cruzado
 
 Componentes/Documentos afetados:
@@ -306,7 +320,7 @@ Componentes/Documentos afetados:
 
 ## Segurança
 
-[Classificação, LGPD, secrets, conformidade]
+[Classificação, LGPD, secrets, conformidade e estado de acesso]
 
 ---
 
@@ -341,6 +355,8 @@ Componentes/Documentos afetados:
 ---
 
 ## Exemplo: TECHNICAL HANDOFF
+
+> **EXEMPLO FICTÍCIO / NÃO NORMATIVO.** Os nomes, endpoints, tabelas, classificações, políticas e decisões abaixo são apenas ilustrativos e não representam implementação real ou decisão oficial do Sertão Digital ou de seus produtos.
 
 ```markdown
 # Prompt Handoff - Novo Fluxo de Aprovação de Proposições
@@ -462,6 +478,8 @@ Novo fluxo exige:
 ---
 
 ## Exemplo: FUNCTIONAL HANDOFF
+
+> **EXEMPLO FICTÍCIO / NÃO NORMATIVO.** Os nomes, endpoints, tabelas, classificações, políticas e decisões abaixo são apenas ilustrativos e não representam implementação real ou decisão oficial do Sertão Digital ou de seus produtos.
 
 ```markdown
 # Prompt Handoff - Documentação de Autenticação por Biometria

@@ -7,64 +7,64 @@ products:
     status: active
     scope: power_legislative
     description: "Plataforma legislativa livre"
-    repository: null
+    repository: https://github.com/sertaodigitalorg/LegislaGD
     drive_reference: pending
-    status_note: "Core platform, repositories being catalogued"
-    
+    status_note: "Core platform, repositories catalogued"
+
   sapl_sd:
     name: SAPL-SD
     type: component
     status: active
     parent_product: legislagd
     description: "Sistema de Acompanhamento de Processo Legislativo"
-    repository: null
+    repository: https://github.com/sertaodigitalorg/SAPL-SD
     upstream: https://github.com/interlegis/sapl
-    
+
   portalmodelo_sd:
     name: PortalModelo-SD
     type: component
     status: active
     parent_product: legislagd
     description: "Portal institucional"
-    repository: null
-    
+    repository: https://github.com/sertaodigitalorg/PortalModelo-SD
+
   ecidade_sd:
     name: e-Cidade-SD
     type: component
     status: active
     parent_product: legislagd
     description: "Gestão administrativa e ERP"
-    repository: null
-    
+    repository: https://github.com/sertaodigitalorg/e-Cidade-SD
+
   sigi_sd:
     name: SIGI-SD
-    type: component
+    type: platform
     status: active
-    parent_product: legislagd
-    description: "Atendimento ao cidadão e protocolo"
-    repository: null
-    
+    description: "Sistema de Inteligência Geral de Interações para atendimento ao cidadão e protocolos"
+    repository: https://github.com/sertaodigitalorg/SIGI-SD
+
   veredas:
     name: VEREDAS
     type: platform
-    status: pending-validation
-    description: "Sistema de participação cidadã"
-    repository: null
-    
+    status: active
+    description: "Plataforma de mobilidade pública inteligente para transporte escolar e saúde"
+    repository: https://github.com/sertaodigitalorg/VEREDAS
+
   plataforma360:
     name: Plataforma360
     type: platform
     status: pending-validation
     description: "Plataforma de gestão integrada"
-    repository: null
-    
+    repository: https://github.com/sertaodigitalorg/Plataforma360
+    status_note: "Repositório validado; maturidade funcional permanece pendente de validação"
+
   noticia_sertaneja:
     name: Notícia Sertaneja
     type: platform
     status: pending-validation
     description: "Portal de notícias"
     repository: null
-    
+
   roteiro_comercial:
     name: Roteiro Comercial
     type: platform

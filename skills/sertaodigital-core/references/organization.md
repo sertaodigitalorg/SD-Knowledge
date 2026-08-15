@@ -19,7 +19,7 @@ Alguns repositórios principais:
 - **LegislaGD** — Plataforma legislativa livre (Poder Legislativo)
 - **SAPL-SD** — Sistema de Acompanhamento de Processo Legislativo
 - **e-Cidade-SD** — ERP municipal/legislativo
-- **SIGI-SD** — Sistema de Gestão de Políticas Internas (Legislativo)
+- **SIGI-SD** — Sistema de Inteligência Geral de Interações
 - **PortalModelo-SD** — Portal institucional
 - **VEREDAS** — Sistema de participação cidadã
 - **Plataforma360** — Plataforma de gestão integrada

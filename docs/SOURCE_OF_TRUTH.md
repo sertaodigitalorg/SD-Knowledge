@@ -6,16 +6,19 @@ Hierarquia de autoridade para resolver conflitos de informação.
 
 ## Princípio Central
 
-Quando múltiplas fontes reportam informações diferentes:
+Quando múltiplas fontes reportam informações diferentes, a precedência é **orientada pelo domínio da informação**, não pela localização genérica do documento.
 
-**Use esta ordem de precedência:**
+1. Classifique a informação como institucional/estratégica, funcional/negócio, técnica/arquitetural, código/API/deploy/ADR, manifesto ou derivada.
+2. Aplique o MASTER daquele domínio:
+   - institucional, funcional, estratégico, administrativo, jurídico e comercial: Google Drive;
+   - técnico, arquitetura, código, API, deploy, ADR, Skills e AGENTS: GitHub;
+   - manifestos: SD-Knowledge, conforme o escopo de cada manifesto;
+   - `GPT_SOURCE` e Markdown exportado: derivados, sem precedência sobre MASTER;
+   - inferência: último nível, nunca substitui uma fonte MASTER.
 
-1. **Documento oficial vigente** — Decisão formal, assinada, em Drive
-2. **Documentação funcional oficial** — Google Drive, decisões estabelecidas
-3. **Documentação técnica** — GitHub, este repo, código comentado
-4. **Manifestos SDKA** — knowledge.yaml, products.yaml, repositories.yaml
-5. **Knowledge Base derivada** — Markdown exportado, contexto compilado
-6. **Inferência do agente** — NUNCA, a menos que nenhuma das acima aplique
+Um documento oficial no Drive não sobrescreve automaticamente uma decisão técnica versionada em código ou ADR. Da mesma forma, o GitHub não sobrescreve uma regra funcional ou institucional oficial do Drive.
+
+Para decisões híbridas, separe os componentes funcional e técnico, aplique o MASTER de cada domínio e execute o Cross-Layer Impact Check. Registre conflito ou pendência quando a conciliação não puder ser concluída.
 
 ---
 
@@ -97,7 +100,7 @@ Inclui:
 - Resumos e índices
 - Contexto portátil
 
-**Regra:** Use como referência apenas. Sempre volte à fonte (1-4 acima).
+**Regra:** Use como referência apenas. Sempre volte ao MASTER do domínio correspondente.
 
 ---
 
@@ -108,24 +111,25 @@ Inclui:
 **Processo:**
 
 1. Identifique as duas fontes
-2. Aplique a hierarquia acima
-3. A source de precedência mais alta é a verdade
-4. Se Drive vs GitHub: confira qual é "funcional" vs "técnico"
+2. Classifique o domínio da informação em conflito
+3. Aplique o MASTER do domínio correspondente
+4. Se Drive vs GitHub: separe componentes funcionais e técnicos
 5. Se ambas são do mesmo tipo: procure por data/versão
 6. Se ainda houver dúvida: abra issue para clarificação
 
-**Exemplo:**
+**Regra central:** Exemplos documentais não possuem autoridade normativa. Eles servem apenas para ilustrar fluxo e nunca substituem a decisão oficial.
+
+**Exemplo ilustrativo — não autoritativo:**
 
 ```
-Drive diz: "LegislaGD vai usar Keycloak compartilhado com Executivo"
-GitHub SKILL legislagd.md diz: "Keycloak separado, federação futura"
+Drive diz: "Sistema X pode usar identidade centralizada"
+GitHub SKILL de produto diz: "Sistema X usa modelo Y"
 
 Resolução:
-- Ambas são funcionais/arquiteturais
-- Drive é mais recente (2026-08-15)
-- Drive é document oficial
-- GitHub deve ser atualizado para refletir Drive
-- Abrir PR para sync
+- O exemplo acima é ilustrativo
+- A decisão oficial deve residir em documentação formal ou ADRs do repositório
+- GitHub deve refletir a fonte autorizada e não uma inferência
+- Se for conflito real, abrir issue para validação
 ```
 
 ---
@@ -205,6 +209,56 @@ Quando receber uma tarefa:
 
 ---
 
+## Política READ / WRITE / ACCESS
+
+Esta política separa capacidade de consulta, capacidade técnica de escrita e autorização institucional.
+
+### READ
+
+Perfis somente leitura podem consultar, pesquisar, analisar, comparar, identificar impactos, gerar recomendações e produzir Prompt Handoff. Não podem modificar uma fonte MASTER.
+
+### WRITE
+
+Escrita em uma fonte MASTER exige simultaneamente:
+
+1. permissão técnica;
+2. perfil ou autorização adequada;
+3. solicitação, decisão ou autorização explícita para a alteração.
+
+Capacidade técnica de escrita não constitui autorização para modificar, publicar, distribuir ou consolidar uma decisão. Aplica-se o princípio de menor privilégio.
+
+### ACCESS
+
+Uma falha de leitura ou descoberta não prova que a fonte não existe. Registre o estado aplicável:
+
+| Estado | Uso |
+|---|---|
+| `NOT_FOUND` | A inexistência foi confirmada após verificar descoberta, localização e acesso. |
+| `READ_DENIED` | A fonte foi identificada, mas a leitura foi negada. |
+| `WRITE_DENIED` | A fonte é legível, mas a escrita necessária foi negada. |
+| `ACCESS_UNKNOWN` | Não foi possível determinar permissões ou existência com segurança. |
+| `SOURCE_UNAVAILABLE` | A fonte ou serviço está temporariamente indisponível. |
+
+Antes de usar `NOT_FOUND`, verifique permissões, compartilhamento, hierarquia de diretórios e subpastas, indexação, indisponibilidade temporária e credenciais/conexões disponíveis. Em caso de impossibilidade de acesso à fonte MASTER, registre o estado e siga o procedimento institucional de contingência definido na base institucional.
+
+---
+
+## Descoberta e Roteamento de GPT_SOURCE
+
+Os pacotes `GPT_SOURCE` são fontes derivadas para descoberta e contexto; nunca substituem o MASTER correspondente.
+
+- Nome: `GPT_SOURCE_PACKS`
+- ID de governança: `1xwmKfA2mNSfDce99ro0bMCqZjPEYTYSX`
+- Caminho lógico: `33_BASE_DE_CONHECIMENTO_E_SKILLS/05_EXPORTACOES_MD/GPT_SOURCE_PACKS/`
+
+O ID serve à governança e descoberta de conhecimento. Não deve virar dependência de runtime dos produtos.
+
+Roteamento: `GPT_SOURCE` institucional → detecção do produto → `GPT_SOURCE` especializado → validação no Drive MASTER, para conteúdo funcional/institucional, ou `SD-Knowledge` → Skill core → Skill do produto, se existente → `AGENTS.md` aplicável → docs/ADRs/integrações → código real → Technical Decision Gate, para conteúdo técnico.
+
+Pacotes conhecidos incluem Sertão Digital, SIGI, VEREDAS, LegislaGD, Roteiro Comercial, Notícia Sertaneja, Plataforma360 e Observatório Mandacaru. A presença de um pacote não confirma Skill, AGENTS específico ou repositório canônico; registre lacunas, nunca invente.
+
+---
+
 ## Exemplo: Decisão sobre LegislaGD
 
 ```
@@ -226,13 +280,14 @@ Processo:
    "Keycloak Legislativo — identidade central para LegislaGD.
     Legislativo terá seu próprio Keycloak. Executivo — separado (futuro)."
 
-5. Validação:
-   - Drive é document oficial (precedência 1)
-   - GitHub SKILL reflete Drive (correto, alinhado)
-   - Não há conflito
+5. Validação orientada por domínio:
+   - Drive governa o escopo institucional e funcional da identidade por Poder
+   - GitHub governa a arquitetura e a implementação técnica versionada
+   - A Skill apenas reflete o alinhamento entre os dois domínios; não substitui ADR ou código
+   - Não há conflito somente se os respectivos MASTERS estiverem alinhados
 
-6. Decisão:
-   "Keycloak separado, conforme documento Drive de 2026-08-15"
+6. Conclusão:
+   "Validar separadamente o escopo institucional no Drive e a implementação técnica no GitHub antes de consolidar a decisão."
 ```
 
 ---

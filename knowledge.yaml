@@ -3,7 +3,7 @@ organization: Sertão Digital
 title: "SD-Knowledge - Arquitetura de Conhecimento e Skills"
 description: "Índice centralizado de conhecimento, Skills e agentes do Sertão Digital"
 version: 1.0.0
-date: 2026-08-15
+date: "2026-08-15"
 
 knowledge_architecture:
   - name: sertaodigital-core
@@ -11,7 +11,7 @@ knowledge_architecture:
     status: active
     description: "Contexto institucional e arquitetural"
     location: skills/sertaodigital-core/
-    
+
   - name: legislagd
     type: product-context
     status: active
@@ -40,7 +40,7 @@ cross_layer_sync:
     - governance.yaml
 
 validation:
-  yaml: enabled
-  json: enabled
-  markdown: enabled
-  schemas: enabled
+  yaml: true
+  json: true
+  markdown: true
+  schemas: true

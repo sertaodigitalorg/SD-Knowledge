@@ -84,7 +84,7 @@ Se você descobre vulnerabilidade de segurança:
 
 - Nenhum dado pessoal (PII) em repositório público
 - Consentimento para coletar dados
-- Direito ao esquecimento respeitado
+- Direitos dos titulares e hipóteses de eliminação, retenção e tratamento conforme LGPD e obrigações legais aplicáveis
 - Dados minimizados
 - Transparência em política de privacidade
 

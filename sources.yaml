@@ -9,7 +9,7 @@ sources:
     status: active
     description: "Master de documentação funcional, estratégica e institucional"
     access: internal
-    
+
   github_sdka:
     name: "GitHub - sertaodigitalorg/SD-Knowledge"
     type: git
@@ -19,7 +19,7 @@ sources:
     status: active
     description: "Master de documentação técnica, Skills, schemas e código"
     access: public
-    
+
   public_documentation:
     name: "Documentos Públicos"
     type: web
@@ -27,7 +27,7 @@ sources:
     status: active
     description: "Legislação, padrões abertos, RFCs, normas"
     access: public
-    
+
   generated_context:
     name: "Contexto Derivado"
     type: derived
@@ -36,3 +36,12 @@ sources:
     description: "Markdown exportado, contexto gerado para IA"
     access: can-vary
     note: "Never treat as authoritative - always refer to master"
+
+  gpt_source_packs:
+    name: "GPT_SOURCE_PACKS"
+    type: derived
+    authority: non-authoritative
+    status: reference-only
+    description: "Pacotes derivados para descoberta de contexto; ID de governança 1xwmKfA2mNSfDce99ro0bMCqZjPEYTYSX"
+    folder_path: "33_BASE_DE_CONHECIMENTO_E_SKILLS/05_EXPORTACOES_MD/GPT_SOURCE_PACKS"
+    access: internal

@@ -76,6 +76,12 @@ Análise formal antes de executar mudança técnica.
 
 ### Checklist
 
+- [ ] **Escopo e Autoridade**
+  - Identificar o repositório técnico correto
+  - Carregar o `AGENTS.md` aplicável
+  - Carregar a Skill institucional e a Skill do produto, quando existir
+  - Não usar chat ou `GPT_SOURCE` isoladamente para consolidar arquitetura
+
 - [ ] **Código Atual**
   - Revisar código existente
   - Entender padrões em uso
@@ -106,47 +112,53 @@ Análise formal antes de executar mudança técnica.
   - Validar decisão contra documentação de domínio
   - Atualizar Skills se necessário
 
-### Exemplo: Technical Decision Gate
+- [ ] **Segurança, Registro e Impacto**
+  - Avaliar segurança, privacidade e princípio de menor privilégio
+  - Confirmar separadamente permissão técnica e autorização explícita para escrever
+  - Registrar o estado de acesso conforme `SOURCE_OF_TRUTH.md` quando necessário
+  - Registrar e versionar a decisão em ADR quando aplicável
+  - Executar o Cross-Layer Impact Check antes de finalizar
 
-**Mudança Proposta:** Mudança de autenticação de JWT para SAML em LegislaGD
+### Exemplo Hipotético: Technical Decision Gate
+
+> O exemplo abaixo é fictício e serve apenas para demonstrar o fluxo do Technical Decision Gate. Não representa uma decisão oficial do Sertão Digital.
+
+**Mudança Proposta:** Exemplo ilustrativo de troca de autenticação em um sistema de referência genérico.
 
 **Análise:**
 
 1. **Código Atual**
-   - ✅ Código em SAPL-SD usa JWT
-   - ✅ Token salvo em localStorage (frontr)
-   - ✅ Refresh token em cookie seguro
+   - ✅ Sistema A usa token de sessão em fluxo interno
+   - ✅ Fluxo de refresh é gerenciado por serviço dedicado
+   - ✅ A biblioteca específica pode variar conforme repositório
 
 2. **Arquitetura**
-   - ✅ Keycloak centralizado (já existe)
-   - ✅ Protocolo OIDC suportado
-   - ✅ SAML seria redundante se OIDC funciona
+   - ✅ Existe um provedor central de identidade
+   - ✅ Protocolo de integração é definido por repositório
+   - ✅ Alternativa específica deve ser validada antes da adoção
 
 3. **ADRs**
-   - ✅ ADR-2026-001: "Use Keycloak como IdP central"
-   - ✅ ADR-2026-002: "Prefira OIDC para novos cliente"
-   - ⚠️ SAML não foi decidido antes
+   - ✅ Existe ADR documentado no repositório correspondente
+   - ✅ A decisão real deve ser consultada no histórico do código
+   - ⚠️ Exemplo não substitui ADR real
 
 4. **Compatibilidade**
-   - ⚠️ Upstream SAPL usa JWT
-   - ✅ Mas permite plugin de autenticação
-   - ⚠️ PortalModelo precisa rodar sem Keycloak
+   - ⚠️ Repositório de origem pode ter requisitos específicos
+   - ✅ A mudança deve preservar comportamento compatível
+   - ⚠️ Implementação depende da análise técnica local
 
 5. **Integrações**
-   - ✅ SIGI-SD usa Keycloak OIDC
-   - ✅ e-Cidade-SD usa Keycloak OIDC
-   - ✅ Todos podem usar OIDC
+   - ✅ Múltiplos módulos podem depender do mesmo padrão
+   - ✅ Integrações devem ser avaliadas por repositório e contexto
 
 6. **Skills**
-   - ✅ legislagd/references/identity.md documenta Keycloak
-   - ✅ Menciona OIDC como protocolo
-   - ✅ SAML não é mencionado
+   - ✅ A Skill deve refletir padrão institucional válido
+   - ✅ Exemplo não deve ser tratado como regra universal
 
-**Decisão:** ✅ **APROVADO COM RESTRIÇÃO**
-- OIDC é suficiente
-- SAML é redundante
-- Manter padrão OIDC conforme ADRs
-- Se necessário SAML: buscar caso de uso específico
+**Decisão:** ✅ **EXEMPLO ILUSTRATIVO**
+- A alternativa específica precisa ser validada em ADR ou repositório real
+- Exemplos hipotéticos nunca substituem decisão versionada
+- O padrão correto depende do contexto técnico do produto
 
 ---
 
@@ -231,21 +243,23 @@ percebido pelo usuário?
 
 ## Exemplo Completo: Technical Decision + Cross-Layer
 
-### Cenário: Adicionar MFA em LegislaGD
+### Cenário Ilustrativo: Adicionar MFA em Produto Genérico
+
+> Este cenário é hipotético e não representa uma decisão real do Sertão Digital.
 
 **Passo 1: Technical Decision Gate**
 
 ```
-Decisão: Implementar Time-based OTP (TOTP) para MFA
+Decisão: Implementar mecanismo de autenticação multifator em um sistema genérico.
 
-✅ Código: estudar autenticação atual
-✅ Arquitetura: Keycloak suporta TOTP natively
-✅ ADRs: compatível com ADR-2026-001 (Keycloak)
-✅ Compatibilidade: não quebra cliente JWT
-✅ Integrações: SIGI-SD também pode usar
-✅ Skills: legislagd/references/identity.md menciona MFA
+✅ Código: analisar autenticação atual
+✅ Arquitetura: validar provedor de identidade existente
+✅ ADRs: consultar decisão versionada do repositório
+✅ Compatibilidade: preservar fluxos compatíveis
+✅ Integrações: avaliar módulos dependentes
+✅ Skills: refletir contexto do produto e regras de acesso
 
-Resultado: APROVADO
+Resultado: APROVADO SOMENTE SE VALIDADO
 ```
 
 **Passo 2: Cross-Layer Impact Check**
@@ -253,45 +267,43 @@ Resultado: APROVADO
 ```
 Pergunta: Afeta funcionamento percebido pelo usuário?
 
-Resposta: SIM
-- Usuário precisa gerar código TOTP
-- Novo passo no login
-- Nova política de segurança
+Resposta: DEPENDE DO CONTEXTO
+- Pode exigir novo passo de autenticação
+- Pode demandar atualização operacional
+- Pode exigir comunicação de uso
 
 Pergunta: Acesso ao Drive?
 
-Resposta: SIM (estamos executando)
+Resposta: VARIA
 
-Ação: Atualizar Drive diretamente
+Ação: Atualizar documentação funcional ou gerar handoff
 - Atualizar manual de operação
-- Avisar RH sobre nova política
-- Adicionar procedimento de setup MFA
+- Ajustar FAQ ou procedimento de onboarding
+- Registrar impacto no repositório correto
 ```
 
 **Passo 3: Implementação**
 
 1. **Código** (GitHub)
-   - Integrar biblioteca TOTP
-   - Atualizar API de login
-   - Armazenar secrets com segurança
-   - Testes de integração
+   - Validar biblioteca e prova de conceito
+   - Atualizar API de login apenas se necessário
+   - Manter segredos fora do repositório
+   - Realizar testes de integração
 
 2. **Documentação** (GitHub)
-   - API Reference
-   - Skill legislagd
-   - Documentação técnica
+   - Atualizar documentação técnica relevante
+   - Ajustar Skills ou referência do produto
+   - Registrar impacto e compatibilidade
 
-3. **Drive** (Simultaneamente)
-   - Manual de operação
-   - Procedimento passo-a-passo
-   - FAQ de MFA
-   - Notificar RH
+3. **Drive** (quando aplicável)
+   - Atualizar manual operacional ou processo funcional
+   - Registrar procedimento somente se houver decisão formal
+   - Não usar exemplo como fato
 
 4. **PR**
-   - Título: "feat: add MFA (TOTP) for user authentication"
-   - Descrição referencia impacto cruzado
-   - Links para PR e documentação Drive
-   - Validação de sincronização completa
+   - Título: "feat: add authentication hardening if validated"
+   - Descrição referenciando regras de gate e impacto cruzado
+   - Links para ADRs e contexto autorizados
 
 ---
 
@@ -415,22 +427,25 @@ Skills devem referenciar:
 - **technical_decisions:** resumo de decisões importantes
 - **compatibility_notes:** como mudanças afetam downstream
 
-**Exemplo em Skill:**
+**Exemplo em Skill (ilustrativo):**
 
 ```yaml
 ---
 name: legislagd
+status: active
 decision_records:
-  - adr-2026-001-keycloak-idp
-  - adr-2026-002-oidc-preferred
+  - example-adr-001-identity-provider
+  - example-adr-002-protocol-selection
 ---
 
 ## Decisões Técnicas Importantes
 
-- [x] Keycloak centralizado (ADR-2026-001)
-- [x] OIDC é protocolo padrão (ADR-2026-002)
-- [ ] MFA será implementado T3 2026
+- [x] Identidade centralizada do produto deve ser determinada por repositório e decisão versionada
+- [x] Protocolo deve seguir análise técnica específica do produto
+- [ ] Novas decisões exigem ADR real antes de consolidação
 ```
+
+> O bloco acima é ilustrativo e não representa ADR real do projeto.
 
 ---
 

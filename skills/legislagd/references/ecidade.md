@@ -42,8 +42,7 @@ Sistema ERP para Gestão Administrativa Legislativa (e futuramente Executiva).
 
 ## Repositório
 
-Será registrado em `repositories.yaml`.
-
+Consulte `repositories.yaml` para a URL canônica e o status validado do repositório.
 ## Importante
 
 - Contém dados sensíveis (folha, patrimonial)

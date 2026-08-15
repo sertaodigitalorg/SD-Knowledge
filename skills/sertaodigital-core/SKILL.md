@@ -128,14 +128,13 @@ Esta Skill abrange:
 
 ## Hierarquia de Autoridade
 
-Ao resolver conflitos, use esta ordem:
+Ao resolver conflitos, primeiro classifique o domínio e aplique seu MASTER:
 
-1. **Documento oficial vigente** — decisão formal, assinada
-2. **Documentação funcional oficial** — Google Drive
-3. **Documentação técnica** — GitHub deste repo
-4. **Manifestos SDKA** — knowledge.yaml, products.yaml, etc
-5. **Knowledge Base derivada** — Markdown exportado, contexto
-6. **Inferência do agente** — nunca substitua (1-5)
+- institucional/funcional/estratégico/administrativo/jurídico/comercial: Google Drive;
+- técnico/arquitetura/código/API/deploy/ADR/Skills/AGENTS: GitHub;
+- manifestos: SD-Knowledge, conforme o escopo;
+- conhecimento derivado: referência sem autoridade sobre o MASTER;
+- inferência: nunca substitui uma fonte MASTER.
 
 **Regra:** Nunca invente informação que já existe em fonte oficial.
 
@@ -179,6 +178,12 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 - Nunca edite como fonte oficial
 - Sincronize com Drive como master
 
+### Acesso, Escrita e GPT_SOURCE
+
+Para READ / WRITE / ACCESS, estados de falha e descoberta/roteamento de pacotes `GPT_SOURCE`, aplique a política central em `docs/SOURCE_OF_TRUTH.md`. Esta Skill não replica essa política.
+
+Antes de consolidar decisão técnica, aplique `docs/TECHNICAL_DECISION_GOVERNANCE.md`. Permissão técnica de escrita não substitui autorização explícita.
+
 ---
 
 ## Software Livre e Soberania Tecnológica
@@ -194,12 +199,12 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 
 ### Infraestrutura
 
-- **Padrão preferencial:** Docker (contêinerização reproduzível)
+- **Padrão preferencial:** soluções abertas, reproduzíveis e auditáveis
 - **Repositórios:** GitHub (público, auditável)
 - **CI/CD:** GitHub Actions (nativo, open source)
-- **Infraestrutura:** Kubernetes, OpenStack, ou cloud aberta
-- **Bancos de dados:** PostgreSQL, MongoDB, etc
-- **Linguagens:** Python, Node.js, Go, Rust (quando apropriado)
+- **Infraestrutura:** a tecnologia escolhida deve seguir requisitos do produto e decisão técnica versionada do repositório correspondente
+- **Bancos de dados:** o banco e o padrão de persistência devem obedecer à arquitetura do produto e às decisões de manutenção do repositório
+- **Linguagens:** a escolha de linguagem deve respeitar a arquitetura existente, a Skill relevante e a decisão técnica do produto
 
 ### Evitar
 
@@ -207,6 +212,14 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 - ❌ Sistemas proprietários sem razão forte
 - ❌ Dependências não-auditáveis
 - ❌ Infraestrutura opaca
+
+### Regra de Preferência Técnica
+
+> Uma Skill não deve promover preferências genéricas ou exemplos como decisão institucional. Tecnologias específicas e padrões de infraestrutura devem ser definidos no repositório técnico correspondente, por decisão versionada e validada.
+>
+> technical_preferences:
+>   authority: repository-specific
+>   inference_as_standard: prohibited
 
 ---
 
@@ -249,7 +262,7 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 - Conform com LGPD (Lei Geral de Proteção de Dados)
 - Consentimento informado para dados de cidadão
 - Pseudonimização quando possível
-- Direito ao esquecimento respeitado
+- Direitos dos titulares e hipóteses de eliminação, retenção e tratamento conforme LGPD e obrigações legais aplicáveis
 
 ### Vulnerabilidades
 

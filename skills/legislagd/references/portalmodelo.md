@@ -41,8 +41,7 @@ Portal Institucional e Interface Pública de LegislaGD.
 
 ## Repositório
 
-Será registrado em `repositories.yaml`.
-
+Consulte `repositories.yaml` para a URL canônica e o status validado do repositório.
 ## Importante
 
 - Não contém dados restritos

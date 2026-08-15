@@ -7,71 +7,74 @@ repositories:
     type: knowledge-base
     status: active
     description: "Arquitetura de conhecimento e Skills"
-    
+
   legislagd_core:
     name: LegislaGD
-    url: null
-    type: legislative-platform
-    status: pending-validation
-    status_reason: "Repository URL not yet provided"
+    url: https://github.com/sertaodigitalorg/LegislaGD
+    type: software
+    status: active
     parent_product: legislagd
-    
+    description: "Plataforma legislativa do Poder Legislativo"
+
   sapl_sd:
     name: SAPL-SD
-    url: null
+    url: https://github.com/sertaodigitalorg/SAPL-SD
     type: software
-    status: pending-validation
+    status: active
     upstream: https://github.com/interlegis/sapl
     description: "Processo legislativo"
-    
+
   portalmodelo_sd:
     name: PortalModelo-SD
-    url: null
+    url: https://github.com/sertaodigitalorg/PortalModelo-SD
     type: software
-    status: pending-validation
+    status: active
     description: "Portal institucional"
-    
+
   ecidade_sd:
     name: e-Cidade-SD
-    url: null
+    url: https://github.com/sertaodigitalorg/e-Cidade-SD
     type: software
-    status: pending-validation
+    status: active
     description: "ERP administrativo"
-    
+
   sigi_sd:
     name: SIGI-SD
-    url: null
+    url: https://github.com/sertaodigitalorg/SIGI-SD
     type: software
-    status: pending-validation
+    status: active
     description: "Atendimento ao cidadão"
-    
+
   keycloak:
     name: Keycloak Legislativo
     url: null
     type: infrastructure
     status: planned
     description: "Identidade centralizada"
-    
+
   veredas:
     name: VEREDAS
-    url: null
+    url: https://github.com/sertaodigitalorg/VEREDAS
     type: software
-    status: pending-validation
-    
+    status: active
+    description: "Plataforma de mobilidade pública inteligente para transporte escolar e saúde"
+
   plataforma360:
     name: Plataforma360
-    url: null
+    url: https://github.com/sertaodigitalorg/Plataforma360
     type: software
-    status: pending-validation
-    
+    status: active
+
   noticia_sertaneja:
     name: Notícia Sertaneja
     url: null
     type: software
     status: pending-validation
-    
+    status_reason: "URL not publicly validated"
+
   roteiro_comercial:
     name: Roteiro Comercial
     url: null
     type: software
     status: pending-validation
+    status_reason: "URL not publicly validated"

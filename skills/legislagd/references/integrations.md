@@ -103,7 +103,7 @@ Acesso apenas com RBAC apropriado.
 
 Protegidos conforme LGPD.
 - Consentimento necessário
-- Direito ao esquecimento
+- Direitos dos titulares e hipóteses de eliminação, retenção e tratamento conforme LGPD e obrigações legais aplicáveis
 - Minimização de dados
 
 ---

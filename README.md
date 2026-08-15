@@ -277,8 +277,8 @@ Hierarquia de autoridade:
    ├── manifests/
    └── workflows/
    ```
-3. **Registrar em** `knowledge.yaml`
-4. **Abrir Pull Request**
+4. **Registrar em** `knowledge.yaml`
+5. **Abrir Pull Request**
 
 ## Consumir uma Skill
 

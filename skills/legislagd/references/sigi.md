@@ -1,6 +1,6 @@
 # SIGI-SD
 
-Sistema de Gestão de Políticas Internas - Versão Sertão Digital.
+Sistema de Inteligência Geral de Interações - Versão Sertão Digital.
 
 Atendimento ao cidadão e protocolo para LegislaGD.
 
@@ -46,12 +46,11 @@ Atendimento ao cidadão e protocolo para LegislaGD.
 
 ## Repositório
 
-Será registrado em `repositories.yaml`.
-
+Consulte `repositories.yaml` para a URL canônica e o status validado do repositório.
 ## LGPD Compliance
 
 - Consentimento de cidadão
 - Retenção limitada de dados
 - Anonimização de atendimento
-- Direito ao esquecimento (após prazo)
+- Direitos dos titulares e hipóteses de eliminação, retenção e tratamento de dados conforme LGPD e obrigações legais aplicáveis
 - Política de privacidade clara

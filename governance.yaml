@@ -2,31 +2,31 @@ schema_version: 1
 
 governance:
   organization: Sertão Digital
-  
+
   decision_making:
     strategic:
       authority: institutional_drive
       process: "formal decision, signed, documented in Drive"
-      
+
     technical:
       authority: github
       process: "issue + PR + code review + merge"
-      
+
     knowledge:
       authority: skills_and_manifests
       process: "issue + skill update + PR + review + merge"
-  
+
   source_of_truth:
     institutional: google_drive
     functional: google_drive
     technical: github
     skills: github
     code: github
-  
+
   cross_layer_sync:
     required: true
     description: "Changes in one layer must consider impact on other layer"
-    
+
     functional_to_technical:
       trigger: "functional change impacts technical behavior"
       action: "update GitHub (if access) or generate TECHNICAL HANDOFF"
@@ -34,7 +34,7 @@ governance:
         - "new requirement → new component"
         - "business flow change → API change"
         - "new security policy → authentication update"
-    
+
     technical_to_functional:
       trigger: "technical change impacts user behavior or operation"
       action: "update Drive (if access) or generate FUNCTIONAL HANDOFF"
@@ -42,41 +42,46 @@ governance:
         - "new API feature → usage documentation"
         - "authentication change → operational manual"
         - "component deprecation → user notification"
-    
+
     access_aware_handoff:
       with_access: "update target layer directly in same activity"
       without_access: "generate Prompt Handoff (mandatory)"
       no_access_eliminates_responsibility: false
-    
+
     pending_sync:
       allowed_status: ["PENDING", "IN_PROGRESS", "COMPLETED", "CANCELLED"]
       not_permanent: "must be resolved before production release"
-  
+
   compatibility:
     - maintain_backward_compatibility
     - upstream_first_approach
     - document_breaking_changes
     - communicate_deprecations
-    
+
   security:
     - no_secrets_in_repositories
     - encrypted_sensitive_data
     - audit_logging
     - lgpd_compliance
     - privacy_by_design
-    
+
   versioning:
     - semantic_versioning
     - changelog_updates
     - git_history
     - release_notes
-    
+
   access:
-    - public_by_default
-    - institutional_data_in_drive
-    - code_open_source
-    - licensing_decisions_formal
-    
+    principle: least_privilege
+    write_requires:
+      - technical_permission
+      - adequate_profile_or_authorization
+      - explicit_request_decision_or_authorization
+    technical_capability_is_authorization: false
+    failure_states: [NOT_FOUND, READ_DENIED, WRITE_DENIED, ACCESS_UNKNOWN, SOURCE_UNAVAILABLE]
+    not_found_requires_access_checks: true
+    policies: [public_by_default, institutional_data_in_drive, code_open_source, licensing_decisions_formal]
+
   reference_documents:
     - docs/SOURCE_OF_TRUTH.md
     - docs/PROMPT_HANDOFF_STANDARD.md
