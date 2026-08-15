@@ -1,0 +1,49 @@
+schema_version: 1
+
+governance:
+  organization: Sertão Digital
+  
+  decision_making:
+    strategic:
+      authority: institutional_drive
+      process: "formal decision, signed, documented in Drive"
+      
+    technical:
+      authority: github
+      process: "issue + PR + code review + merge"
+      
+    knowledge:
+      authority: skills_and_manifests
+      process: "issue + skill update + PR + review + merge"
+  
+  source_of_truth:
+    institutional: google_drive
+    functional: google_drive
+    technical: github
+    skills: github
+    code: github
+    
+  compatibility:
+    - maintain_backward_compatibility
+    - upstream_first_approach
+    - document_breaking_changes
+    - communicate_deprecations
+    
+  security:
+    - no_secrets_in_repositories
+    - encrypted_sensitive_data
+    - audit_logging
+    - lgpd_compliance
+    - privacy_by_design
+    
+  versioning:
+    - semantic_versioning
+    - changelog_updates
+    - git_history
+    - release_notes
+    
+  access:
+    - public_by_default
+    - institutional_data_in_drive
+    - code_open_source
+    - licensing_decisions_formal

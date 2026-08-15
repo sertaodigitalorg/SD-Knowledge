@@ -1,0 +1,77 @@
+schema_version: 1
+
+repositories:
+  sd_knowledge:
+    name: SD-Knowledge
+    url: https://github.com/sertaodigitalorg/SD-Knowledge
+    type: knowledge-base
+    status: active
+    description: "Arquitetura de conhecimento e Skills"
+    
+  legislagd_core:
+    name: LegislaGD
+    url: null
+    type: legislative-platform
+    status: pending-validation
+    status_reason: "Repository URL not yet provided"
+    parent_product: legislagd
+    
+  sapl_sd:
+    name: SAPL-SD
+    url: null
+    type: software
+    status: pending-validation
+    upstream: https://github.com/interlegis/sapl
+    description: "Processo legislativo"
+    
+  portalmodelo_sd:
+    name: PortalModelo-SD
+    url: null
+    type: software
+    status: pending-validation
+    description: "Portal institucional"
+    
+  ecidade_sd:
+    name: e-Cidade-SD
+    url: null
+    type: software
+    status: pending-validation
+    description: "ERP administrativo"
+    
+  sigi_sd:
+    name: SIGI-SD
+    url: null
+    type: software
+    status: pending-validation
+    description: "Atendimento ao cidadão"
+    
+  keycloak:
+    name: Keycloak Legislativo
+    url: null
+    type: infrastructure
+    status: planned
+    description: "Identidade centralizada"
+    
+  veredas:
+    name: VEREDAS
+    url: null
+    type: software
+    status: pending-validation
+    
+  plataforma360:
+    name: Plataforma360
+    url: null
+    type: software
+    status: pending-validation
+    
+  noticia_sertaneja:
+    name: Notícia Sertaneja
+    url: null
+    type: software
+    status: pending-validation
+    
+  roteiro_comercial:
+    name: Roteiro Comercial
+    url: null
+    type: software
+    status: pending-validation

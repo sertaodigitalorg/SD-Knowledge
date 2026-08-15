@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sertaodigital.org/schemas/products.schema.json",
+  "title": "Products Registry Schema",
+  "description": "Schema for products.yaml - Product catalog",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "products": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "type", "status"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Product name"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["legislative-platform", "component", "platform", "infrastructure", "utility"],
+            "description": "Product type"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "pending-validation", "deprecated", "planning"],
+            "description": "Product status"
+          },
+          "scope": {
+            "type": "string",
+            "description": "Target scope (power_legislative, power_executive, etc)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Product description"
+          },
+          "repository": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Repository URL or null"
+          },
+          "drive_reference": {
+            "type": ["string", "null"],
+            "description": "Google Drive reference path"
+          },
+          "parent_product": {
+            "type": ["string", "null"],
+            "description": "Parent product if component"
+          }
+        }
+      }
+    }
+  }
+}

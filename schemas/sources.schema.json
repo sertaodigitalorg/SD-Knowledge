@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sertaodigital.org/schemas/sources.schema.json",
+  "title": "Sources Authority Schema",
+  "description": "Schema for sources.yaml - Authority registry",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "type", "authority", "status"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Source name"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["google-drive", "git", "web", "derived", "database", "api", "other"],
+            "description": "Source type"
+          },
+          "authority": {
+            "type": "string",
+            "enum": ["primary-functional", "primary-technical", "reference", "non-authoritative"],
+            "description": "Authority level"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "archived", "reference-only", "deprecated"],
+            "description": "Source status"
+          },
+          "description": {
+            "type": "string",
+            "description": "What this source contains"
+          },
+          "access": {
+            "type": "string",
+            "enum": ["public", "internal", "restricted", "can-vary"],
+            "description": "Access level"
+          },
+          "url": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Source URL if applicable"
+          },
+          "folder_path": {
+            "type": ["string", "null"],
+            "description": "Path in Drive or file system"
+          }
+        }
+      }
+    }
+  }
+}

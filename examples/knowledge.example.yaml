@@ -1,0 +1,55 @@
+schema_version: 1
+organization: Sertão Digital
+architecture: SDKA
+version: 1.0.0
+date: 2026-08-15
+
+# Knowledge Index Example
+# Exemplo de como estruturar o índice de conhecimento
+
+knowledge_architecture:
+  - name: sertaodigital-core
+    type: organizational-context
+    status: active
+    description: "Contexto institucional e arquitetural do Sertão Digital"
+    location: skills/sertaodigital-core/
+    dependencies: []
+    version: "1.0.0"
+    
+  - name: legislagd
+    type: product-context
+    status: active
+    description: "Contexto da plataforma legislativa LegislaGD"
+    location: skills/legislagd/
+    dependencies:
+      - sertaodigital-core
+    version: "1.0.0"
+
+documentation:
+  - docs/SDKA.md
+  - docs/SOURCE_OF_TRUTH.md
+  - docs/KNOWLEDGE_GOVERNANCE.md
+  - docs/SKILL_ARCHITECTURE.md
+
+products:
+  - legislagd
+  - sapl-sd
+  - portalmodelo-sd
+
+repositories:
+  - name: SD-Knowledge
+    url: https://github.com/sertaodigitalorg/SD-Knowledge
+    type: knowledge-base
+
+validation:
+  yaml:
+    enabled: true
+    tool: yamllint
+  json:
+    enabled: true
+    tool: jsonschema
+  markdown:
+    enabled: true
+    tool: markdownlint
+  schemas:
+    enabled: true

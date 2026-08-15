@@ -1,0 +1,68 @@
+name: legislagd
+version: 1.0.0
+status: active
+
+# Exemplo de manifesto de produto
+# Veja skills/legislagd/manifests/product.yaml como exemplo real
+
+product:
+  name: LegislaGD
+  description: "Plataforma legislativa livre baseada em software aberto"
+  type: legislative-platform
+  scope: power_legislative
+  repository: https://github.com/sertaodigitalorg/LegislaGD  # URL será validada
+  drive_reference: "SERTÃO DIGITAL - ACERVO / 33... / 04_DOCUMENTACAO_DE_PRODUTOS / LegislaGD"
+  
+components:
+  - name: SAPL-SD
+    description: "Sistema de Acompanhamento de Processo Legislativo"
+    type: core-component
+    repository: https://github.com/sertaodigitalorg/SAPL-SD
+    upstream: https://github.com/interlegis/sapl
+    status: active
+    
+  - name: PortalModelo-SD
+    description: "Portal institucional público"
+    type: component
+    repository: https://github.com/sertaodigitalorg/PortalModelo-SD
+    status: active
+    
+  - name: e-Cidade-SD
+    description: "ERP para gestão administrativa"
+    type: component
+    repository: https://github.com/sertaodigitalorg/e-Cidade-SD
+    status: active
+    
+  - name: SIGI-SD
+    description: "Sistema de atendimento ao cidadão"
+    type: component
+    repository: https://github.com/sertaodigitalorg/SIGI-SD
+    status: active
+    
+  - name: Keycloak Legislativo
+    description: "Identidade centralizada para todo Poder Legislativo"
+    type: infrastructure
+    repository: null  # Infraestrutura, não repositório
+    status: planned
+
+architecture:
+  type: microservices
+  integration_pattern: API-driven
+  identity: keycloak
+  database: postgresql
+  containerization: docker
+  orchestration: kubernetes
+
+dependencies:
+  required:
+    - sertaodigital-core
+    
+governance:
+  master_functional: institutional_drive
+  master_technical: github
+  compatibility: upstream-first
+  
+maintenance:
+  frequency: active
+  support_level: high
+  roadmap: docs/NEXT_STEPS.md

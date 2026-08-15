@@ -1,0 +1,11 @@
+{
+  "extends": "markdownlint:recommended",
+  "rules": {
+    "MD003": "consistent",
+    "MD013": false,
+    "MD014": false,
+    "MD024": false,
+    "MD025": false,
+    "MD033": false
+  }
+}

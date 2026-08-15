@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sertaodigital.org/schemas/skill.schema.json",
+  "title": "Skill Specification Schema",
+  "description": "Schema for SKILL.md frontmatter",
+  "type": "object",
+  "required": ["name", "description", "version", "status", "type"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9\\-]+$",
+      "description": "Skill identifier (lowercase, hyphen-separated)"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this Skill provides"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "deprecated", "planning"],
+      "description": "Skill status"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["organizational-context", "product-context", "domain-context", "technical-context", "other"],
+      "description": "Type of Skill"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author or team responsible"
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Required Skills"
+        },
+        "conditional": {
+          "type": "object",
+          "description": "Conditional dependencies"
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Reference files in skill"
+    }
+  }
+}

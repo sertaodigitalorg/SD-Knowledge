@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sertaodigital.org/schemas/knowledge.schema.json",
+  "title": "Knowledge Registry Schema",
+  "description": "Schema for knowledge.yaml - Central knowledge index",
+  "type": "object",
+  "required": ["schema_version", "organization"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "description": "Schema version for compatibility",
+      "minimum": 1
+    },
+    "organization": {
+      "type": "string",
+      "description": "Organization name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of knowledge base"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of knowledge base"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last update"
+    },
+    "knowledge_architecture": {
+      "type": "array",
+      "description": "List of Skills and knowledge domains",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "status"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Skill name"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["organizational-context", "product-context", "domain-context", "technical-context"],
+            "description": "Type of Skill"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "inactive", "deprecated", "planning"],
+            "description": "Status of Skill"
+          },
+          "description": {
+            "type": "string",
+            "description": "What the Skill provides"
+          },
+          "location": {
+            "type": "string",
+            "description": "Path to Skill in repository"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Other Skills this depends on"
+          }
+        }
+      }
+    },
+    "documentation": {
+      "type": "array",
+      "description": "Documentation files",
+      "items": {"type": "string"}
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "yaml": {"type": "boolean"},
+        "json": {"type": "boolean"},
+        "markdown": {"type": "boolean"},
+        "schemas": {"type": "boolean"}
+      }
+    }
+  }
+}

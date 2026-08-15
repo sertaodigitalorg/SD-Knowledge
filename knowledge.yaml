@@ -1,0 +1,35 @@
+schema_version: 1
+organization: Sertão Digital
+title: "SD-Knowledge - Arquitetura de Conhecimento e Skills"
+description: "Índice centralizado de conhecimento, Skills e agentes do Sertão Digital"
+version: 1.0.0
+date: 2026-08-15
+
+knowledge_architecture:
+  - name: sertaodigital-core
+    type: organizational-context
+    status: active
+    description: "Contexto institucional e arquitetural"
+    location: skills/sertaodigital-core/
+    
+  - name: legislagd
+    type: product-context
+    status: active
+    description: "Plataforma legislativa LegislaGD"
+    location: skills/legislagd/
+    depends_on:
+      - sertaodigital-core
+
+documentation:
+  - SDKA.md
+  - SOURCE_OF_TRUTH.md
+  - DOCUMENTATION_ARCHITECTURE.md
+  - DRIVE_INTEGRATION.md
+  - SKILL_ARCHITECTURE.md
+  - AGENT_ARCHITECTURE.md
+
+validation:
+  yaml: enabled
+  json: enabled
+  markdown: enabled
+  schemas: enabled
