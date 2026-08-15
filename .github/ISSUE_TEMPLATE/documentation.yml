@@ -1,0 +1,73 @@
+name: Documentação
+description: Reportar erro de documentação ou propor melhoria
+labels: [documentation]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Problema de Documentação
+        Use este template para reportar erros, ambiguidades, ou propor melhorias na documentação.
+
+  - type: input
+    id: doc_file
+    attributes:
+      label: Arquivo de Documentação
+      description: "Qual arquivo? (ex: docs/SDKA.md, skills/legislagd/SKILL.md)"
+      placeholder: "docs/SDKA.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_description
+    attributes:
+      label: Descrição do Problema
+      description: O que está errado ou faltando?
+      placeholder: |
+        - Erro de digitação em linha X
+        - Seção X é ambígua
+        - Falta informação sobre Y
+        - Conflito entre X e Y
+    validations:
+      required: true
+
+  - type: dropdown
+    id: problem_type
+    attributes:
+      label: Tipo de Problema
+      options:
+        - Erro de digitação
+        - Informação incorreta
+        - Informação desatualizada
+        - Falta de clareza
+        - Conflito de informação
+        - Falta informação
+        - Outro
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Sugestão de Correção
+      description: Como isso poderia ser corrigido?
+      placeholder: |
+        Sugestão:
+        - Mudança proposta
+        - Contexto adicional
+        - Referências
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Contexto Adicional
+      description: Há mais informações relevantes?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Verifiquei que o erro não foi já reportado
+        - label: Consultei SOURCE_OF_TRUTH.md para hierarquia
+        - label: Meu relatório é específico e acionável

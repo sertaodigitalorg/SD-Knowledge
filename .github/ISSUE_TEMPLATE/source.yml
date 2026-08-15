@@ -1,0 +1,96 @@
+name: Registro de Fonte
+description: Registrar ou atualizar fonte de conhecimento
+labels: [source, knowledge]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Registro de Fonte
+        Use este template para registrar uma nova fonte de conhecimento ou atualizar uma existente.
+
+  - type: input
+    id: source_name
+    attributes:
+      label: Nome da Fonte
+      description: "Como a fonte será chamada? (ex: legislagd-documentation)"
+      placeholder: "nova-fonte-conhecimento"
+    validations:
+      required: true
+
+  - type: textarea
+    id: source_description
+    attributes:
+      label: Descrição
+      description: O que esta fonte contém?
+      placeholder: |
+        Esta fonte contém:
+        - Tipos de informação X, Y
+        - Escopo: ...
+        - Atualização: ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source_type
+    attributes:
+      label: Tipo de Fonte
+      options:
+        - google-drive
+        - github
+        - web
+        - database
+        - api
+        - derived
+        - other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source_authority
+    attributes:
+      label: Nível de Autoridade
+      options:
+        - primary-functional
+        - primary-technical
+        - reference
+        - non-authoritative
+    validations:
+      required: true
+
+  - type: input
+    id: source_location
+    attributes:
+      label: Localização/URL
+      description: "Onde está a fonte? (Link, caminho de Drive, repositório, etc)"
+      placeholder: "https://github.com/... ou SERTÃO DIGITAL - ACERVO / 33.../..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source_access
+    attributes:
+      label: Nível de Acesso
+      options:
+        - public
+        - internal
+        - restricted
+        - can-vary
+    validations:
+      required: true
+
+  - type: textarea
+    id: source_context
+    attributes:
+      label: Contexto Adicional
+      description: Por que esta fonte é importante? Como se relaciona com outras fontes?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Fonte está acessível
+        - label: Validei que não duplica fonte existente
+        - label: Documentei localização exatamente
+        - label: Consultei docs/SOURCE_OF_TRUTH.md

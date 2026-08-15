@@ -1,0 +1,100 @@
+name: Nova Skill
+description: Propor uma nova Skill de contexto de domínio
+labels: [enhancement, skill]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Nova Skill
+        Use este template para propor uma nova Skill (interpretação de domínio).
+        
+        Leia [docs/SKILL_ARCHITECTURE.md](docs/SKILL_ARCHITECTURE.md) antes de preencher.
+
+  - type: input
+    id: skill_name
+    attributes:
+      label: Nome da Skill
+      description: "Nome em snake_case (ex: legislagd-complementary)"
+      placeholder: "novo-produto-sd"
+    validations:
+      required: true
+
+  - type: textarea
+    id: skill_purpose
+    attributes:
+      label: Propósito
+      description: O que esta Skill fornecerá? Qual contexto/domínio ela cobre?
+      placeholder: |
+        Esta Skill fornece contexto sobre:
+        - Conceito 1
+        - Conceito 2
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: skill_scope
+    attributes:
+      label: Escopo
+      description: O que entra e o que não entra nesta Skill?
+      placeholder: |
+        Inclui:
+        - Conceitos X, Y, Z
+        - Integração com componente A
+        
+        Não inclui:
+        - Sistema externo B
+        - Padrão genérico C
+    validations:
+      required: true
+
+  - type: dropdown
+    id: skill_type
+    attributes:
+      label: Tipo de Skill
+      options:
+        - organizational-context
+        - product-context
+        - domain-context
+        - technical-context
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: skill_dependencies
+    attributes:
+      label: Dependências
+      description: Quais Skills esta nova Skill depende?
+      options:
+        - label: sertaodigital-core
+        - label: legislagd
+        - label: Nenhuma
+
+  - type: textarea
+    id: skill_references
+    attributes:
+      label: Fontes de Autoridade
+      description: Onde vem a verdade? Google Drive, GitHub, documentos públicos?
+      placeholder: |
+        - Google Drive — Caminho: ...
+        - GitHub — Repositório: ...
+        - Documentação pública — Link: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Contexto Adicional
+      description: Há mais informações que o revisor deveria saber?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Li docs/SKILL_ARCHITECTURE.md
+        - label: Identifiquei fontes de autoridade
+        - label: Verifiquei possíveis conflitos com Skills existentes
+        - label: Esta Skill é focada e bem definida

@@ -1,0 +1,166 @@
+name: Validate Knowledge
+
+on:
+  pull_request:
+    paths:
+      - '**.yaml'
+      - '**.json'
+      - '**.md'
+      - '.github/workflows/validate.yml'
+  push:
+    branches:
+      - main
+
+jobs:
+  yaml-validation:
+    runs-on: ubuntu-latest
+    name: Validate YAML
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install yamllint
+        run: pip install yamllint
+      
+      - name: Validate YAML files
+        run: |
+          yamllint -d relaxed *.yaml
+          yamllint -d relaxed skills/**/*.yaml
+          yamllint -d relaxed docs/**/*.yaml 2>/dev/null || true
+
+  json-validation:
+    runs-on: ubuntu-latest
+    name: Validate JSON
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate JSON files
+        run: |
+          find . -name "*.json" -type f ! -path "./node_modules/*" -exec sh -c 'python -m json.tool "{}" > /dev/null && echo "✓ {}" || (echo "✗ {}" && exit 1)' \;
+
+  schema-validation:
+    runs-on: ubuntu-latest
+    name: Validate JSON Schemas
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install jsonschema
+        run: pip install jsonschema
+      
+      - name: Validate knowledge.yaml against schema
+        run: |
+          python -c "
+          import json, yaml
+          from jsonschema import validate
+          
+          with open('schemas/knowledge.schema.json') as f:
+            schema = json.load(f)
+          with open('knowledge.yaml') as f:
+            data = yaml.safe_load(f)
+          
+          validate(instance=data, schema=schema)
+          print('✓ knowledge.yaml is valid')
+          "
+      
+      - name: Validate products.yaml against schema
+        run: |
+          python -c "
+          import json, yaml
+          from jsonschema import validate
+          
+          with open('schemas/products.schema.json') as f:
+            schema = json.load(f)
+          with open('products.yaml') as f:
+            data = yaml.safe_load(f)
+          
+          validate(instance=data, schema=schema)
+          print('✓ products.yaml is valid')
+          "
+      
+      - name: Validate repositories.yaml against schema
+        run: |
+          python -c "
+          import json, yaml
+          from jsonschema import validate
+          
+          with open('schemas/repositories.schema.json') as f:
+            schema = json.load(f)
+          with open('repositories.yaml') as f:
+            data = yaml.safe_load(f)
+          
+          validate(instance=data, schema=schema)
+          print('✓ repositories.yaml is valid')
+          "
+
+  secret-detection:
+    runs-on: ubuntu-latest
+    name: Detect Secrets
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install detect-secrets
+        run: pip install detect-secrets
+      
+      - name: Scan for secrets
+        run: |
+          detect-secrets scan --baseline .secrets.baseline || true
+          detect-secrets audit .secrets.baseline || true
+
+  file-checks:
+    runs-on: ubuntu-latest
+    name: Check Required Files
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check required files exist
+        run: |
+          files=(
+            "README.md"
+            "AGENTS.md"
+            "VERSION"
+            "CHANGELOG.md"
+            "LICENSE"
+            "CONTRIBUTING.md"
+            "SECURITY.md"
+            "CODE_OF_CONDUCT.md"
+            ".gitignore"
+            "knowledge.yaml"
+            "sources.yaml"
+            "products.yaml"
+            "repositories.yaml"
+            "governance.yaml"
+            "docs/SDKA.md"
+            "docs/SOURCE_OF_TRUTH.md"
+          )
+          
+          missing=0
+          for file in "${files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "✗ Missing: $file"
+              missing=$((missing+1))
+            else
+              echo "✓ Found: $file"
+            fi
+          done
+          
+          if [ $missing -gt 0 ]; then
+            exit 1
+          fi
+          
+          echo "✓ All required files present"
