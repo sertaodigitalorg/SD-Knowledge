@@ -81,6 +81,34 @@ Se você propõe uma mudança estrutural:
 - Comunique mudanças de breaking change
 - Versione alterações (CHANGELOG.md)
 
+### 9. Cross-Layer Impact Rule
+
+**ANTES de encerrar uma alteração:**
+
+1. **Verificar impacto na camada funcional** (Google Drive)
+   - Esta mudança técnica afeta usuário/fluxo/operação?
+   - Esta mudança requer mudança funcional?
+
+2. **Verificar impacto na camada técnica** (GitHub)
+   - Esta mudança funcional exige atualização técnica?
+   - Código/arquitetura precisa mudar?
+
+3. **Se há impacto cruzado E você tem acesso:**
+   - ✅ Atualizar diretamente a outra camada na mesma atividade
+   - Respeitar governança, fonte de verdade, versionamento
+
+4. **Se há impacto cruzado E você NÃO tem acesso:**
+   - ✅ Gerar **Prompt Handoff** para agente com acesso
+   - Documentar em issue com tag `handoff`
+   - Registrar em **PENDING_SYNC**
+
+5. **Nunca deixar impacto cruzado conhecido sem registro:**
+   - ❌ Não implemente apenas um lado
+   - ✅ Sempre sincronize ou gere handoff
+   - ✅ Registre se fica pendente
+
+**Referência:** `docs/PROMPT_HANDOFF_STANDARD.md` e `docs/TECHNICAL_DECISION_GOVERNANCE.md`
+
 ---
 
 ## 📚 Recursos Rápidos

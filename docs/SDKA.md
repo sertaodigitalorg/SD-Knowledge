@@ -77,9 +77,28 @@ Agentes de IA:
 
 **Nunca quebram compatibilidade sem discussão.**
 
+### 6. Sincronização Bidirecional
+
+A SDKA não é unidirecional Drive → GitHub.
+
+**Mudanças em uma camada devem sincronizar na outra:**
+
+**Camada Funcional (Drive) ↔ Camada Técnica (GitHub)**
+
+- Quando mudança funcional impacta técnico: atualizar GitHub (ou Prompt Handoff)
+- Quando mudança técnica impacta funcional: atualizar Drive (ou Prompt Handoff)
+
+**Regra:** Quem executa a mudança é responsável por sincronizar.
+
+- ✅ Com acesso: atualizar direto
+- ✅ Sem acesso: gerar Prompt Handoff
+
+**Nenhuma mudança deixará conscientemente as camadas divergentes.**
+
+Veja `docs/PROMPT_HANDOFF_STANDARD.md` e `docs/TECHNICAL_DECISION_GOVERNANCE.md`.
+
 ---
 
-## Arquitetura
 
 ```
 ┌─────────────────────────────────────┐

@@ -237,15 +237,128 @@ Processo:
 
 ---
 
-## Mantendo a Hierarquia
+## Sincronização Bidirecional
 
-Para manter SOURCE_OF_TRUTH:
+Quando uma mudança em uma camada impacta a outra:
 
-- ✅ Revise PRs para garantir referências corretas
-- ✅ Quando Drive muda: atualize GitHub correspondente
-- ✅ Quando GitHub muda: valide contra Drive
-- ✅ Procure por conflitos em CI/CD
-- ✅ Documente mudanças de precedência
+### Regra Fundamental
+
+**Quem executa uma mudança é responsável por avaliar impacto na outra camada.**
+
+Quando houver impacto cruzado:
+
+1. **COM acesso à camada impactada:**
+   - ✅ Atualizar diretamente na mesma atividade
+   - Respeitar governança, fonte de verdade, classificação
+   - Sincronizar versão e data
+
+2. **SEM acesso à camada impactada:**
+   - ✅ Gerar **Prompt Handoff** obrigatoriamente
+   - Documentar em issue com tag `handoff`
+   - Registrar em **PENDING_SYNC**
+   - Ausência de acesso NÃO elimina responsabilidade
+
+**Nenhuma mudança deverá deixar conscientemente as duas camadas em estado divergente.**
+
+### Fluxo Funcional → Técnico
+
+**Origem:** Google Drive (decisão, requisito, mudança de negócio)  
+**Detecção:** Agente identifica impacto técnico  
+**Ação com acesso:** Atualizar código, documentação técnica, Skills  
+**Ação sem acesso:** TECHNICAL HANDOFF para agente GitHub  
+
+**Exemplos:**
+- Novo requisito → novo componente técnico
+- Mudança de fluxo operacional → alteração de API
+- Nova política de segurança → atualização de autenticação
+
+### Fluxo Técnico → Funcional
+
+**Origem:** GitHub (código, API, arquitetura)  
+**Detecção:** Agente identifica impacto em funcionamento percebido  
+**Ação com acesso:** Atualizar documentação no Drive, manuais, guias  
+**Ação sem acesso:** FUNCTIONAL HANDOFF para agente Drive  
+
+**Exemplos:**
+- Novo endpoint de API → documentação de uso
+- Mudança de autenticação → manual operacional
+- Depreciação de funcionalidade → avisos em Drive
+
+### Access-Aware Handoff
+
+```
+if cross_layer_impact == false:
+    finish()
+
+if target_layer_access == true:
+    update_target_layer()
+    validate_cross_layer_consistency()
+else:
+    generate_prompt_handoff()
+    register_pending_sync()
+```
+
+**Princípio:** Acesso determina mecanismo, não necessidade.
+
+### PENDING_SYNC Status
+
+Quando não for possível atualizar imediatamente a outra camada:
+
+Registre:
+- Camada de origem e destino
+- Produto afetado
+- Motivo e contexto
+- Data de criação
+- Responsável (quando conhecido)
+- Prompt Handoff completo
+- Fontes afetadas
+- Criticidade (HIGH / MEDIUM / LOW)
+- Status (PENDING / IN_PROGRESS / COMPLETED / CANCELLED)
+
+**Exemplo:**
+
+```yaml
+pending_sync:
+  - handoff_id: 2026-08-15-TECHNICAL-001
+    origin_layer: functional
+    target_layer: technical
+    product: legislagd
+    date_created: 2026-08-15
+    status: PENDING
+    criticality: HIGH
+    blocking_merge: false
+```
+
+**Referência:** `docs/PROMPT_HANDOFF_STANDARD.md`
+
+---
+
+## Mantendo a Hierarquia com Sincronização
+
+Para manter SOURCE_OF_TRUTH mesmo com mudanças bidirecional:
+
+- ✅ Sempre identifique qual camada é MASTER para aquela informação
+- ✅ Mantenha referência cruzada entre camadas
+- ✅ Quando Drive muda: GitHub deve refletir (se impacto técnico)
+- ✅ Quando GitHub muda: Drive deve refletir (se impacto funcional)
+- ✅ Sempre cite a fonte original
+- ✅ Evite duplicação de decisões (sempre aponte ao master)
+- ✅ Use manifests (YAML) para registros estruturados de sincronização
+
+**Não é conflito quando:**
+- Drive e GitHub referem a mesma verdade de forma diferente
+- Markdown derivado está atualizado
+- Ambas as camadas foram sincronizadas consciosamente
+
+**É conflito quando:**
+- Informação é diferente entre camadas
+- Uma camada tem versão mais nova
+- Não há razão explicável para divergência
+
+**Resolução:**
+- Aplicar hierarquia de SOURCE_OF_TRUTH (Drive antes para funcional, GitHub antes para técnico)
+- Se ambas são do mesmo tipo: usar mais recente (por data/versão)
+- Sincronizar para estado consistente
 
 ---
 

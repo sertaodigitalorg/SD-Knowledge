@@ -27,6 +27,17 @@ documentation:
   - DRIVE_INTEGRATION.md
   - SKILL_ARCHITECTURE.md
   - AGENT_ARCHITECTURE.md
+  - TECHNICAL_DECISION_GOVERNANCE.md
+  - PROMPT_HANDOFF_STANDARD.md
+
+cross_layer_sync:
+  enabled: true
+  description: "Synchronization between functional (Drive) and technical (GitHub) layers"
+  references:
+    - docs/PROMPT_HANDOFF_STANDARD.md
+    - docs/TECHNICAL_DECISION_GOVERNANCE.md
+    - docs/SOURCE_OF_TRUTH.md
+    - governance.yaml
 
 validation:
   yaml: enabled

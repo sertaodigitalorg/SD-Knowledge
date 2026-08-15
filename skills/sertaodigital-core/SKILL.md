@@ -299,6 +299,61 @@ Outras Skills podem depender desta:
 
 ---
 
+## Sincronização Bidirecional Entre Camadas
+
+A SDKA implementa dois masters complementares com sincronização obrigatória:
+
+### Camadas
+
+**Camada Funcional/Institucional:** Google Drive (MASTER)
+- Decisões estratégicas
+- Documentação funcional
+- Requisitos de negócio
+- Procedimentos operacionais
+
+**Camada Técnica:** GitHub (MASTER)
+- Arquitetura técnica
+- Código e APIs
+- Skills e manifestos
+- Decisões arquiteturais (ADRs)
+
+### Regra de Sincronização
+
+Quando uma mudança em uma camada impacta a outra:
+
+1. **COM acesso à camada impactada:**
+   - Atualizar diretamente na mesma atividade
+   - Respeitar governança e fontes de verdade
+
+2. **SEM acesso à camada impactada:**
+   - Gerar **Prompt Handoff** obrigatoriamente
+   - Registrar em **PENDING_SYNC**
+   - Ausência de acesso NÃO elimina responsabilidade
+
+### Fluxos Principais
+
+**Funcional → Técnico (quando mudança em Drive afeta GitHub):**
+- Requisito novo → novo componente técnico
+- Mudança de fluxo → alteração de API
+- Nova política → atualização de permissões
+
+**Técnico → Funcional (quando mudança em GitHub afeta Drive):**
+- Nova funcionalidade → documentação de uso
+- Mudança de API → manual operacional
+- Depreciação → avisos em Drive
+
+### Responsabilidades
+
+Quem executa uma mudança é responsável por:
+1. Identificar impacto na outra camada
+2. Atualizar a outra camada (se houver acesso)
+3. Gerar Prompt Handoff (se não houver acesso)
+4. Nunca deixar divergência consciente entre camadas
+
+**Referência completa:** `docs/PROMPT_HANDOFF_STANDARD.md` e `docs/TECHNICAL_DECISION_GOVERNANCE.md`
+
+---
+
 ## Referências Importantes
 
 - `docs/SDKA.md` — Especificação formal

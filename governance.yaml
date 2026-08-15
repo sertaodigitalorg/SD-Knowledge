@@ -22,7 +22,36 @@ governance:
     technical: github
     skills: github
     code: github
+  
+  cross_layer_sync:
+    required: true
+    description: "Changes in one layer must consider impact on other layer"
     
+    functional_to_technical:
+      trigger: "functional change impacts technical behavior"
+      action: "update GitHub (if access) or generate TECHNICAL HANDOFF"
+      examples:
+        - "new requirement → new component"
+        - "business flow change → API change"
+        - "new security policy → authentication update"
+    
+    technical_to_functional:
+      trigger: "technical change impacts user behavior or operation"
+      action: "update Drive (if access) or generate FUNCTIONAL HANDOFF"
+      examples:
+        - "new API feature → usage documentation"
+        - "authentication change → operational manual"
+        - "component deprecation → user notification"
+    
+    access_aware_handoff:
+      with_access: "update target layer directly in same activity"
+      without_access: "generate Prompt Handoff (mandatory)"
+      no_access_eliminates_responsibility: false
+    
+    pending_sync:
+      allowed_status: ["PENDING", "IN_PROGRESS", "COMPLETED", "CANCELLED"]
+      not_permanent: "must be resolved before production release"
+  
   compatibility:
     - maintain_backward_compatibility
     - upstream_first_approach
@@ -47,3 +76,9 @@ governance:
     - institutional_data_in_drive
     - code_open_source
     - licensing_decisions_formal
+    
+  reference_documents:
+    - docs/SOURCE_OF_TRUTH.md
+    - docs/PROMPT_HANDOFF_STANDARD.md
+    - docs/TECHNICAL_DECISION_GOVERNANCE.md
+
