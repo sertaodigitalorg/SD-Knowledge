@@ -9,7 +9,7 @@ Sistema de Acompanhamento de Processo Legislativo - Versão Sertão Digital.
 | **Nome Completo** | Sistema de Acompanhamento de Processo Legislativo |
 | **Acrônimo** | SAPL |
 | **Versão SD** | SAPL-SD |
-| **Upstream** | https://github.com/interlegis/sapl |
+| **Upstream** | <https://github.com/interlegis/sapl> |
 | **Manutenção** | Compatibilidade com upstream |
 | **Função** | Core de processo legislativo |
 

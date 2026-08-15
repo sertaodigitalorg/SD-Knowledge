@@ -7,7 +7,7 @@ product:
   description: Plataforma legislativa livre
   type: legislative-platform
   scope: power_legislative
-  
+
 components:
   - name: SAPL-SD
     description: Processo legislativo
@@ -38,11 +38,11 @@ identity:
   system: Keycloak
   scope: legislative_only
   federation: future-planned
-  
+
 dependencies:
   required:
     - sertaodigital-core
-    
+
 governance:
   master_functional: institutional_drive
   master_technical: github

@@ -4,7 +4,7 @@ sources:
     type: github
     authority: reference
     status: developing
-    
+
   institutional_drive:
     name: "Google Drive"
     type: google-drive

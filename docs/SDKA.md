@@ -99,7 +99,6 @@ Veja `docs/PROMPT_HANDOFF_STANDARD.md` e `docs/TECHNICAL_DECISION_GOVERNANCE.md`
 
 ---
 
-
 ```
 ┌─────────────────────────────────────┐
 │      Fonte Institucional            │
