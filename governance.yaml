@@ -72,10 +72,15 @@ governance:
     - release_notes
     
   access:
-    - public_by_default
-    - institutional_data_in_drive
-    - code_open_source
-    - licensing_decisions_formal
+    principle: least_privilege
+    write_requires:
+      - technical_permission
+      - adequate_profile_or_authorization
+      - explicit_request_decision_or_authorization
+    technical_capability_is_authorization: false
+    failure_states: [NOT_FOUND, READ_DENIED, WRITE_DENIED, ACCESS_UNKNOWN, SOURCE_UNAVAILABLE]
+    not_found_requires_access_checks: true
+    policies: [public_by_default, institutional_data_in_drive, code_open_source, licensing_decisions_formal]
     
   reference_documents:
     - docs/SOURCE_OF_TRUTH.md

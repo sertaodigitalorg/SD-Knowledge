@@ -76,6 +76,12 @@ Análise formal antes de executar mudança técnica.
 
 ### Checklist
 
+- [ ] **Escopo e Autoridade**
+  - Identificar o repositório técnico correto
+  - Carregar o `AGENTS.md` aplicável
+  - Carregar a Skill institucional e a Skill do produto, quando existir
+  - Não usar chat ou `GPT_SOURCE` isoladamente para consolidar arquitetura
+
 - [ ] **Código Atual**
   - Revisar código existente
   - Entender padrões em uso
@@ -105,6 +111,13 @@ Análise formal antes de executar mudança técnica.
   - Carregue Skills relevantes
   - Validar decisão contra documentação de domínio
   - Atualizar Skills se necessário
+
+- [ ] **Segurança, Registro e Impacto**
+  - Avaliar segurança, privacidade e princípio de menor privilégio
+  - Confirmar separadamente permissão técnica e autorização explícita para escrever
+  - Registrar o estado de acesso conforme `SOURCE_OF_TRUTH.md` quando necessário
+  - Registrar e versionar a decisão em ADR quando aplicável
+  - Executar o Cross-Layer Impact Check antes de finalizar
 
 ### Exemplo Hipotético: Technical Decision Gate
 

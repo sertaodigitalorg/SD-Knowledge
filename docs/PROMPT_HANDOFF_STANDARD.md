@@ -72,6 +72,10 @@ origin_source:
 
 reason: [motivo-sucinto]
         # Exemplo: Novo requisito de autenticação multifator
+
+access_state: NOT_FOUND | READ_DENIED | WRITE_DENIED | ACCESS_UNKNOWN | SOURCE_UNAVAILABLE | NOT_APPLICABLE
+
+security_classification: [classificação aplicável]
 ```
 
 ### Seção de Contexto
@@ -146,6 +150,10 @@ Exemplo FUNCTIONAL:
 ### Seção de Validação
 
 ```
+## Resultado Esperado
+
+[Descrever o estado final verificável que o agente receptor deve produzir]
+
 ## Critérios de Validação
 
 Como confirmar que a mudança foi implementada corretamente:
@@ -287,6 +295,12 @@ Exemplo:
 
 ---
 
+## Resultado Esperado
+
+[Estado final verificável]
+
+---
+
 ## Impacto Cruzado
 
 Componentes/Documentos afetados:
@@ -306,7 +320,7 @@ Componentes/Documentos afetados:
 
 ## Segurança
 
-[Classificação, LGPD, secrets, conformidade]
+[Classificação, LGPD, secrets, conformidade e estado de acesso]
 
 ---
 

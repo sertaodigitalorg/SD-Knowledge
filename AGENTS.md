@@ -63,6 +63,8 @@ Hierarquia de autoridade:
 
 ### 6. Proteger Segredos
 
+Antes de escrever, aplique a política READ / WRITE / ACCESS de `docs/SOURCE_OF_TRUTH.md`: falha de descoberta não significa inexistência; capacidade técnica de escrita não substitui autorização explícita; use menor privilégio e registre o estado de acesso padronizado.
+
 - ❌ Não inclua tokens, senhas, credentials, secrets
 - ❌ Não exponha dados sensíveis
 - ❌ Consulte SECURITY.md para política
@@ -110,6 +112,12 @@ Se você propõe uma mudança estrutural:
    - ✅ Registre se fica pendente
 
 **Referência:** `docs/PROMPT_HANDOFF_STANDARD.md` e `docs/TECHNICAL_DECISION_GOVERNANCE.md`
+
+### 10. Technical Decision Gate e GPT_SOURCE
+
+- Antes de consolidar decisão técnica, execute `docs/TECHNICAL_DECISION_GOVERNANCE.md`
+- Siga a descoberta e o roteamento de `GPT_SOURCE` definidos em `docs/SOURCE_OF_TRUTH.md`
+- Um `GPT_SOURCE` é derivado e nunca decide arquitetura técnica isoladamente
 
 ---
 

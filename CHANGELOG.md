@@ -6,6 +6,16 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+
+- Política central READ / WRITE / ACCESS e estados padronizados de falha
+- Descoberta e roteamento governado dos pacotes GPT_SOURCE
+- Requisitos explícitos de autoridade, segurança e autorização no Technical Decision Gate
+
+### Changed
+
+- Prompt Handoff canônico passa a explicitar resultado esperado, estado de acesso e classificação de segurança
+
 ### Fixed
 
 - validated repository registry

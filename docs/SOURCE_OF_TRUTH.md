@@ -206,6 +206,56 @@ Quando receber uma tarefa:
 
 ---
 
+## Política READ / WRITE / ACCESS
+
+Esta política separa capacidade de consulta, capacidade técnica de escrita e autorização institucional.
+
+### READ
+
+Perfis somente leitura podem consultar, pesquisar, analisar, comparar, identificar impactos, gerar recomendações e produzir Prompt Handoff. Não podem modificar uma fonte MASTER.
+
+### WRITE
+
+Escrita em uma fonte MASTER exige simultaneamente:
+
+1. permissão técnica;
+2. perfil ou autorização adequada;
+3. solicitação, decisão ou autorização explícita para a alteração.
+
+Capacidade técnica de escrita não constitui autorização para modificar, publicar, distribuir ou consolidar uma decisão. Aplica-se o princípio de menor privilégio.
+
+### ACCESS
+
+Uma falha de leitura ou descoberta não prova que a fonte não existe. Registre o estado aplicável:
+
+| Estado | Uso |
+|---|---|
+| `NOT_FOUND` | A inexistência foi confirmada após verificar descoberta, localização e acesso. |
+| `READ_DENIED` | A fonte foi identificada, mas a leitura foi negada. |
+| `WRITE_DENIED` | A fonte é legível, mas a escrita necessária foi negada. |
+| `ACCESS_UNKNOWN` | Não foi possível determinar permissões ou existência com segurança. |
+| `SOURCE_UNAVAILABLE` | A fonte ou serviço está temporariamente indisponível. |
+
+Antes de usar `NOT_FOUND`, verifique permissões, compartilhamento, hierarquia de diretórios e subpastas, indexação, indisponibilidade temporária e credenciais/conexões disponíveis. Em caso de impossibilidade de acesso à fonte MASTER, registre o estado e siga o procedimento institucional de contingência definido na base institucional.
+
+---
+
+## Descoberta e Roteamento de GPT_SOURCE
+
+Os pacotes `GPT_SOURCE` são fontes derivadas para descoberta e contexto; nunca substituem o MASTER correspondente.
+
+- Nome: `GPT_SOURCE_PACKS`
+- ID de governança: `1xwmKfA2mNSfDce99ro0bMCqZjPEYTYSX`
+- Caminho lógico: `33_BASE_DE_CONHECIMENTO_E_SKILLS/05_EXPORTACOES_MD/GPT_SOURCE_PACKS/`
+
+O ID serve à governança e descoberta de conhecimento. Não deve virar dependência de runtime dos produtos.
+
+Roteamento: `GPT_SOURCE` institucional → detecção do produto → `GPT_SOURCE` especializado → validação no Drive MASTER, para conteúdo funcional/institucional, ou `SD-Knowledge` → Skill core → Skill do produto, se existente → `AGENTS.md` aplicável → docs/ADRs/integrações → código real → Technical Decision Gate, para conteúdo técnico.
+
+Pacotes conhecidos incluem Sertão Digital, SIGI, VEREDAS, LegislaGD, Roteiro Comercial, Notícia Sertaneja, Plataforma360 e Observatório Mandacaru. A presença de um pacote não confirma Skill, AGENTS específico ou repositório canônico; registre lacunas, nunca invente.
+
+---
+
 ## Exemplo: Decisão sobre LegislaGD
 
 ```

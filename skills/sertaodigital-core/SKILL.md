@@ -179,6 +179,12 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 - Nunca edite como fonte oficial
 - Sincronize com Drive como master
 
+### Acesso, Escrita e GPT_SOURCE
+
+Para READ / WRITE / ACCESS, estados de falha e descoberta/roteamento de pacotes `GPT_SOURCE`, aplique a política central em `docs/SOURCE_OF_TRUTH.md`. Esta Skill não replica essa política.
+
+Antes de consolidar decisão técnica, aplique `docs/TECHNICAL_DECISION_GOVERNANCE.md`. Permissão técnica de escrita não substitui autorização explícita.
+
 ---
 
 ## Software Livre e Soberania Tecnológica
