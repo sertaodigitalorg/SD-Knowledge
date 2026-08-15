@@ -46,8 +46,7 @@ Atendimento ao cidadão e protocolo para LegislaGD.
 
 ## Repositório
 
-Será registrado em `repositories.yaml`.
-
+Consulte `repositories.yaml` para a URL canônica e o status validado do repositório.
 ## LGPD Compliance
 
 - Consentimento de cidadão

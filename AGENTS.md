@@ -13,6 +13,8 @@ Quando receber uma tarefa envolvendo Sertão Digital:
 - [ ] Leia o `README.md` para entender a SDKA
 - [ ] Consulte `docs/SOURCE_OF_TRUTH.md` para hierarquia de fontes
 - [ ] Identifique qual Skill é relevante
+- [ ] Entenda que este arquivo é um bootstrap operacional e não uma fonte normativa
+- [ ] Exemplos ilustrativos nunca substituem decisões oficiais ou ADRs reais
 
 ### 2. Skill Apropriada
 

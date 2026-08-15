@@ -4,6 +4,16 @@ Todas as mudanças notáveis neste projeto são documentadas neste arquivo.
 
 O formato segue [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Fixed
+
+- validated repository registry
+- removed unverified technical assumptions
+- clarified normative vs illustrative content
+- hardened technical decision governance
+- improved source-of-truth consistency
+
 ## [1.0.0] - 2026-08-15
 
 ### Added

@@ -11,20 +11,24 @@ product:
 components:
   - name: SAPL-SD
     description: Processo legislativo
-    repository: pending-validation
-    
+    repository: https://github.com/sertaodigitalorg/SAPL-SD
+    status: active
+
   - name: PortalModelo-SD
     description: Portal institucional
-    repository: pending-validation
-    
+    repository: https://github.com/sertaodigitalorg/PortalModelo-SD
+    status: active
+
   - name: e-Cidade-SD
     description: Gestão administrativa
-    repository: pending-validation
-    
+    repository: https://github.com/sertaodigitalorg/e-Cidade-SD
+    status: active
+
   - name: SIGI-SD
     description: Atendimento ao cidadão
-    repository: pending-validation
-    
+    repository: https://github.com/sertaodigitalorg/SIGI-SD
+    status: active
+
   - name: Keycloak Legislativo
     description: Identidade centralizada
     repository: null

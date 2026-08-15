@@ -194,12 +194,12 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 
 ### Infraestrutura
 
-- **Padrão preferencial:** Docker (contêinerização reproduzível)
+- **Padrão preferencial:** soluções abertas, reproduzíveis e auditáveis
 - **Repositórios:** GitHub (público, auditável)
 - **CI/CD:** GitHub Actions (nativo, open source)
-- **Infraestrutura:** Kubernetes, OpenStack, ou cloud aberta
-- **Bancos de dados:** PostgreSQL, MongoDB, etc
-- **Linguagens:** Python, Node.js, Go, Rust (quando apropriado)
+- **Infraestrutura:** a tecnologia escolhida deve seguir requisitos do produto e decisão técnica versionada do repositório correspondente
+- **Bancos de dados:** o banco e o padrão de persistência devem obedecer à arquitetura do produto e às decisões de manutenção do repositório
+- **Linguagens:** a escolha de linguagem deve respeitar a arquitetura existente, a Skill relevante e a decisão técnica do produto
 
 ### Evitar
 
@@ -207,6 +207,14 @@ Markdown exportado do Drive para GitHub é **DERIVADO**:
 - ❌ Sistemas proprietários sem razão forte
 - ❌ Dependências não-auditáveis
 - ❌ Infraestrutura opaca
+
+### Regra de Preferência Técnica
+
+> Uma Skill não deve promover preferências genéricas ou exemplos como decisão institucional. Tecnologias específicas e padrões de infraestrutura devem ser definidos no repositório técnico correspondente, por decisão versionada e validada.
+>
+> technical_preferences:
+>   authority: repository-specific
+>   inference_as_standard: prohibited
 
 ---
 

@@ -118,9 +118,9 @@ LegislaGD
 - Votações
 - Compatibilidade com upstream SAPL
 
-**Repositório:** Será registrado em `repositories.yaml`
+**Repositório canônico:** consulte `repositories.yaml` para a URL oficial do repositório e o status validado.
 
-**Compatibilidade:** Mantém interface com projeto upstream sempre que possível
+**Compatibilidade:** Mantém interface com projeto upstream sempre que possível.
 
 ### PortalModelo-SD
 
@@ -130,7 +130,7 @@ LegislaGD
 - Acesso público a informações
 - Interface com cidadão
 
-**Repositório:** Será registrado em `repositories.yaml`
+**Repositório canônico:** consulte `repositories.yaml` para a URL oficial do repositório e o status validado.
 
 ### e-Cidade-SD
 
@@ -341,11 +341,11 @@ Revise referências cruzadas.
 Veja `manifests/repositories.yaml` para lista completa de repositórios legislativos.
 
 Principais:
-- LegislaGD (core, será registrado)
-- SAPL-SD (será registrado)
-- PortalModelo-SD (será registrado)
-- e-Cidade-SD (será registrado)
-- SIGI-SD (será registrado)
+- LegislaGD (core, consultado em repositories.yaml)
+- SAPL-SD (repositório canônico em repositories.yaml)
+- PortalModelo-SD (repositório canônico em repositories.yaml)
+- e-Cidade-SD (repositório canônico em repositories.yaml)
+- SIGI-SD (repositório canônico em repositories.yaml)
 
 ---
 

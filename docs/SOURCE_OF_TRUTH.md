@@ -114,18 +114,19 @@ Inclui:
 5. Se ambas são do mesmo tipo: procure por data/versão
 6. Se ainda houver dúvida: abra issue para clarificação
 
-**Exemplo:**
+**Regra central:** Exemplos documentais não possuem autoridade normativa. Eles servem apenas para ilustrar fluxo e nunca substituem a decisão oficial.
+
+**Exemplo ilustrativo — não autoritativo:**
 
 ```
-Drive diz: "LegislaGD vai usar Keycloak compartilhado com Executivo"
-GitHub SKILL legislagd.md diz: "Keycloak separado, federação futura"
+Drive diz: "Sistema X pode usar identidade centralizada"
+GitHub SKILL de produto diz: "Sistema X usa modelo Y"
 
 Resolução:
-- Ambas são funcionais/arquiteturais
-- Drive é mais recente (2026-08-15)
-- Drive é document oficial
-- GitHub deve ser atualizado para refletir Drive
-- Abrir PR para sync
+- O exemplo acima é ilustrativo
+- A decisão oficial deve residir em documentação formal ou ADRs do repositório
+- GitHub deve refletir a fonte autorizada e não uma inferência
+- Se for conflito real, abrir issue para validação
 ```
 
 ---

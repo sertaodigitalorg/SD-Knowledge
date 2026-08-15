@@ -38,8 +38,7 @@ Sistema de Acompanhamento de Processo Legislativo - Versão Sertão Digital.
 
 ## Repositório
 
-Será registrado em `repositories.yaml`.
-
+Consulte `repositories.yaml` para a URL canônica e o status validado do repositório.
 ## Mais Informações
 
 Veja `skills/legislagd/references/domain.md` para conceitos legislativos.
