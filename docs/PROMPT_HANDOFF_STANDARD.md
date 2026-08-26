@@ -45,6 +45,33 @@ Um **Prompt Handoff** é um documento estruturado que encapsula contexto complet
 - Nova capacidade técnica → documentação operacional
 - Mudança de implantação → guia de operação
 
+## Leitura Por Camada Destino
+
+Handoffs devem ser pesquisaveis e legiveis pela camada que precisa executa-los:
+
+- agente tecnico le TECHNICAL HANDOFFs gerados pela camada funcional;
+- agente funcional le FUNCTIONAL HANDOFFs gerados pela camada tecnica.
+
+A interface conceitual comum e:
+
+```text
+handoff.search
+handoff.read
+```
+
+Filtros minimos:
+
+```yaml
+type: TECHNICAL | FUNCTIONAL | null
+origin_layer: functional | technical | null
+target_layer: functional | technical | null
+product: string | null
+status: PENDING | IN_PROGRESS | COMPLETED | CANCELLED | null
+```
+
+O nome historico `functional.handoff.*` nao deve limitar a leitura apenas a
+handoffs funcionais.
+
 ---
 
 ## Estrutura Padrão

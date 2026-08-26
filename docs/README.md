@@ -12,6 +12,9 @@ Especificações formais e arquiteturais da SDKA.
 - **SKILL_ARCHITECTURE.md** — Como criar e estruturar Skills
 - **AGENT_ARCHITECTURE.md** — Instruções para agentes de IA
 - **DRIVE_INTEGRATION.md** — Integração com Google Drive
+- **SDKA-FUNCTIONAL-BRIDGE.md** — Módulo interno para leitura funcional
+- **PHASE-01-GOOGLE-DRIVE-FUNCTIONAL-READ.md** — Validação read-only da Fase 1
+- **adr/ADR-009-functional-master-google-drive.md** — ADR da autoridade funcional
 - **PRODUCT_KNOWLEDGE_STANDARD.md** — Padrão para documentar produtos
 - **CONTEXT_EXPORT_STANDARD.md** — Padrão para exportar contexto
 - **SECURITY_AND_PRIVACY.md** — Segurança e conformidade

@@ -71,6 +71,11 @@ SDKA Manifestos
 (knowledge.yaml, etc)
 ```
 
+Exportacoes para GitHub sao derivadas e servem para referencia, auditoria ou
+contexto portatil. Elas nao devem ser usadas como processo permanente para
+substituir a consulta ao Google Drive por agentes. O Functional Bridge deve
+consultar a fonte oficial remota por APIs autorizadas.
+
 ### Quando Exportar
 
 - [ ] Após aprovação de decisão em Drive
@@ -233,6 +238,54 @@ Planejado para Fase 2:
 - [ ] Webhook Drive → GitHub
 - [ ] Validador de referências cruzadas
 - [ ] Gerador de contexto para IA
+
+---
+
+## SDKA Functional Bridge
+
+O SDKA Functional Bridge e o modulo interno da SDKA responsavel por consultar
+fontes funcionais autorizadas. Ele pertence ao repositorio `SD-Knowledge` e nao
+deve ser criado como repositorio independente.
+
+Na Fase 1, a integracao com Google Drive e somente leitura e usa APIs oficiais:
+
+```text
+SDKA
+    |
+    v
+Functional Bridge
+    |
+    |-- GoogleDriveClient -> Google Drive API
+    |-- GoogleDocsClient  -> Google Docs API
+    |
+    v
+Google Drive institucional -> READ-ONLY
+```
+
+Operacoes conceituais da Fase 1:
+
+```text
+functional.search
+functional.read
+handoff.search
+handoff.read
+```
+
+Produtos individuais nao devem implementar clientes proprios para a Google Drive
+API quando a necessidade for consulta funcional/institucional. O consumo deve
+ser mediado pela SDKA quando a capacidade estiver implementada.
+
+`handoff.search/read` deve suportar tanto TECHNICAL HANDOFF quanto FUNCTIONAL
+HANDOFF, respeitando `origin_layer` e `target_layer`.
+
+Nao usar Drive Desktop, rclone, mounts, pastas sincronizadas, filesystems
+remotos ou copias locais como arquitetura da solucao.
+
+Referencias:
+
+- `docs/SDKA-FUNCTIONAL-BRIDGE.md`
+- `docs/PHASE-01-GOOGLE-DRIVE-FUNCTIONAL-READ.md`
+- `docs/adr/ADR-009-functional-master-google-drive.md`
 
 ---
 

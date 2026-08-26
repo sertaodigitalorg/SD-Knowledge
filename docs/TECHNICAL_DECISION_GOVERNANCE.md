@@ -318,11 +318,11 @@ Ação: Atualizar documentação funcional ou gerar handoff
 
 **Ação:**
 
-1. **Criar TECHNICAL HANDOFF** (Prompt Handoff)
-   - ID: 2026-08-15-TECHNICAL-002
+1. **Criar FUNCTIONAL HANDOFF** (Prompt Handoff)
+   - ID: 2026-08-15-FUNCTIONAL-002
    - Origem: GitHub (código implementado)
    - Destino: Drive (documentação)
-   - Tipo: FUNCTIONAL HANDOFF (para agente Drive)
+   - Tipo: FUNCTIONAL HANDOFF (para agente funcional/Drive)
 
 2. **Handoff contém:**
    - Código está pronto (link PR)
@@ -336,7 +336,7 @@ Ação: Atualizar documentação funcional ou gerar handoff
 3. **Registrar PENDING_SYNC:**
    ```yaml
    pending_sync:
-     handoff_id: 2026-08-15-TECHNICAL-002
+     handoff_id: 2026-08-15-FUNCTIONAL-002
      product: legislagd
      status: PENDING
      blocking: false  # PR pode merge, mas handoff pende

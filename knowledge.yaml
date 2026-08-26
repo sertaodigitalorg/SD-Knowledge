@@ -25,6 +25,9 @@ documentation:
   - SOURCE_OF_TRUTH.md
   - DOCUMENTATION_ARCHITECTURE.md
   - DRIVE_INTEGRATION.md
+  - SDKA-FUNCTIONAL-BRIDGE.md
+  - PHASE-01-GOOGLE-DRIVE-FUNCTIONAL-READ.md
+  - adr/ADR-009-functional-master-google-drive.md
   - SKILL_ARCHITECTURE.md
   - AGENT_ARCHITECTURE.md
   - TECHNICAL_DECISION_GOVERNANCE.md
@@ -37,6 +40,8 @@ cross_layer_sync:
     - docs/PROMPT_HANDOFF_STANDARD.md
     - docs/TECHNICAL_DECISION_GOVERNANCE.md
     - docs/SOURCE_OF_TRUTH.md
+    - docs/SDKA-FUNCTIONAL-BRIDGE.md
+    - docs/PHASE-01-GOOGLE-DRIVE-FUNCTIONAL-READ.md
     - governance.yaml
 
 validation:

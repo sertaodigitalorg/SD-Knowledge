@@ -33,6 +33,11 @@ build/
 *.key
 *.pem
 *.p12
+credentials.json
+client_secret.json
+token.json
+service-account.json
+*-service-account.json
 .aws/credentials
 .ssh/
 

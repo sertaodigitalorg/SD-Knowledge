@@ -169,6 +169,34 @@ Veja `docs/PROMPT_HANDOFF_STANDARD.md` e `docs/TECHNICAL_DECISION_GOVERNANCE.md`
 - `repositories.yaml` — Catálogo de repositórios
 - `governance.yaml` — Políticas
 
+### Functional Bridge
+
+Modulo interno da SDKA para leitura funcional/institucional por fontes
+autorizadas. O Functional Bridge pertence ao `SD-Knowledge`, nao e repositorio
+independente e nao deve ser duplicado dentro de produtos individuais.
+
+Na Fase 1, o adaptador Google Drive e read-only by design, acessa o Drive
+remoto pelas APIs oficiais do Google e prepara as operacoes conceituais:
+
+```text
+functional.search
+functional.read
+handoff.search
+handoff.read
+```
+
+Chamadas Google ficam isoladas em `GoogleDriveClient` e `GoogleDocsClient`.
+Drive Desktop, rclone, mounts, pastas sincronizadas e copias locais nao sao
+arquitetura valida para esse modulo.
+
+`handoff.search/read` deve cobrir as duas direcoes: agente tecnico lendo
+TECHNICAL HANDOFF gerado pela camada funcional e agente funcional lendo
+FUNCTIONAL HANDOFF gerado pela camada tecnica.
+
+Veja `docs/SDKA-FUNCTIONAL-BRIDGE.md`,
+`docs/PHASE-01-GOOGLE-DRIVE-FUNCTIONAL-READ.md` e
+`docs/adr/ADR-009-functional-master-google-drive.md`.
+
 ### Skills
 
 Interpretação de domínios:
