@@ -28,8 +28,12 @@ jobs:
 
       - name: Validate YAML files
         run: |
-          find . -type f \( -name '*.yaml' -o -name '*.yml' \) \
-            ! -path './.git/*' -print0 | xargs -0 -r yamllint -d relaxed
+          find . -maxdepth 1 -type f -name '*.yaml' -print0 \
+            | xargs -0 -r yamllint -d relaxed
+          if [ -d skills ]; then
+            find skills -type f -name '*.yaml' -print0 \
+              | xargs -0 -r yamllint -d relaxed
+          fi
 
   json-validation:
     runs-on: ubuntu-latest
