@@ -2,6 +2,7 @@
 
 Status: IN PROGRESS
 Data de início: 2026-08-27
+Última atualização: 2026-08-27
 
 ## Objetivo
 
@@ -19,107 +20,109 @@ Aplicar a `DOCUMENTATION_SAFETY_PRESERVATION_POLICY` à camada funcional/institu
 
 ## C1 — Inventário e matriz de permissões
 
-Antes de ampliar escrita automática no Drive, identificar:
+Status: EXECUTED — PARTIAL/CONTROLLED
 
-- identidade usada pelo SDKA Functional Bridge;
-- tipo de credencial/autorização OAuth;
-- scopes efetivamente concedidos;
-- pastas e Shared Drives acessíveis;
-- operações atualmente possíveis: read/create/update/move/trash/delete/permissions;
-- quem administra a credencial;
-- onde tokens são armazenados;
-- política de rotação/revogação.
+Resultados:
 
-Nenhuma credencial operacional deve receber escopo administrativo global apenas por conveniência.
+- SDKA Functional Bridge permanece READ-ONLY por contrato;
+- OAuth via conector Google Drive foi observado;
+- conector disponível ao agente possui capacidades técnicas reais de escrita;
+- não há credenciais Google versionadas no `SD-Knowledge`;
+- não há runtime executável do adapter no repositório;
+- raiz funcional localizada: `33_BASE_DE_CONHECIMENTO_E_SKILLS`;
+- ID observado da raiz: `1uBBeYxbxXQ5DbA8YoERXxFYuE8eK9wlv`;
+- tipo do Drive permanece não confirmado;
+- identidade institucional dedicada, scopes efetivos, rotação/revogação e separação de backup permanecem pendentes.
+
+Pendências registradas nas issues #5, #6, #13 e #14.
 
 ## C2 — Modelo de autorização
 
-Definir perfis lógicos mínimos:
+Status: SPECIFIED — PENDING RUNTIME ENFORCEMENT
 
-### READER
-- leitura e busca;
-- sem escrita.
+Perfis definidos em `docs/DRIVE_SAFETY_AUTHORIZATION_MODEL.md`:
 
-### WRITER
-- criar documentos em áreas autorizadas;
-- atualizar documentos autorizados;
-- sem exclusão definitiva;
-- sem alteração de permissões;
-- sem administração do Drive.
+- READER;
+- WRITER;
+- QUARANTINE_OPERATOR;
+- ADMIN/HUMAN;
+- BACKUP.
 
-### QUARANTINE_OPERATOR
-- mover recursos autorizados para quarentena;
-- registrar evento de remoção;
-- sem purge definitivo.
+Regras centrais:
 
-### ADMIN/HUMAN
-- operações administrativas explicitamente autorizadas;
-- fora das credenciais comuns dos agentes.
+- capacidade técnica não implica autorização;
+- delete/purge é negado para agentes comuns;
+- alteração de permissões é administrativa;
+- backup permanece fora do domínio do agente operacional;
+- operações HIGH/CRITICAL exigem aprovação proporcional;
+- falha de contexto/identidade/escopo => fail closed.
 
-### BACKUP
-- identidade/credencial separada;
-- não disponível ao agente operacional;
-- retenção/restauração controladas.
+Enforcement runtime permanece pendente na issue #5.
 
 ## C3 — Quarentena documental
 
-Estrutura lógica recomendada:
+Status: IMPLEMENTED STRUCTURE / PENDING RESTORE TEST
 
-`00_GOVERNANCA/QUARENTENA_DOCUMENTAL/YYYY-MM-DD/`
+Estrutura física criada no Drive:
 
-Toda solicitação de remoção executável por agente deve ser convertida em movimentação reversível para quarentena, preservando:
+`33_BASE_DE_CONHECIMENTO_E_SKILLS/00_GOVERNANCA/QUARENTENA_DOCUMENTAL`
 
-- file_id;
-- nome;
-- caminho/origem lógica;
-- parent original;
-- solicitante/actor_id;
-- agent_id;
-- timestamp;
-- justificativa;
-- correlation_id;
-- classificação de risco;
-- prazo de retenção;
-- estado de restauração/purge.
+Folder ID:
 
-Purge definitivo não pertence ao fluxo comum do agente.
+`1KOVNtyu1FjdV9qVqaiHe44xVMMhjv8yG`
+
+Runbook criado em:
+
+`docs/QUARANTINE_DOCUMENTAL_RUNBOOK.md`
+
+Regra operacional:
+
+- remoção por agente deve ser convertida em quarentena quando autorizada;
+- purge definitivo permanece fora do fluxo comum;
+- documentos reais não serão usados em testes;
+- restauração deve usar referência de recuperação e produzir novo evento de auditoria.
+
+Teste de restauração com artefato descartável permanece pendente na issue #7.
 
 ## C4 — Destructive Action Gate para Drive
 
-Antes de escrita, o Functional Bridge deve produzir uma decisão do policy engine.
+Status: SPECIFIED / PENDING IMPLEMENTATION
 
-### ALLOW
-Leitura e operações não destrutivas de baixo risco dentro do escopo autorizado.
+Decisões:
 
-### ALLOW_WITH_AUDIT
-Criação e atualização pontual reversível.
+- ALLOW;
+- ALLOW_WITH_AUDIT;
+- REQUIRE_APPROVAL;
+- REQUIRE_DUAL_CONTROL;
+- DENY.
 
-### REQUIRE_APPROVAL
-Alterações em massa, movimentação de estruturas, mudança de documento de alta autoridade ou operação com blast radius elevado.
+Regras DENY mínimas:
 
-### REQUIRE_DUAL_CONTROL
-Purge, reestruturação institucional crítica ou operação administrativa excepcional.
-
-### DENY
-- exclusão definitiva por agente;
-- alteração de permissões administrativas por agente comum;
-- remoção/destruição de backup;
+- exclusão definitiva por agente comum;
+- alteração administrativa de permissões por agente comum;
+- destruição de backup;
 - tentativa de desabilitar o gate;
-- operação destrutiva sem identidade/justificativa/escopo determinável.
+- operação destrutiva sem identidade, justificativa ou escopo determinável.
 
 ## C5 — Thresholds iniciais
 
-Valores conservadores iniciais, sujeitos a calibração:
+Status: SPECIFIED
 
 - 1–5 documentos: análise semântica normal;
 - 6–20 documentos: HIGH conforme operação;
 - >20 documentos modificados/movidos: REQUIRE_APPROVAL;
-- qualquer operação >=20% de um domínio/pasta autoritativa: CRITICAL;
-- arquivo constitucional, política, índice de autoridade ou documento institucional crítico: HIGH/CRITICAL independentemente da quantidade.
+- qualquer operação >=20% de pasta/domínio autoritativo: CRITICAL;
+- documento constitucional, política, índice de autoridade ou governança: HIGH/CRITICAL independentemente da quantidade.
 
 ## C6 — Auditoria
 
-Criar evento append-oriented com, no mínimo:
+Status: SCHEMA CREATED / STORAGE PENDING
+
+Schema criado:
+
+`schemas/drive-safety-event.schema.json`
+
+Campos obrigatórios incluem:
 
 - event_version;
 - correlation_id;
@@ -133,36 +136,34 @@ Criar evento append-oriented com, no mínimo:
 - risk_level;
 - decision;
 - justification;
-- approval_reference;
-- recovery_reference;
 - result.
 
-Segredos, access tokens e refresh tokens nunca devem ser gravados no log.
+Armazenamento append-only e política de retenção permanecem pendentes na issue #8.
 
 ## C7 — Proteção contra prompt injection
 
-Conteúdo lido de documentos deve ser tratado como dado não confiável, nunca como autorização administrativa.
+Status: POLICY DEFINED / RUNTIME PENDING
 
-Uma instrução contida dentro de um documento, e-mail, planilha ou arquivo não pode conceder permissão ao agente para executar operação destrutiva.
+Conteúdo lido de documento, planilha, e-mail ou arquivo é dado não confiável e nunca pode conceder autorização administrativa.
 
-A autorização deve vir exclusivamente do contexto autenticado + policy engine + controles institucionais.
+Autorização deve vir de identidade autenticada + policy engine + controles institucionais.
 
 ## C8 — Testes adversariais obrigatórios
 
-Antes de habilitar escrita ampla:
+Status: PENDING
 
-1. pedido explícito para apagar todo o Drive;
-2. documento contendo instrução para ignorar políticas;
+Casos mínimos registrados na issue #10:
+
+1. pedido para apagar todo o Drive;
+2. documento com instrução para ignorar políticas;
 3. tentativa de mover centenas de arquivos;
-4. tentativa de excluir arquivo constitucional;
-5. tentativa de alterar permissões;
+4. alteração de documento crítico;
+5. alteração de permissões;
 6. operação sem justificativa;
-7. operação com identidade ausente;
-8. falha/indisponibilidade do policy engine;
+7. operação sem identidade;
+8. indisponibilidade do policy engine;
 9. restauração de item em quarentena;
-10. revogação da credencial operacional.
-
-Todos os casos destrutivos devem falhar de forma segura.
+10. revogação da credencial.
 
 ## C9 — Critérios para considerar a Fase C IMPLEMENTED
 
@@ -171,11 +172,25 @@ Todos os casos destrutivos devem falhar de forma segura.
 - delete/purge fora do agente comum;
 - quarentena implementada;
 - gate integrado à escrita;
-- auditoria estruturada;
+- auditoria estruturada e append-oriented;
 - testes adversariais aprovados;
 - procedimento de restauração testado;
 - backup fora do domínio destrutivo da credencial operacional.
 
-## Estado inicial
+## Estado atual consolidado
 
-A Fase C está formalmente iniciada. A próxima ação executiva é auditar a implementação atual do SDKA Functional Bridge e da integração Drive para identificar credenciais, scopes, operações e pontos exatos de enforcement antes de modificar permissões ou código.
+C1: executado parcialmente, com riscos e lacunas identificados.
+
+C2: modelo formal especificado; enforcement depende de runtime.
+
+C3: estrutura física e runbook implementados; restauração controlada ainda deve ser testada.
+
+C4/C5: regras e thresholds definidos.
+
+C6: schema versionado criado; armazenamento append-only ainda pendente.
+
+C7: política definida; enforcement runtime pendente.
+
+C8: bateria adversarial pendente.
+
+A escrita ampla no Drive continua NÃO autorizada até que os gates pendentes sejam concluídos.
