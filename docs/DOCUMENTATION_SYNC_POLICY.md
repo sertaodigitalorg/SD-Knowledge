@@ -1,9 +1,9 @@
 # Política Técnica de Sincronização Documental — SDKA
 
-**Status:** VIGENTE  
+**Status:** PADRÃO OFICIAL  
 **Data:** 2026-08-26  
 **Repositório:** `sertaodigitalorg/SD-Knowledge`  
-**Escopo:** padrão de desenvolvimento, documentação e sincronização entre as camadas funcional e técnica do Sertão Digital.
+**Escopo:** padrão oficial de desenvolvimento, documentação e sincronização entre as camadas funcional e técnica do Sertão Digital.
 
 ## 1. Princípio central
 
@@ -199,3 +199,9 @@ Regra / Processo / Manual
 ```
 
 O objetivo é preservar coerência entre o que o produto **deve fazer**, o que o usuário **entende e utiliza** e o que o software **efetivamente implementa**.
+
+## 12. Adoção oficial
+
+A partir de 2026-08-26, esta política é adotada como **padrão oficial de desenvolvimento e sincronização documental do ecossistema Sertão Digital**.
+
+Novos produtos, novas Skills, novos Agents e fluxos de manutenção deverão adotar este padrão por default. Exceções devem ser justificadas e registradas na camada autoritativa correspondente.
