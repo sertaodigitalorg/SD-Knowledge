@@ -1,0 +1,92 @@
+name: Destructive Action Guard
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  destructive-action-guard:
+    name: Destructive Action Guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Evaluate destructive changes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE_SHA='${{ github.event.pull_request.base.sha }}'
+          HEAD_SHA='${{ github.event.pull_request.head.sha }}'
+
+          git diff --name-status "$BASE_SHA" "$HEAD_SHA" > /tmp/name-status.txt
+          git diff --numstat "$BASE_SHA" "$HEAD_SHA" > /tmp/numstat.txt
+
+          deleted_files=$(awk '$1 == "D" {count++} END {print count+0}' /tmp/name-status.txt)
+          changed_files=$(wc -l < /tmp/name-status.txt | tr -d ' ')
+          deleted_lines=$(awk '{if ($2 ~ /^[0-9]+$/) d += $2} END {print d+0}' /tmp/numstat.txt)
+
+          echo "changed_files=$changed_files"
+          echo "deleted_files=$deleted_files"
+          echo "deleted_lines=$deleted_lines"
+
+          forbidden=0
+          critical=0
+
+          protected_paths=(
+            'AGENTS.md'
+            'SECURITY.md'
+            'governance.yaml'
+            'docs/SOURCE_OF_TRUTH.md'
+            'docs/DOCUMENTATION_SAFETY_PRESERVATION_POLICY.md'
+            'docs/ADR-009-documentation-safety-destructive-action-gate.md'
+            'docs/DESTRUCTIVE_ACTION_GATE_SPEC.md'
+            '.github/workflows/destructive-action-guard.yml'
+          )
+
+          while IFS=$'\t' read -r status path rest; do
+            [ -z "${status:-}" ] && continue
+            target="$path"
+            if [[ "$status" == R* || "$status" == C* ]]; then
+              target="${rest:-$path}"
+            fi
+
+            if [[ "$status" == "D" ]]; then
+              for protected in "${protected_paths[@]}"; do
+                if [[ "$path" == "$protected" ]]; then
+                  echo "::error file=$path::Exclusão de arquivo constitucional/protegido é proibida pelo Destructive Action Gate."
+                  forbidden=1
+                fi
+              done
+            fi
+          done < /tmp/name-status.txt
+
+          if (( deleted_files > 5 )); then
+            echo "::error::Exclusão em massa detectada: $deleted_files arquivos removidos."
+            critical=1
+          fi
+
+          if (( changed_files > 20 )); then
+            echo "::error::Alteração em massa detectada: $changed_files arquivos afetados. Requer revisão humana reforçada."
+            critical=1
+          fi
+
+          if (( deleted_lines > 1000 )); then
+            echo "::error::Volume destrutivo elevado detectado: $deleted_lines linhas removidas."
+            critical=1
+          fi
+
+          if (( forbidden == 1 || critical == 1 )); then
+            echo "Destructive Action Guard: DENY/REQUIRE_APPROVAL"
+            exit 1
+          fi
+
+          echo "Destructive Action Guard: ALLOW_WITH_AUDIT"
