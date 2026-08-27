@@ -17,27 +17,30 @@ jobs:
     name: Validate YAML
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install yamllint
         run: pip install yamllint
-      
+
       - name: Validate YAML files
         run: |
-          yamllint -d relaxed *.yaml
-          yamllint -d relaxed skills/**/*.yaml
-          yamllint -d relaxed docs/**/*.yaml 2>/dev/null || true
+          find . -maxdepth 1 -type f -name '*.yaml' -print0 \
+            | xargs -0 -r yamllint -d relaxed
+          if [ -d skills ]; then
+            find skills -type f -name '*.yaml' -print0 \
+              | xargs -0 -r yamllint -d relaxed
+          fi
 
   json-validation:
     runs-on: ubuntu-latest
     name: Validate JSON
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Validate JSON files
         run: |
           find . -name "*.json" -type f ! -path "./node_modules/*" -exec sh -c 'python -m json.tool "{}" > /dev/null && echo "✓ {}" || (echo "✗ {}" && exit 1)' \;
@@ -47,56 +50,50 @@ jobs:
     name: Validate JSON Schemas
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
-      - name: Install jsonschema
-        run: pip install jsonschema
-      
+
+      - name: Install schema dependencies
+        run: pip install jsonschema PyYAML
+
       - name: Validate knowledge.yaml against schema
         run: |
           python -c "
           import json, yaml
           from jsonschema import validate
-          
           with open('schemas/knowledge.schema.json') as f:
             schema = json.load(f)
           with open('knowledge.yaml') as f:
             data = yaml.safe_load(f)
-          
           validate(instance=data, schema=schema)
           print('✓ knowledge.yaml is valid')
           "
-      
+
       - name: Validate products.yaml against schema
         run: |
           python -c "
           import json, yaml
           from jsonschema import validate
-          
           with open('schemas/products.schema.json') as f:
             schema = json.load(f)
           with open('products.yaml') as f:
             data = yaml.safe_load(f)
-          
           validate(instance=data, schema=schema)
           print('✓ products.yaml is valid')
           "
-      
+
       - name: Validate repositories.yaml against schema
         run: |
           python -c "
           import json, yaml
           from jsonschema import validate
-          
           with open('schemas/repositories.schema.json') as f:
             schema = json.load(f)
           with open('repositories.yaml') as f:
             data = yaml.safe_load(f)
-          
           validate(instance=data, schema=schema)
           print('✓ repositories.yaml is valid')
           "
@@ -108,15 +105,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install detect-secrets
         run: pip install detect-secrets
-      
+
       - name: Scan for secrets
         run: |
           detect-secrets scan --baseline .secrets.baseline || true
@@ -127,7 +124,7 @@ jobs:
     name: Check Required Files
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Check required files exist
         run: |
           files=(
@@ -148,7 +145,7 @@ jobs:
             "docs/SDKA.md"
             "docs/SOURCE_OF_TRUTH.md"
           )
-          
+
           missing=0
           for file in "${files[@]}"; do
             if [ ! -f "$file" ]; then
@@ -158,9 +155,9 @@ jobs:
               echo "✓ Found: $file"
             fi
           done
-          
+
           if [ $missing -gt 0 ]; then
             exit 1
           fi
-          
+
           echo "✓ All required files present"
