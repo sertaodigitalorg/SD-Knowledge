@@ -2,20 +2,19 @@
 
 Status: EXECUTED / PARTIAL
 Data: 2026-08-27
-Escopo: SDKA Functional Bridge + conectores de Google Drive disponíveis ao agente
+Escopo: SDKA Functional Bridge + conectores Google Drive disponíveis ao agente
 
-## 1. Objetivo
+## Objetivo
 
-Executar o primeiro inventário real de acesso antes de ampliar escrita automática no MASTER funcional/institucional do Sertão Digital.
+Inventariar o poder real da integração Google Drive antes de ampliar escrita no
+MASTER funcional/institucional do Sertão Digital.
 
-A auditoria distingue duas camadas que não devem ser confundidas:
+A auditoria distingue o contrato arquitetural do Functional Bridge da superfície
+real disponibilizada pelo conector externo.
 
-1. o contrato arquitetural do `SDKA Functional Bridge`;
-2. conectores externos disponíveis ao agente/ChatGPT/Codex para acessar Google Drive.
+## Functional Bridge
 
-## 2. Estado do SDKA Functional Bridge
-
-A documentação vigente define a Fase 1 do Functional Bridge como `READ-ONLY` por projeto.
+A Fase 1 permanece `READ-ONLY` por projeto.
 
 Operações permitidas:
 
@@ -24,72 +23,77 @@ Operações permitidas:
 - `handoff.search`;
 - `handoff.read`.
 
-Operações proibidas no contrato da Fase 1:
+Operações de escrita continuam proibidas no contrato público da Fase 1.
 
-- create;
-- update;
-- delete;
-- move;
-- change_permission;
-- comment_write.
+## Raiz funcional
 
-O relatório da Fase 1 também registra que o `SD-Knowledge` não possui runtime local do adapter e que o acesso observado na ocasião era OAuth via conector, sem credenciais versionadas no repositório.
+Raiz localizada:
 
-Conclusão: o Functional Bridge documentado continua seguro por contrato, mas ainda não existe um policy engine executável no repositório capaz de controlar conectores externos que ofereçam escrita.
+- nome: `33_BASE_DE_CONHECIMENTO_E_SKILLS`;
+- folder ID: `1uBBeYxbxXQ5DbA8YoERXxFYuE8eK9wlv`.
 
-## 3. Descoberta do acervo funcional
+Pasta de governança:
 
-Raiz funcional localizada no Google Drive:
+- nome: `00_GOVERNANCA`;
+- folder ID: `1429GZUy0SWWCu8Uj1QkSd8uDFfpVdEZL`.
 
-- Nome: `33_BASE_DE_CONHECIMENTO_E_SKILLS`
-- Folder ID: `1uBBeYxbxXQ5DbA8YoERXxFYuE8eK9wlv`
+A metadata observada da raiz retornou `driveId: null`. A consulta de Shared
+Drives acessíveis retornou lista vazia. Portanto, a raiz não foi confirmada como
+Shared Drive no acesso atual.
 
-Pasta de governança localizada dentro da raiz:
+## Superfície real do conector
 
-- Nome: `00_GOVERNANCA`
-- Folder ID: `1429GZUy0SWWCu8Uj1QkSd8uDFfpVdEZL`
+O conector disponível nesta execução expõe capacidades de:
 
-Esses IDs devem ser tratados como identificadores de configuração, não como segredos.
+- busca e leitura;
+- criação de arquivos e pastas;
+- movimentação e rename;
+- edição de Docs, Sheets e Slides;
+- comentários;
+- compartilhamento;
+- exclusão permanente.
 
-## 4. Superfície real observada no conector atual
+A operação de exclusão permanente foi apenas descoberta na interface. Ela não
+foi executada, nem mesmo contra artefato descartável, porque a política vigente
+define delete/purge como fora do fluxo normal de agentes.
 
-O conector Google Drive disponível nesta sessão expõe capacidade de escrita além de leitura.
+## Gap de segurança
 
-Operações de escrita observadas como disponíveis:
+Existe diferença material entre:
 
-- criar arquivo nativo Google Docs/Sheets/Slides;
-- criar pasta;
-- renomear arquivo;
-- mover arquivo entre parents;
-- substituir conteúdo de arquivo não-nativo;
-- editar conteúdo de Google Docs via batchUpdate;
-- editar Google Sheets via batchUpdate;
-- editar Google Slides via batchUpdate;
-- criar/responder/resolver comentários.
-
-Não foi identificada, nas ações descobertas nesta auditoria, operação direta de purge/delete definitivo nem administração de permissões. Isso NÃO prova que a credencial OAuth subjacente não possua scopes mais amplos; apenas registra a superfície exposta pelo conector atualmente disponível.
-
-## 5. Gap de segurança identificado
-
-Existe uma diferença entre:
-
-```text
-Functional Bridge Fase 1 = READ-ONLY por contrato
-```
+`Functional Bridge = READ-ONLY por contrato`
 
 versus
 
-```text
-Conector Google Drive do agente = possui operações de escrita
-```
+`Conector subjacente = possui escrita e operação destrutiva exposta`.
 
-Portanto, não é suficiente afirmar que o Functional Bridge é read-only. Um agente que possua acesso direto a um conector de escrita pode, tecnicamente, contornar o contrato do bridge caso não exista uma política de execução externa e independente do LLM.
+Classificação: **HIGH**.
 
-Classificação: HIGH.
+Capacidade técnica do conector não representa autorização institucional.
 
-## 6. Medida de proteção executada
+## Identidade e permissões
 
-Foi criada a pasta institucional de quarentena:
+A metadata confirmou uma identidade OAuth conectada com capacidade efetiva de
+escrita/propriedade no contexto de teste e escrita compartilhada na raiz
+funcional.
+
+O identificador pessoal da conta não é versionado neste relatório.
+
+A identidade ainda não está separada em operação, administração e backup.
+
+## Scopes OAuth
+
+Os scopes OAuth exatos não são expostos pelo conector atual.
+
+Estado:
+
+`OAUTH SCOPES: UNKNOWN`
+
+A validação deverá ocorrer no provedor OAuth/Google Workspace correspondente.
+
+## Quarentena
+
+Foi criada:
 
 `33_BASE_DE_CONHECIMENTO_E_SKILLS/00_GOVERNANCA/QUARENTENA_DOCUMENTAL`
 
@@ -97,53 +101,62 @@ Folder ID:
 
 `1KOVNtyu1FjdV9qVqaiHe44xVMMhjv8yG`
 
-A criação é aditiva e reversível. Nenhum documento existente foi movido, alterado ou excluído durante a auditoria.
+Também foi criada uma área controlada de testes:
 
-## 7. Matriz C1 atual
+`00_GOVERNANCA/TESTES_DRIVE_SAFETY`
+
+Folder ID:
+
+`1_IClJDtJ1UxbcHmPnyl1wsymf4O6AHZF`
+
+## Teste controlado
+
+Foi criado somente para validação o artefato:
+
+`SDKA_DRIVE_SAFETY_TEST_2026-08-27`
+
+O fluxo real executado foi:
+
+`create -> test folder -> quarantine -> restore`.
+
+Resultado: **PASS**.
+
+O mesmo `fileId` foi preservado. Nenhum documento institucional real foi
+movido, alterado ou destruído.
+
+## Matriz C1 atual
 
 | Item | Estado |
 |---|---|
-| Método de autenticação previamente observado | OAuth |
-| Credencial versionada no Git | NÃO encontrada |
-| Functional Bridge com métodos públicos de escrita | NÃO |
-| Runtime executável do Functional Bridge no repo | NÃO |
+| Autenticação observada | OAuth |
+| Credencial versionada no Git | NÃO |
+| Functional Bridge com escrita pública | NÃO |
 | Raiz funcional identificada | SIM |
-| Pasta de governança identificada | SIM |
-| Conector externo com create/update/move | SIM |
-| Delete/purge exposto pelo conector atual | NÃO observado |
-| Permission administration exposta pelo conector atual | NÃO observada |
-| Scopes OAuth exatos | NÃO VISÍVEIS nesta integração |
-| Identidade OAuth exata | NÃO VISÍVEL nesta integração |
-| Local de armazenamento do token | GERENCIADO PELO CONECTOR / não exposto |
-| Quarentena institucional | CRIADA |
+| Shared Drive confirmado | NÃO |
+| Conector com create/update/move | SIM |
+| Conector com delete permanente exposto | SIM |
+| Conector com share exposto | SIM |
+| Scopes OAuth exatos | UNKNOWN |
+| Identidade operacional dedicada | NÃO CONFIRMADA |
+| Quarentena | CRIADA E TESTADA |
+| Restauração | TESTADA COM SUCESSO |
 
-## 8. Regra operacional imediata
+## Regra operacional imediata
 
-Até que o Destructive Action Gate esteja implementado fora do LLM:
+Até o go-live formal:
 
-- nenhuma operação de remoção deve usar delete/purge;
-- pedidos de remoção devem ser convertidos em plano de quarentena;
-- alterações em massa não devem ser executadas automaticamente;
-- mudanças em `00_GOVERNANCA` devem ser classificadas no mínimo como HIGH;
-- conteúdo de documentos nunca constitui autorização administrativa;
-- escrita direta via conector deve respeitar a mesma política do Functional Bridge, mesmo quando tecnicamente disponível.
+- produção permanece read-only;
+- remoção significa quarentena, não delete;
+- alterações em massa exigem aprovação;
+- governança é HIGH/CRITICAL conforme alvo;
+- documento nunca concede autorização administrativa;
+- delete/purge não devem ser executados por agentes comuns;
+- escrita futura deve passar obrigatoriamente pelo Drive Safety Gate.
 
-## 9. Pendências para concluir C1
+## Pendências C1
 
-Ainda precisam ser verificados fora da superfície atual do conector:
-
-1. conta/identidade OAuth exata usada pela integração;
-2. scopes OAuth concedidos no Google Account / Google Cloud;
-3. política de rotação/revogação;
-4. se a raiz está em My Drive ou Shared Drive;
-5. possibilidade de separar uma identidade institucional READER da identidade WRITER;
-6. possibilidade de restringir acesso ao subtree `33_BASE_DE_CONHECIMENTO_E_SKILLS`.
-
-## 10. Próximo passo
-
-Avançar para C2/C3:
-
-- institucionalizar perfis READER/WRITER/QUARANTINE_OPERATOR;
-- definir política de movimentação para `QUARENTENA_DOCUMENTAL`;
-- criar schema de evento de auditoria;
-- definir o ponto de enforcement que impeça escrita direta fora do gate.
+- auditar scopes OAuth exatos;
+- institucionalizar identidade operacional dedicada;
+- definir rotação/revogação;
+- separar identidade administrativa e backup;
+- integrar o gate ao caminho real de escrita.
