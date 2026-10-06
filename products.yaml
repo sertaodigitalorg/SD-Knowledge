@@ -3,7 +3,7 @@ schema_version: 1
 products:
   observatorio_mandacaru:
     name: Observatório Mandacaru
-    type: intelligence-platform
+    type: platform
     status: active-development
     scope: ecosystem-intelligence
     description: "Plataforma de inteligência territorial e ecossistêmica; MASTER dos dados estruturados do ecossistema Sertão Digital."
