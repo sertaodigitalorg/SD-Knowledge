@@ -12,6 +12,7 @@ Quando múltiplas fontes reportam informações diferentes, a precedência é **
 2. Aplique o MASTER daquele domínio:
    - institucional, funcional, estratégico, administrativo, jurídico e comercial: Google Drive;
    - técnico, arquitetura, código, API, deploy, ADR, Skills e AGENTS: GitHub;
+   - dados estruturados do ecossistema registrados no Observatório Mandacaru: Mandacaru;
    - manifestos: SD-Knowledge, conforme o escopo de cada manifesto;
    - `GPT_SOURCE` e Markdown exportado: derivados, sem precedência sobre MASTER;
    - inferência: último nível, nunca substitui uma fonte MASTER.
@@ -39,6 +40,7 @@ Para decisões híbridas, separe os componentes funcional e técnico, aplique o 
 | **Manifesto de Produtos** | GitHub/SDKA | Drive (opcional) | YAML é source |
 | **Catálogo de Repositórios** | GitHub/SDKA | — | repositories.yaml é source |
 | **Index de Conhecimento** | SDKA/GitHub | Drive (opcional) | knowledge.yaml é source |
+| **Dados estruturados do ecossistema** | Observatório Mandacaru | Drive/GitHub/fontes externas (proveniência) | Mandacaru registra entidades, relações e indicadores sem substituir a fonte documental/técnica |
 
 ---
 
@@ -89,6 +91,12 @@ Inclui:
 **Derivado:** — (GitHub é primary)
 
 **Nota:** Pode referenciar Drive para contexto funcional.
+
+### Dados estruturados do ecossistema
+
+**Master:** Observatório Mandacaru
+
+Inclui progressivamente entidades, relacionamentos, indicadores, territórios, atores, oportunidades e metadados de proveniência. O Mandacaru não substitui documentos do Drive nem código/documentação técnica do GitHub; deve preservar referência à origem MASTER.
 
 ### Conhecimento Derivado
 
@@ -417,5 +425,5 @@ Para manter SOURCE_OF_TRUTH mesmo com mudanças bidirecional:
 
 ---
 
-**Versão:** 1.0.0  
-**Última atualização:** 2026-08-15
+**Versão:** 1.1.0  
+**Última atualização:** 2026-10-06
