@@ -6,6 +6,14 @@ version: 1.0.0
 date: "2026-08-15"
 
 knowledge_architecture:
+  - name: observatorio-mandacaru
+    type: product-context
+    status: active
+    description: "Observatório Mandacaru — inteligência territorial e ecossistêmica e MASTER de dados estruturados"
+    location: skills/observatorio-mandacaru/
+    depends_on:
+      - sertaodigital-core
+
   - name: sertaodigital-core
     type: organizational-context
     status: active

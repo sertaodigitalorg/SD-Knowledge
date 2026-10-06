@@ -1,6 +1,14 @@
 schema_version: 1
 
 repositories:
+  observatorio_mandacaru:
+    name: ObservatorioMandacaru
+    url: https://github.com/sertaodigitalorg/ObservatorioMandacaru
+    type: software
+    status: active
+    parent_product: observatorio_mandacaru
+    description: "Aplicação do Observatório Mandacaru: backend Symfony, frontend Angular e infraestrutura versionada."
+
   sd_knowledge:
     name: SD-Knowledge
     url: https://github.com/sertaodigitalorg/SD-Knowledge

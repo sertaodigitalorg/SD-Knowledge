@@ -1,6 +1,16 @@
 schema_version: 1
 
 products:
+  observatorio_mandacaru:
+    name: Observatório Mandacaru
+    type: platform
+    status: active
+    scope: ecosystem-intelligence
+    description: "Plataforma de inteligência territorial e ecossistêmica; MASTER dos dados estruturados do ecossistema Sertão Digital."
+    repository: https://github.com/sertaodigitalorg/ObservatorioMandacaru
+    drive_reference: "04 – Observatório Mandacaru – Especificação Funcional v1"
+    status_note: "MVP técnico existente; expansão de domínio, governança de conhecimento, IA e integrações permanecem em evolução."
+
   legislagd:
     name: LegislaGD
     type: legislative-platform
