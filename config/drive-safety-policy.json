@@ -1,0 +1,32 @@
+{
+  "policy_version": "1.0.0",
+  "default_decision": "DENY",
+  "functional_root_folder_id": "1uBBeYxbxXQ5DbA8YoERXxFYuE8eK9wlv",
+  "quarantine_folder_id": "1KOVNtyu1FjdV9qVqaiHe44xVMMhjv8yG",
+  "bulk_change_threshold": 20,
+  "critical_scope_percent": 20,
+  "roles": {
+    "READER": ["search", "read"],
+    "WRITER": ["search", "read", "create", "update"],
+    "QUARANTINE_OPERATOR": ["search", "read", "quarantine_move", "restore"],
+    "ADMIN_HUMAN": ["search", "read", "create", "update", "move", "quarantine_move", "restore", "change_permission", "purge"],
+    "BACKUP": ["search", "read", "backup_create", "restore"]
+  },
+  "forbidden_for_agents": [
+    "delete",
+    "purge",
+    "change_permission",
+    "backup_delete",
+    "disable_gate"
+  ],
+  "critical_name_markers": [
+    "GOVERNANCA",
+    "POLICY",
+    "POLITICA",
+    "SOURCE_OF_TRUTH",
+    "CONSTITUTION",
+    "CONSTITUCIONAL",
+    "AUTHORITY",
+    "AUTORIDADE"
+  ]
+}

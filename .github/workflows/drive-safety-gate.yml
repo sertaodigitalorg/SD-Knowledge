@@ -1,0 +1,39 @@
+name: Drive Safety Gate Tests
+
+on:
+  pull_request:
+    paths:
+      - 'config/drive-safety-policy.json'
+      - 'tools/drive_safety_gate.py'
+      - 'tests/test_drive_safety_gate.py'
+      - 'schemas/drive-safety-event.schema.json'
+      - '.github/workflows/drive-safety-gate.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/drive-safety-policy.json'
+      - 'tools/drive_safety_gate.py'
+      - 'tests/test_drive_safety_gate.py'
+      - 'schemas/drive-safety-event.schema.json'
+
+permissions:
+  contents: read
+
+jobs:
+  test-drive-safety-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate policy JSON
+        run: python -m json.tool config/drive-safety-policy.json > /dev/null
+
+      - name: Run adversarial gate tests
+        run: python -m unittest tests/test_drive_safety_gate.py -v

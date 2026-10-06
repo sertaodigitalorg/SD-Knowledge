@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sertaodigital.org/schemas/drive-safety-event.schema.json",
+  "title": "Drive Safety Audit Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_version",
+    "correlation_id",
+    "timestamp",
+    "actor_id",
+    "agent_id",
+    "source_system",
+    "operation",
+    "targets",
+    "target_count",
+    "risk_level",
+    "decision",
+    "justification",
+    "result"
+  ],
+  "properties": {
+    "event_version": {"type": "string", "const": "1.0"},
+    "correlation_id": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "actor_id": {"type": "string", "minLength": 1},
+    "agent_id": {"type": "string", "minLength": 1},
+    "source_system": {"type": "string", "enum": ["google-drive", "google-docs", "google-sheets", "google-slides", "sdka-functional-bridge"]},
+    "operation": {"type": "string", "enum": ["read", "search", "create", "update", "rename", "move", "quarantine", "restore", "delete", "purge", "change_permission", "backup_admin"]},
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["resource_id"],
+        "properties": {
+          "resource_id": {"type": "string", "minLength": 1},
+          "name": {"type": ["string", "null"]},
+          "original_parent_id": {"type": ["string", "null"]},
+          "recovery_reference": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "target_count": {"type": "integer", "minimum": 1},
+    "estimated_scope_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "risk_level": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL", "FORBIDDEN"]},
+    "decision": {"type": "string", "enum": ["ALLOW", "ALLOW_WITH_AUDIT", "REQUIRE_APPROVAL", "REQUIRE_DUAL_CONTROL", "DENY"]},
+    "justification": {"type": "string", "minLength": 1},
+    "approval_reference": {"type": ["string", "null"]},
+    "recovery_reference": {"type": ["string", "null"]},
+    "backup_available": {"type": ["boolean", "null"]},
+    "reversible": {"type": "boolean"},
+    "result": {"type": "string", "enum": ["PENDING", "ALLOWED", "BLOCKED", "EXECUTED", "FAILED", "RESTORED"]},
+    "error_code": {"type": ["string", "null"]}
+  }
+}
