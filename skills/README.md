@@ -29,6 +29,18 @@ Fornece contexto sobre:
 
 [Ler SKILL.md](sertaodigital-core/SKILL.md)
 
+### observatorio-mandacaru
+
+**Contexto:** Inteligência Territorial e Ecossistêmica  
+**Status:** ✅ Active  
+**Propósito:** Contexto funcional/técnico do Observatório Mandacaru e governança do estado implementado vs. roadmap.
+
+Fornece contexto sobre autoridade de dados estruturados, domínio atual, proveniência, busca, IA/MCP e decisões pendentes.
+
+**Quando usar:** Ao trabalhar no Observatório Mandacaru, integrações SDKA relacionadas ou evolução de seus dados estruturados.
+
+[Ler SKILL.md](observatorio-mandacaru/SKILL.md)
+
 ### legislagd
 
 **Contexto:** Plataforma Legislativa  
@@ -125,6 +137,7 @@ Skills devem ser revisadas:
 ```
 sertaodigital-core (Base)
     ↓
+    ├→ observatorio-mandacaru (Inteligência Territorial e Ecossistêmica)
     └→ legislagd (Plataforma Legislativa)
     └→ [Outras Skills de produto]
 ```
