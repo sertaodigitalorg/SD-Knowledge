@@ -124,18 +124,18 @@ Arquivos históricos de Manual do Usuário migrados podem permanecer no mesmo ca
 
 ### Prioridade B — produtos operacionais/comerciais
 
-6. `NoticiaSertaneja`
-7. `wpNoticiaSertaneja`
-8. `Roteiro-Comercial`
-9. `BOT-SD`
+1. `NoticiaSertaneja`
+2. `wpNoticiaSertaneja`
+3. `Roteiro-Comercial`
+4. `BOT-SD`
 
 ### Prioridade C — forks, upstream e referências
 
-10. `SAPL-SD`
-11. `PortalModelo-SD`
-12. `e-Cidade-SD`
-13. `Chatwoot-SD`
-14. demais forks/repositórios de referência
+1. `SAPL-SD`
+2. `PortalModelo-SD`
+3. `e-Cidade-SD`
+4. `Chatwoot-SD`
+5. demais forks/repositórios de referência
 
 ## Regra de execução da migração
 
