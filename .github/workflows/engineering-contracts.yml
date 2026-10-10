@@ -7,6 +7,7 @@ on:
       - 'examples/engineering-assessment.example.json'
       - 'examples/connector-operation.example.json'
       - 'scripts/validate_engineering_contracts.py'
+      - 'scripts/test_engineering_contracts.py'
       - '.github/workflows/engineering-contracts.yml'
   workflow_dispatch:
 
@@ -21,5 +22,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install pinned schema validation dependency
+        run: python -m pip install 'jsonschema==4.23.0'
       - name: Validate JSON and references offline
         run: python scripts/validate_engineering_contracts.py
+      - name: Validate schemas and negative test cases
+        run: python -m unittest discover -s scripts -p 'test_engineering_contracts.py' -v
