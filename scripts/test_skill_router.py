@@ -43,5 +43,27 @@ class SkillRouterTests(unittest.TestCase):
         self.assertEqual(x["skills"],["sertaodigital-core"])
         self.assertEqual(x["status"],"ready")
 
+
+class BootstrapTests(unittest.TestCase):
+    """Validate the entrypoint and active skill manifest alongside routing."""
+
+    def test_bootstrap(self):
+        from pathlib import Path
+        import yaml
+        root = Path(__file__).resolve().parents[1]
+        agents = (root / "AGENTS.md").read_text(encoding="utf-8")
+        index = yaml.safe_load((root / "knowledge.yaml").read_text(encoding="utf-8"))
+        workflow = "skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md"
+        self.assertIn(workflow, agents)
+        self.assertTrue((root / workflow).is_file())
+        skills = index["knowledge_architecture"]
+        active = [s for s in skills if s.get("status") == "active"]
+        self.assertTrue(any(s["name"] == "sertaodigital-core" for s in active))
+        for entry in active:
+            self.assertTrue((root / entry["location"] / "SKILL.md").is_file(), entry["name"])
+            if entry["name"] != "sertaodigital-core":
+                self.assertIn("sertaodigital-core", entry.get("depends_on", []))
+        self.assertFalse(any(s["name"] == "sdka-engineering-intelligence" and s.get("status") == "active" for s in skills))
+
 if __name__=="__main__":
     unittest.main()
