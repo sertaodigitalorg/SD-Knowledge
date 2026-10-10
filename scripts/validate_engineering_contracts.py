@@ -6,6 +6,7 @@ Schema validation is separate: use jsonschema Draft202012Validator in CI when av
 """
 import json
 from pathlib import Path
+from sdka_registry_gate import check_registry_context
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,7 +42,9 @@ def main():
     assessment = json.loads((ROOT / "examples/engineering-assessment.example.json").read_text())
     connector = json.loads((ROOT / "examples/connector-operation.example.json").read_text())
     check_assessment(assessment)
+    check_registry_context(assessment)
     check_connector(connector)
+    check_registry_context(connector)
     print("SDKA contract fixtures: OK (offline, no external calls)")
 
 if __name__ == "__main__":
