@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def check_assessment(data):
     assert data["schema_version"] == "0.1.0"
+    assert data["institution"] == "sertaodigital"
+    assert data["product_context"]["repository"].startswith("sertaodigitalorg/")
+    assert data["product_context"]["skill"] == "sertaodigital-core"
     evidence = {e["id"] for e in data["evidence"]}
     requirements = {r["id"] for r in data["requirements"]}
     assert len(evidence) == len(data["evidence"]), "duplicate evidence IDs"
@@ -24,6 +27,9 @@ def check_assessment(data):
 
 def check_connector(data):
     assert data["schema_version"] == "0.1.0"
+    assert data["institution"] == "sertaodigital"
+    assert data["product_context"]["repository"].startswith("sertaodigitalorg/")
+    assert data["product_context"]["skill"] == "sertaodigital-core"
     assert data["scope"]["methods"] == ["GET"]
     assert data["execution"]["mode"] == "dry_run"
     assert data["execution"]["read_only"] is True
