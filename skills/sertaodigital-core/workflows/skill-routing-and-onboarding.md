@@ -72,3 +72,15 @@ python scripts/sdka_skill_discovery.py "Preciso corrigir um bug no LegislaGD" --
 Resultados: `ready` (contexto canônico identificado e Skill ativa), `review_required` (produto identificado mas falta Skill/registro válido) ou `clarification_required` (produto não identificado). **Nenhum desses estados autoriza execução, acesso a dados ou alterações.**
 
 Quando o pedido é genérico (por exemplo, apenas “atendimento ao cidadão”), não inferir silenciosamente que ele corresponde ao SIGI-SD. Perguntar pelo produto ou oferecer uma hipótese explicitamente não confirmada. Quando há múltiplos produtos, registrar todos, manter as lacunas e não iniciar alterações entre repositórios sem escopo e revisão.
+
+## Orientação por tipo de trabalho (experimental)
+
+Após identificar o produto, use `scripts/sdka_task_guidance.py` para sugerir um **roteiro inicial**, sem executar comandos nem autorizar intervenções:
+
+```bash
+python scripts/sdka_task_guidance.py "Sou novo e preciso corrigir um erro no LegislaGD" --experience junior
+```
+
+As categorias reconhecidas são correção (`bugfix`), nova funcionalidade (`feature`), documentação (`documentation`), arquitetura (`architecture`), aprendizado (`learning`) e testes (`testing`). Quando houver múltiplos objetivos concretos sem prioridade definida, retornar `clarification_required`. O agente deve confirmar a intenção, o resultado esperado e o escopo antes de criar ou executar alterações.
+
+O roteiro é uma **sugestão de orientação**, não substitui os workflows e ADRs específicos do repositório nem comprova que uma instrução foi executada. Não presume privilégio de acesso, autorização de produção ou aprovação de PR. As regras normativas permanecem nos documentos MASTER.
