@@ -1,8 +1,8 @@
 {
   "schema_version": "0.1.0",
   "id": "example-public-read",
-  "source_id": "example-registered-source",
-  "purpose": "Proposta de operação pública exclusivamente documental",
+  "source_id": "sdka-example-source-pending-registration",
+  "purpose": "Exemplo offline de contrato SDKA sujeito a autorizacao e catalogo institucional",
   "scope": {
     "allowed_hosts": [
       "example.org"
@@ -27,5 +27,10 @@
   "evidence": {
     "source_url": "https://example.org/api-docs",
     "redaction_required": true
+  },
+  "institution": "sertaodigital",
+  "product_context": {
+    "repository": "sertaodigitalorg/SD-Knowledge",
+    "skill": "sertaodigital-core"
   }
 }
