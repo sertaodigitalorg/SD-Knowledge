@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
 from validate_engineering_contracts import check_assessment, check_connector
+from sdka_registry_gate import check_registry_context
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -35,10 +36,12 @@ class ContractTests(unittest.TestCase):
     def test_assessment_fixture(self):
         self.check_valid(self.assessment_validator, self.assessment)
         check_assessment(self.assessment)
+        check_registry_context(self.assessment)
 
     def test_connector_fixture(self):
         self.check_valid(self.connector_validator, self.connector)
         check_connector(self.connector)
+        check_registry_context(self.connector)
 
     def test_non_institutional_assessment_rejected(self):
         modified = copy.deepcopy(self.assessment)
@@ -91,6 +94,34 @@ class ContractTests(unittest.TestCase):
         modified["requirements"].append(copy.deepcopy(modified["requirements"][0]))
         with self.assertRaises(AssertionError):
             check_assessment(modified)
+
+
+    def test_unregistered_repository_with_valid_prefix_rejected(self):
+        modified = copy.deepcopy(self.assessment)
+        modified["product_context"]["repository"] = "sertaodigitalorg/InventedRepo"
+        self.check_valid(self.assessment_validator, modified)
+        with self.assertRaises(AssertionError):
+            check_registry_context(modified)
+
+    def test_known_repo_without_active_product_skill_rejected(self):
+        modified = copy.deepcopy(self.assessment)
+        modified["product_context"]["repository"] = "sertaodigitalorg/LegislaGD"
+        modified["product_context"]["skill"] = "sertaodigital-core"
+        with self.assertRaises(AssertionError):
+            check_registry_context(modified)
+
+    def test_canonical_product_skill_mapping_accepted(self):
+        modified = copy.deepcopy(self.assessment)
+        modified["product_context"]["repository"] = "sertaodigitalorg/LegislaGD"
+        modified["product_context"]["skill"] = "legislagd"
+        self.assertTrue(check_registry_context(modified))
+
+    def test_pending_product_rejected_even_with_known_repo(self):
+        modified = copy.deepcopy(self.assessment)
+        modified["product_context"]["repository"] = "sertaodigitalorg/Plataforma360"
+        modified["product_context"]["skill"] = "sertaodigital-core"
+        with self.assertRaises(AssertionError):
+            check_registry_context(modified)
 
 
 if __name__ == "__main__":
