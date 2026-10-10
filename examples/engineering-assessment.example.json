@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "product": "example-local-fixture",
+  "product": "SDKA",
   "scope": "approved-offline-document",
   "evidence": [
     {
@@ -29,5 +29,10 @@
       "recommendation": "Manter caso de regressão"
     }
   ],
-  "decision": "review_required"
+  "decision": "review_required",
+  "institution": "sertaodigital",
+  "product_context": {
+    "repository": "sertaodigitalorg/SD-Knowledge",
+    "skill": "sertaodigital-core"
+  }
 }
