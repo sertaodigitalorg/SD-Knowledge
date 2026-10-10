@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1.0",
+  "id": "example-public-read",
+  "source_id": "example-registered-source",
+  "purpose": "Proposta de operação pública exclusivamente documental",
+  "scope": {
+    "allowed_hosts": [
+      "example.org"
+    ],
+    "allowed_paths": [
+      "/api/catalog"
+    ],
+    "methods": [
+      "GET"
+    ]
+  },
+  "authorization": {
+    "basis": "publicly documented; permission must be independently confirmed",
+    "approved_by": null
+  },
+  "execution": {
+    "mode": "dry_run",
+    "read_only": true,
+    "timeout_seconds": 10,
+    "max_requests": 10
+  },
+  "evidence": {
+    "source_url": "https://example.org/api-docs",
+    "redaction_required": true
+  }
+}
