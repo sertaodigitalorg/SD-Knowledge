@@ -1,50 +1,67 @@
 # Skill: observatorio-mandacaru
 
 ## Metadados
-- **Name:** observatorio-mandacaru
-- **Type:** product-context
-- **Status:** active
-- **Produto:** Observatório Mandacaru
-- **Dependência:** sertaodigital-core
 
-## Propósito
-Fornecer o contexto funcional e técnico necessário para trabalhar no Observatório Mandacaru sem confundir estado implementado, arquitetura alvo e hipótese futura.
+| Campo | Valor |
+|---|---|
+| **Name** | `observatorio-mandacaru` |
+| **Type** | product-context |
+| **Status** | active |
+| **Produto** | Observatório Mandacaru |
+| **Subtítulo** | Plataforma de Inteligência Territorial e Ecossistêmica do Sertão Digital |
+| **Dependência** | `sertaodigital-core` |
 
-## Autoridade
+## Propósito e identidade
+
+Contextualizar o produto ativo/em desenvolvimento e orientar alterações sem confundir capacidades implementadas, parciais, planejadas ou conceituais. “Observatório Sertão Digital” é nomenclatura anterior; marca atual: **Observatório Mandacaru**. Não renomeie classes, namespaces ou identificadores internos sem necessidade técnica.
+
+## Autoridade e fonte de verdade
+
 - Google Drive: MASTER institucional, estratégico e funcional.
-- GitHub: MASTER técnico, código, APIs, deploy e ADRs.
-- Observatório Mandacaru: MASTER dos dados estruturados do ecossistema.
-- SD-Knowledge: catálogo, contexto e distribuição de conhecimento.
-- GPT_SOURCE e exports: derivados.
+- GitHub: MASTER técnico, código, APIs, deploy, Skills e ADRs.
+- Observatório Mandacaru: MASTER dos dados estruturados do ecossistema, preservando proveniência/referências às fontes originais.
+- SD-Knowledge: manifestos, contexto e distribuição de conhecimento.
+- GPT_SOURCE e exports: derivados, nunca substituem a fonte MASTER.
+
+Consulte `docs/SOURCE_OF_TRUTH.md`, READ/WRITE/ACCESS e o estado de acesso antes de concluir que uma fonte não existe. Uma cópia técnica de requisitos funcionais não substitui o Drive.
 
 ## Estado atual verificado
-O produto possui MVP técnico em evolução no repositório `sertaodigitalorg/ObservatorioMandacaru`, com backend Symfony, frontend Angular, PostgreSQL, Docker/Traefik, autenticação, usuários/papéis, instituições, projetos, indicadores, posts, tags, histórico/auditoria, APIs e workflow editorial. Meilisearch existe na infraestrutura; sua cobertura funcional deve ser verificada no código antes de tratá-lo como busca consolidada.
 
-## Arquitetura alvo aprovada
-A documentação funcional/arquitetural aprova REST para sistema↔sistema e MCP para IA↔ecossistema. O MCP deve operar sobre APIs/serviços de domínio, nunca por acesso SQL direto. Governança/higiene do conhecimento, Qdrant, Redis/Kestra dedicados, BI, integrações externas e planos avançados são roadmap até haver evidência técnica.
+O repositório `sertaodigitalorg/ObservatorioMandacaru` contém MVP com backend Symfony 8.1/PHP >= 8.4, frontend Angular 22, PostgreSQL 17 no Compose raiz, Traefik e Meilisearch declarado em infraestrutura. Existem autenticação por sessão, papéis, contas, instituições, projetos, indicadores, posts/tags, REST, área de usuário, revisão editorial e histórico parcial.
 
-## Regra de status
-Use sempre: IMPLEMENTADO, EM IMPLEMENTAÇÃO, PLANEJADO, CONCEITUAL ou DESCONTINUADO. Código e testes são evidência do estado técnico; documentação de roadmap não é evidência de implementação.
+Busca usa quatro endpoints públicos combinados no Angular; não foi encontrada integração de indexação/Search API com Meilisearch. `CadastroHistorico` cobre parte do fluxo de contribuição/revisão, não toda edição administrativa. Não foram encontrados testes HTTP dos controllers nem implementação de IA/MCP/RAG/vetores/grafo/ETL.
 
-## Domínio
-Núcleo já implementado: Instituição, Projeto, Indicador, Post, Tag, User e CadastroHistorico.
+Use os estados da matriz da auditoria do produto: `IMPLEMENTADO`, `PARCIAL`, `PLANEJADO` e `AUSENTE`. Quando apropriado, registre `PROPOSTO/CONCEITUAL`. Código e testes são evidência; roadmap não é.
 
-Expansão planejada: pessoas/perfis, territórios, competências, tecnologias, oportunidades, fontes/evidências, programas/políticas, relacionamentos, governança de fontes e perfis SDKA.
+## Arquitetura, domínio e roadmap
 
-## Workflow editorial
-Preservar a separação entre versão pública e alteração em análise. Fluxo de referência: RASCUNHO → ENVIADO PARA ANÁLISE → REVISÃO → PUBLICADO ou DEVOLVIDO → CORREÇÃO.
+- Arquitetura atual e alvo: [architecture.md](architecture.md).
+- Entidades e relações: [domain.md](domain.md).
+- Fontes/documentos: [references.md](references.md).
+- Decisões pendentes: [references/decisions.md](references/decisions.md).
 
-## IA e conhecimento
-IA não é fonte de verdade. Respostas e escritas assistidas devem ser rastreáveis à fonte, respeitar autorização, classificação de dados e auditoria. Não selecionar LLM, embeddings, vector DB ou grafo sem decisão técnica versionada quando a escolha ainda estiver aberta.
+O núcleo atual é `User`, `Instituicao`, `Projeto`, `Indicador`, `Post`, `Tag` e `CadastroHistorico`. A conta `User` implementa perfis autodeclarados `pessoa`, `instituicao`, `empresa`, `estudante` e `professor`; também armazena formação profissional e nome da empresa nos perfis correspondentes. Esses campos não constituem entidades próprias de Pessoa ou Empresa. Territórios, modelo ampliado de pessoas/competências, evidências/fontes, pesquisas, programas/políticas, tecnologias, oportunidades e relações genéricas permanecem roadmap/conceito até decisão.
 
-## Decisões pendentes
-Consulte `references/decisions.md`. Itens pendentes não devem ser implementados como padrão definitivo antes da decisão.
+## Governança e proveniência
 
-## Antes de alterar o produto
-1. Ler `SD-Knowledge/AGENTS.md`.
-2. Ler `skills/sertaodigital-core/SKILL.md` e esta Skill.
-3. Ler a documentação do repositório do Mandacaru.
-4. Auditar código/testes para confirmar o estado.
-5. Aplicar Cross-Layer Impact Check.
-6. Para decisão arquitetural relevante, usar Technical Decision Gate e ADR.
-7. Nunca expor secrets ou promover roadmap a implementado.
+O modelo-alvo deverá rastrear fonte, origem, coleta, responsável, método, atualização, confiabilidade, evidência, validação, curadoria, publicação e revisão. O domínio atual ainda não modela proveniência estruturada. Não criar entidades de governança automaticamente.
+
+## Busca e IA
+
+Meilisearch está na infraestrutura, não na integração funcional confirmada. A arquitetura-alvo de busca é PostgreSQL → indexador backend → Meilisearch → Search API → Angular. Nunca expor `MEILI_MASTER_KEY` ao frontend.
+
+IA não é fonte de verdade nem substitui o dado canônico. Respostas precisam apontar fontes; escritas assistidas exigem autorização e auditoria. REST é o alvo sistema↔sistema e MCP o alvo IA↔ecossistema referenciado funcionalmente; o MCP ainda é futuro, opera por APIs/serviços autorizados e nunca por SQL direto. Não selecionar LLM, embeddings, vector DB ou grafo sem decisão/ADR aplicável.
+
+## Segurança
+
+Não versionar segredos, tokens ou dados pessoais; não reproduzir valores em issues/relatórios. Usar configuração local ignorada ou secret manager e revisar defaults de Compose antes de publicação. A auditoria do produto registrou a remoção do segredo de desenvolvimento do arquivo atual, necessidade de rotação e riscos condicionais nos endpoints públicos e serviços de infraestrutura.
+
+## Regras de mudança
+
+1. Ler `SD-Knowledge/AGENTS.md`, esta Skill, `sertaodigital-core/SKILL.md` e `ObservatorioMandacaru/AGENTS.md`.
+2. Ler `ObservatorioMandacaru/docs/` e consultar o código/testes para confirmar estado.
+3. Não inventar requisito nem promover roadmap a implementado.
+4. Executar Technical Decision Gate para decisões estruturais; documentar ADR sem fabricar rationale histórico.
+5. Avaliar Cross-Layer Impact e sincronizar ou gerar Prompt Handoff conforme o acesso à fonte MASTER.
+6. Atualizar testes e documentação junto com mudanças funcionais/técnicas.
+7. Nunca versionar segredos.
