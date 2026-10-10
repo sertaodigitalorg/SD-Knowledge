@@ -1,0 +1,25 @@
+name: SDKA Engineering Contracts
+on:
+  pull_request:
+    paths:
+      - 'schemas/engineering-assessment.schema.json'
+      - 'schemas/connector-operation.schema.json'
+      - 'examples/engineering-assessment.example.json'
+      - 'examples/connector-operation.example.json'
+      - 'scripts/validate_engineering_contracts.py'
+      - '.github/workflows/engineering-contracts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate JSON and references offline
+        run: python scripts/validate_engineering_contracts.py
