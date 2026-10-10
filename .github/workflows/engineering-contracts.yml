@@ -14,6 +14,8 @@ on:
       - 'scripts/test_skill_router.py'
       - 'scripts/sdka_skill_discovery.py'
       - 'scripts/test_skill_discovery.py'
+      - 'scripts/sdka_task_guidance.py'
+      - 'scripts/test_task_guidance.py'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
       - 'AGENTS.md'
       - 'repositories.yaml'
@@ -45,3 +47,5 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_skill_router.py' -v
       - name: Validate language discovery
         run: python -m unittest discover -s scripts -p 'test_skill_discovery.py' -v
+      - name: Validate guided task intent
+        run: python -m unittest discover -s scripts -p 'test_task_guidance.py' -v
