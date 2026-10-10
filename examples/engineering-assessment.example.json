@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1.0",
+  "product": "example-local-fixture",
+  "scope": "approved-offline-document",
+  "evidence": [
+    {
+      "id": "E1",
+      "source": "examples/local-fixture",
+      "observed_at": "2026-10-09",
+      "finding": "O documento apresenta um catálogo consultável",
+      "confidence": "observed"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "statement": "O catálogo deve ser consultável",
+      "authority": "approved-fixture"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G1",
+      "requirement_id": "R1",
+      "current_state": "met",
+      "evidence_refs": [
+        "E1"
+      ],
+      "recommendation": "Manter caso de regressão"
+    }
+  ],
+  "decision": "review_required"
+}
