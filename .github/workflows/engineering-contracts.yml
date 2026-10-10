@@ -10,6 +10,8 @@ on:
       - 'scripts/test_engineering_contracts.py'
       - 'scripts/sdka_registry_gate.py'
       - 'scripts/test_skill_bootstrap.py'
+      - 'scripts/sdka_skill_router.py'
+      - 'scripts/test_skill_router.py'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
       - 'AGENTS.md'
       - 'repositories.yaml'
@@ -37,3 +39,5 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_engineering_contracts.py' -v
       - name: Check active skill catalog and bootstrap
         run: python -m unittest discover -s scripts -p 'test_skill_bootstrap.py' -v
+      - name: Validate multi-product skill routing
+        run: python -m unittest discover -s scripts -p 'test_skill_router.py' -v
