@@ -12,6 +12,8 @@ on:
       - 'scripts/test_skill_bootstrap.py'
       - 'scripts/sdka_skill_router.py'
       - 'scripts/test_skill_router.py'
+      - 'scripts/sdka_skill_discovery.py'
+      - 'scripts/test_skill_discovery.py'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
       - 'AGENTS.md'
       - 'repositories.yaml'
@@ -41,3 +43,5 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_skill_bootstrap.py' -v
       - name: Validate multi-product skill routing
         run: python -m unittest discover -s scripts -p 'test_skill_router.py' -v
+      - name: Validate language discovery
+        run: python -m unittest discover -s scripts -p 'test_skill_discovery.py' -v
