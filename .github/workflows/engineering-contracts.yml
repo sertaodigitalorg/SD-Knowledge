@@ -9,7 +9,6 @@ on:
       - 'scripts/validate_engineering_contracts.py'
       - 'scripts/test_engineering_contracts.py'
       - 'scripts/sdka_registry_gate.py'
-      - 'scripts/test_skill_bootstrap.py'
       - 'scripts/sdka_skill_router.py'
       - 'scripts/test_skill_router.py'
       - 'scripts/sdka_skill_discovery.py'
@@ -41,9 +40,7 @@ jobs:
         run: python scripts/validate_engineering_contracts.py
       - name: Validate schemas and negative test cases
         run: python -m unittest discover -s scripts -p 'test_engineering_contracts.py' -v
-      - name: Check active skill catalog and bootstrap
-        run: python -m unittest discover -s scripts -p 'test_skill_bootstrap.py' -v
-      - name: Validate multi-product skill routing
+      - name: Validate skill bootstrap and multi-product routing
         run: python -m unittest discover -s scripts -p 'test_skill_router.py' -v
       - name: Validate language discovery
         run: python -m unittest discover -s scripts -p 'test_skill_discovery.py' -v
