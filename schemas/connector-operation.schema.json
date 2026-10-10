@@ -11,7 +11,9 @@
     "scope",
     "authorization",
     "execution",
-    "evidence"
+    "evidence",
+    "institution",
+    "product_context"
   ],
   "properties": {
     "schema_version": {
@@ -126,6 +128,27 @@
         },
         "redaction_required": {
           "const": true
+        }
+      }
+    },
+    "institution": {
+      "const": "sertaodigital"
+    },
+    "product_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "skill"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^sertaodigitalorg/[A-Za-z0-9_.-]+$"
+        },
+        "skill": {
+          "type": "string",
+          "minLength": 1
         }
       }
     }
