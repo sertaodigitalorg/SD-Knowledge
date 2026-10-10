@@ -9,6 +9,9 @@ on:
       - 'scripts/validate_engineering_contracts.py'
       - 'scripts/test_engineering_contracts.py'
       - 'scripts/sdka_registry_gate.py'
+      - 'scripts/test_skill_bootstrap.py'
+      - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
+      - 'AGENTS.md'
       - 'repositories.yaml'
       - 'products.yaml'
       - 'knowledge.yaml'
@@ -32,3 +35,5 @@ jobs:
         run: python scripts/validate_engineering_contracts.py
       - name: Validate schemas and negative test cases
         run: python -m unittest discover -s scripts -p 'test_engineering_contracts.py' -v
+      - name: Check active skill catalog and bootstrap
+        run: python -m unittest discover -s scripts -p 'test_skill_bootstrap.py' -v
