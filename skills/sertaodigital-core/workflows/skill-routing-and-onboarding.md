@@ -60,3 +60,15 @@ Esta tabela é **orientação**, não uma segunda fonte de verdade. Sempre preva
 - [ ] Evidências são separadas de hipóteses.
 - [ ] Skill técnica inativa não é executada.
 - [ ] Mudanças funcionais encaminhadas ao MASTER do Drive.
+
+## Descoberta assistida por linguagem natural (experimental)
+
+Para pedidos sem repositório explícito, o agente pode usar o utilitário **offline** `scripts/sdka_skill_discovery.py` para sugerir candidatos a partir de nomes **exatos e normalizados** cadastrados em `products.yaml`. O utilitário consulta também `repositories.yaml` e `knowledge.yaml` pelo roteador oficial. Exemplo:
+
+```bash
+python scripts/sdka_skill_discovery.py "Preciso corrigir um bug no LegislaGD" --experience junior
+```
+
+Resultados: `ready` (contexto canônico identificado e Skill ativa), `review_required` (produto identificado mas falta Skill/registro válido) ou `clarification_required` (produto não identificado). **Nenhum desses estados autoriza execução, acesso a dados ou alterações.**
+
+Quando o pedido é genérico (por exemplo, apenas “atendimento ao cidadão”), não inferir silenciosamente que ele corresponde ao SIGI-SD. Perguntar pelo produto ou oferecer uma hipótese explicitamente não confirmada. Quando há múltiplos produtos, registrar todos, manter as lacunas e não iniciar alterações entre repositórios sem escopo e revisão.
