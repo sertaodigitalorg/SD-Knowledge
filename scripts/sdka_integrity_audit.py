@@ -17,11 +17,18 @@ def audit(root=ROOT):
 
     active_skills = {s["name"]: s for s in skills if s.get("status") == "active"}
     all_skills = {s["name"]: s for s in skills}
+    if len(all_skills) != len(skills):
+        issue("DUPLICATE_SKILL", "knowledge.yaml", "Skill duplicada no catálogo")
+    if len({repository_name(r.get("url")) for r in repos.values() if repository_name(r.get("url"))}) != sum(bool(repository_name(r.get("url"))) for r in repos.values()):
+        issue("DUPLICATE_REPOSITORY", "repositories.yaml", "Repositório duplicado no catálogo")
 
     for name, s in all_skills.items():
         location = s.get("location")
         if not location or not (root / location / "SKILL.md").is_file():
             issue("MISSING_SKILL_FILE", name, "Skill catalogada sem SKILL.md")
+        if s.get("status") == "active" and s.get("type") == "product-context":
+            if "sertaodigital-core" not in s.get("depends_on", []):
+                issue("MISSING_INSTITUTIONAL_CORE", name, "Skill ativa sem dependência institucional")
         for parent in s.get("depends_on", []):
             if parent not in active_skills:
                 issue("MISSING_ACTIVE_DEPENDENCY", name, "Dependência não ativa: " + parent)
