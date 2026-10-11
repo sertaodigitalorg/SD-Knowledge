@@ -32,3 +32,9 @@ Preparar a orientação institucional inicial do produto **VEREDAS** (mobilidade
 
 ## Próxima ação
 Auditar o repositório e a documentação aprovada do produto para elaborar a primeira versão técnica verificável desta Skill.
+
+## Evidência técnica inicial (README do repositório, não teste de execução)
+
+O workspace documenta três componentes em repositórios/submódulos independentes: `VEREDAS-Core` (Symfony, Angular administrativo, PostgreSQL, Redis, MQTT), `VEREDAS-Edge` (API local, MQTT, SQLite) e `VEREDAS-PWA` (Angular/PWA para aluno, motorista, monitor e paciente). A documentação declara priorização `edge-first` e fallback para o Core e manutenção dos componentes por submódulos Git. Isso descreve a arquitetura documentada; **não** comprova fluxos offline, sincronização, PNATE ou integração SETE em produção.
+
+**Próxima revisão:** conferir `docs/arquitetura-geral.md`, `docs/cenarios-teste.md`, Core/Edge/PWA e evidências de sincronização offline, segurança, RFID e transporte escolar/saúde antes de afirmar cobertura de requisitos.
