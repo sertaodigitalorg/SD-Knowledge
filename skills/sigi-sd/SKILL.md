@@ -45,6 +45,6 @@ Fontes lidas: `sertaodigitalorg/SIGI-SD/docs/arquitetura/visao-geral.md` e `docs
 
 **Documentado:** separação entre Central Pública Digital, SIGI-SD, operação humana, Plataforma360 e GRPs. Chatwoot opera atendimento omnichannel; Symfony organiza inteligência institucional, vínculos, protocolos e follow-up. A integração descrita prevê autenticação de webhook, idempotência/rastreabilidade a conferir e segregação de credenciais.
 
-**Ponto de atenção:** a especificação de integração cita MySQL para o módulo, enquanto o ambiente Docker documenta PostgreSQL. A decisão efetiva de persistência e migrations precisa ser verificada no código antes de consolidar um padrão.
+**Decisão institucional confirmada:** PostgreSQL é o banco de dados padrão do SIGI-SD, inclusive para a integração Chatwoot. A referência legada a MySQL na especificação foi corrigida em `sertaodigitalorg/SIGI-SD` (PR #112, aguardando integração). A compatibilidade efetiva de migrations e entidades ainda exige inspeção do código.
 
 **Critérios antes da ativação:** examinar configuração efetiva de bancos e migrations, handlers de webhook, validação de segredos, proteção contra duplicidade/replay e testes executáveis. Não registrar como implantado apenas por constar na especificação.
