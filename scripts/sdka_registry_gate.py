@@ -55,14 +55,16 @@ def check_registry_context(document, root=ROOT):
         and product.get("status") == "active"
     }
     assert matched_products, "product absent or inactive in products.yaml"
-    # Skills are product contexts, not just arbitrary organization skills.
-    allowed_skill_by_product = {
-        "legislagd": "legislagd",
-        "observatorio_mandacaru": "observatorio-mandacaru",
-    }
+    # Resolve against the same active product-context skill convention as router.
     for key, product in matched_products.items():
         domain = product.get("parent_product", key)
-        skill = allowed_skill_by_product.get(domain)
-        if skill and selected_skill == skill:
+        matching = [
+            item for item in skill_map.values()
+            if item.get("type") == "product-context"
+            and item["name"].replace("-", "_") == domain
+            and item["name"] == selected_skill
+            and "sertaodigital-core" in item.get("depends_on", [])
+        ]
+        if len(matching) == 1:
             return True
-    raise AssertionError("No active product-specific skill mapping for repository")
+    raise AssertionError("No active product skill mapping in canonical manifests")
