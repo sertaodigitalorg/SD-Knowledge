@@ -16,6 +16,21 @@ Quando receber uma tarefa envolvendo Sertão Digital:
 - [ ] Entenda que este arquivo é um bootstrap operacional e não uma fonte normativa
 - [ ] Exemplos ilustrativos nunca substituem decisões oficiais ou ADRs reais
 
+### 1.1. Descoberta guiada de Skills (entrada padrão)
+
+Antes de selecionar uma Skill, **sempre** carregue `skills/sertaodigital-core/SKILL.md` e siga
+`skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md`.
+
+- Resolva o produto e seu repositório em `products.yaml` e `repositories.yaml`.
+- Confirme em `knowledge.yaml` se a Skill específica existe e está **active**.
+- Para pessoas iniciantes/juniores, forneça um roteiro didático com preparação,
+  localização das fontes, validação, issue e PR, sem relaxar segurança ou aprovações.
+- Na ausência de Skill ativa, permaneça no contexto institucional, indique a
+  lacuna e proponha issue; não invente padrões do produto.
+- Skills marcadas `inactive` são experimentais e não podem ser ativadas pelo roteador.
+- O bootstrap e o workflow são guias operacionais; manifestos e fontes MASTER
+  continuam sendo as autoridades.
+
 ### 2. Skill Apropriada
 
 Produtos e contextos exigem Skills específicas:
