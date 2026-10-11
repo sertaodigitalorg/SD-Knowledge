@@ -37,5 +37,41 @@ class TaskGuidanceTests(unittest.TestCase):
         self.assertEqual(x["intent"],"ambiguous")
         self.assertEqual(x["status"],"clarification_required")
 
+
+    def test_phase9_observatorio_junior(self):
+        x = guide("Sou novo e preciso corrigir um erro no Observatório Mandacaru")
+        self.assertEqual(x["status"], "ready")
+        self.assertEqual(x["intent"], "bugfix")
+        self.assertIn("observatorio-mandacaru", x["skills"])
+        self.assertFalse(x["task_execution_authorized"])
+
+    def test_phase9_observatorio_indicators(self):
+        x = guide("Implementar uma nova funcionalidade de indicadores no Observatório Mandacaru")
+        self.assertEqual(x["status"], "ready")
+        self.assertEqual(x["intent"], "feature")
+        self.assertIn("observatorio-mandacaru", x["skills"])
+
+    def test_phase9_observatorio_legislagd(self):
+        x = guide("Implementar uma nova funcionalidade de integração entre Observatório Mandacaru e LegislaGD")
+        self.assertEqual(x["status"], "ready")
+        self.assertEqual(x["intent"], "feature")
+        self.assertEqual(set(x["skills"]), {"sertaodigital-core", "observatorio-mandacaru", "legislagd"})
+        self.assertFalse(x["task_execution_authorized"])
+
+    def test_phase9_citizen_service_unknown(self):
+        x = guide("Preciso corrigir atendimento ao cidadão")
+        self.assertEqual(x["status"], "clarification_required")
+
+    def test_phase9_ambiguous_intents(self):
+        x = guide("Preciso corrigir e documentar o LegislaGD")
+        self.assertEqual(x["status"], "clarification_required")
+        self.assertEqual(x["intent"], "ambiguous")
+
+    def test_phase9_legislagd_sigi(self):
+        x = guide("Corrigir integração LegislaGD com SIGI-SD")
+        self.assertEqual(x["status"], "review_required")
+        self.assertIn("legislagd", x["skills"])
+        self.assertTrue(x["unresolved"])
+
 if __name__=="__main__":
     unittest.main()
