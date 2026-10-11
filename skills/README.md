@@ -39,7 +39,7 @@ Fornece contexto sobre autoridade de dados estruturados, domínio atual, proveni
 
 **Quando usar:** Ao trabalhar no Observatório Mandacaru, integrações SDKA relacionadas ou evolução de seus dados estruturados.
 
-[Ler SKILL.md](observatorio-mandacaru/SKILL.md)
+[Ler SKILL.md](observatorio-mandacaru/SKILL.md) · [Arquitetura](observatorio-mandacaru/architecture.md) · [Domínio](observatorio-mandacaru/domain.md) · [Referências](observatorio-mandacaru/references.md)
 
 ### legislagd
 
