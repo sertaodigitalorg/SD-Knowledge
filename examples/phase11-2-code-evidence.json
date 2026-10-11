@@ -1,0 +1,42 @@
+[
+  {
+    "repository": "sertaodigitalorg/SIGI-SD",
+    "commit": "97a42851dbf1ca46ccd7595585f8e1460bc71a5d",
+    "path": "apps/backend-symfony/src/Controller/Admin/Integration/Chatwoot/ChatwootWebhookController.php",
+    "claim": "Webhook controller file appears in repository tree",
+    "verification_level": "tree_observed",
+    "limitations": "File existence only; behavior has not been executed or confirmed."
+  },
+  {
+    "repository": "sertaodigitalorg/SIGI-SD",
+    "commit": "97a42851dbf1ca46ccd7595585f8e1460bc71a5d",
+    "path": "apps/backend-symfony/src/Command/SyncChatwootConversationsCommand.php",
+    "claim": "Sync command file appears in repository tree",
+    "verification_level": "tree_observed",
+    "limitations": "File existence only; behavior has not been executed or confirmed."
+  },
+  {
+    "repository": "sertaodigitalorg/VEREDAS-Core",
+    "commit": "f9205cda0c0ae050ce0eff64595fa96b11151d08",
+    "path": "apps/core-web/src/Api/Controller/SyncController.php",
+    "claim": "Core sync controller file appears in repository tree",
+    "verification_level": "tree_observed",
+    "limitations": "File existence only; behavior has not been executed or confirmed."
+  },
+  {
+    "repository": "sertaodigitalorg/VEREDAS-Edge",
+    "commit": "a7508ceb676f6997caacb10d87215d6aa9f9c06f",
+    "path": "docs/sincronizacao/contracts/sync-event.schema.json",
+    "claim": "Sync event contract file appears in repository tree",
+    "verification_level": "tree_observed",
+    "limitations": "File existence only; behavior has not been executed or confirmed."
+  },
+  {
+    "repository": "sertaodigitalorg/VEREDAS-PWA",
+    "commit": "15a8019da8766220a0bcc701556196b6a098aaa2",
+    "path": "projects/pwa-shell/src/lib/pwa-shell.spec.ts",
+    "claim": "PWA shell test file appears in repository tree",
+    "verification_level": "tree_observed",
+    "limitations": "File existence only; behavior has not been executed or confirmed."
+  }
+]
