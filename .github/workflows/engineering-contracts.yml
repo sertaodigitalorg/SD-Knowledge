@@ -16,6 +16,8 @@ on:
       - 'scripts/sdka_task_guidance.py'
       - 'scripts/test_task_guidance.py'
       - 'scripts/test_phase10_simulation.py'
+      - 'scripts/sdka_evidence_assessment.py'
+      - 'scripts/test_evidence_assessment.py'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
       - 'AGENTS.md'
       - 'repositories.yaml'
@@ -49,3 +51,5 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_task_guidance.py' -v
       - name: Simulate phase 10 operational scenarios offline
         run: python -m unittest discover -s scripts -p 'test_phase10_simulation.py' -v
+      - name: Verify phase 11 evidence assessments offline
+        run: python -m unittest discover -s scripts -p 'test_evidence_assessment.py' -v
