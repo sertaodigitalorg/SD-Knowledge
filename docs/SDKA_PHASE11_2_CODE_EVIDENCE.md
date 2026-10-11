@@ -28,3 +28,13 @@ Para cada constatação registrar `repository`, `commit`, `path`, `claim`, `veri
 2. Executar análise automatizada com fixtures não sensíveis e rejeição de referências inválidas.
 3. Validar cada evolução no CI, sem ativar as Skills `sigi-sd` e `veredas` antes de aprovação em PR específico.
 4. Preservar a avaliação prática de colaboradores para depois da implantação automatizada.
+
+## Segunda passagem — leitura de conteúdo
+
+Após a inspeção das árvores, foram lidos três arquivos e suas entradas correspondentes no fixture passaram a `content_reviewed`:
+
+- **SIGI-SD / ChatwootWebhookController:** decodifica JSON, busca cabeçalho de segredo e delega ao serviço `ChatwootWebhookService.receive`. **Não foi verificada** a validação do segredo dentro do serviço nem proteção contra replay.
+- **VEREDAS-Core / SyncController:** verifica campos obrigatórios do envelope, procura `eventId` existente, retorna resposta de duplicidade e persiste `SyncEvent`. **Não foram verificadas** garantia transacional de unicidade, autenticação ou concorrência.
+- **VEREDAS-Edge / sync-event.schema.json:** exige `eventId`, `event`, `edgeId`, `occurredAt` e `payload`, restringindo campos extras no nível superior. **Não foi verificado** uso efetivo do esquema em runtime.
+
+Os outros registros permanecem `tree_observed`. Não existem registros `test_executed` nesta etapa. A consulta foi estática, sem autorização para tratar a descrição do código como prova de funcionamento.
