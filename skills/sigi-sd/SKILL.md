@@ -38,3 +38,13 @@ Auditar o repositório e a documentação aprovada do produto para elaborar a pr
 A documentação raiz descreve Central Pública Digital multicanal, protocolos e integrações. Identifica Symfony Admin Hub, Chatwoot, Botpress, Ollama, Qdrant, PostgreSQL, Redis, Docker e Traefik. Declara WhatsApp oficial pela Meta Cloud API e delimita BI/indicadores como responsabilidade da Plataforma360; sistemas transacionais são integrados por adaptadores, não substituídos. A presença de documentação e comandos não atesta que serviços estejam funcionando em produção.
 
 **Próxima revisão:** conferir `docs/arquitetura/`, `docs/integracoes/`, testes, segurança de webhooks e LGPD sem reproduzir credenciais ou valores de desenvolvimento publicados no README.
+
+## Auditoria documental complementar — SIGI-SD
+
+Fontes lidas: `sertaodigitalorg/SIGI-SD/docs/arquitetura/visao-geral.md` e `docs/integracoes/chatwoot-sigi.md`.
+
+**Documentado:** separação entre Central Pública Digital, SIGI-SD, operação humana, Plataforma360 e GRPs. Chatwoot opera atendimento omnichannel; Symfony organiza inteligência institucional, vínculos, protocolos e follow-up. A integração descrita prevê autenticação de webhook, idempotência/rastreabilidade a conferir e segregação de credenciais.
+
+**Ponto de atenção:** a especificação de integração cita MySQL para o módulo, enquanto o ambiente Docker documenta PostgreSQL. A decisão efetiva de persistência e migrations precisa ser verificada no código antes de consolidar um padrão.
+
+**Critérios antes da ativação:** examinar configuração efetiva de bancos e migrations, handlers de webhook, validação de segredos, proteção contra duplicidade/replay e testes executáveis. Não registrar como implantado apenas por constar na especificação.
