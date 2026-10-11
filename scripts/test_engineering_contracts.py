@@ -124,5 +124,19 @@ class ContractTests(unittest.TestCase):
             check_registry_context(modified)
 
 
+    def test_observatorio_canonical_product_skill_mapping_accepted(self):
+        modified = copy.deepcopy(self.assessment)
+        modified["product_context"]["repository"] = "sertaodigitalorg/ObservatorioMandacaru"
+        modified["product_context"]["skill"] = "observatorio-mandacaru"
+        self.assertTrue(check_registry_context(modified))
+
+    def test_observatorio_cannot_use_unrelated_product_skill(self):
+        modified = copy.deepcopy(self.assessment)
+        modified["product_context"]["repository"] = "sertaodigitalorg/ObservatorioMandacaru"
+        modified["product_context"]["skill"] = "legislagd"
+        with self.assertRaises(AssertionError):
+            check_registry_context(modified)
+
+
 if __name__ == "__main__":
     unittest.main()
