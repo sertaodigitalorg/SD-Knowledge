@@ -1,6 +1,6 @@
 # SDKA — Fase 10: piloto operacional assistido
 
-**Estado:** plano executável para homologação humana; não equivale a homologação concluída.
+**Estado:** implantação e testes automatizados em andamento. A homologação humana será executada apenas após a conclusão e integração da etapa automatizada. Consulte `docs/SDKA_PHASE10_AUTOMATION_FIRST.md`.
 
 ## Objetivo
 
