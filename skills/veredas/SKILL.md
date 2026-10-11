@@ -38,3 +38,11 @@ Auditar o repositório e a documentação aprovada do produto para elaborar a pr
 O workspace documenta três componentes em repositórios/submódulos independentes: `VEREDAS-Core` (Symfony, Angular administrativo, PostgreSQL, Redis, MQTT), `VEREDAS-Edge` (API local, MQTT, SQLite) e `VEREDAS-PWA` (Angular/PWA para aluno, motorista, monitor e paciente). A documentação declara priorização `edge-first` e fallback para o Core e manutenção dos componentes por submódulos Git. Isso descreve a arquitetura documentada; **não** comprova fluxos offline, sincronização, PNATE ou integração SETE em produção.
 
 **Próxima revisão:** conferir `docs/arquitetura-geral.md`, `docs/cenarios-teste.md`, Core/Edge/PWA e evidências de sincronização offline, segurança, RFID e transporte escolar/saúde antes de afirmar cobertura de requisitos.
+
+## Auditoria documental complementar — VEREDAS
+
+Fontes lidas: `sertaodigitalorg/VEREDAS/docs/arquitetura-geral.md` e `docs/cenarios-teste.md`.
+
+**Documentado:** o Core detém o cadastro mestre e governança; Edge recebe carga operacional e deve persistir eventos localmente; PWA possui perfis operacionais. A documentação descreve sincronização posterior e roteiros de teste de educação, saúde, gestão de rotas e páginas públicas.
+
+**Critérios antes da ativação:** verificar código e testes para persistência SQLite, reconciliação sem duplicidade, transições offline/online, segurança e segregação de dados; executar cenários de educação/saúde em ambiente controlado. O documento de cenários é um roteiro, não resultado de testes.
