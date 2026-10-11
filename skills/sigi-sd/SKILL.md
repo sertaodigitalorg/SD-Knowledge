@@ -32,3 +32,9 @@ Preparar a orientação institucional inicial do produto **SIGI-SD** (atendiment
 
 ## Próxima ação
 Auditar o repositório e a documentação aprovada do produto para elaborar a primeira versão técnica verificável desta Skill.
+
+## Evidência técnica inicial (README do repositório, não teste de execução)
+
+A documentação raiz descreve Central Pública Digital multicanal, protocolos e integrações. Identifica Symfony Admin Hub, Chatwoot, Botpress, Ollama, Qdrant, PostgreSQL, Redis, Docker e Traefik. Declara WhatsApp oficial pela Meta Cloud API e delimita BI/indicadores como responsabilidade da Plataforma360; sistemas transacionais são integrados por adaptadores, não substituídos. A presença de documentação e comandos não atesta que serviços estejam funcionando em produção.
+
+**Próxima revisão:** conferir `docs/arquitetura/`, `docs/integracoes/`, testes, segurança de webhooks e LGPD sem reproduzir credenciais ou valores de desenvolvimento publicados no README.
