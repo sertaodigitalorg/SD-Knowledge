@@ -41,5 +41,20 @@ class IntegrityAuditTests(unittest.TestCase):
             r = audit()
         self.assertIn("MISSING_SKILL_FILE", {i["code"] for i in r["issues"]})
 
+    def test_product_skill_without_core_fails(self):
+        repos, products, skills = load_registry()
+        skills = [dict(s, depends_on=[]) if s["name"] == "legislagd" else s for s in skills]
+        with patch("sdka_integrity_audit.load_registry", return_value=(repos, products, skills)):
+            r = audit()
+        self.assertIn("MISSING_INSTITUTIONAL_CORE", {i["code"] for i in r["issues"]})
+
+    def test_duplicate_active_repository_fails(self):
+        repos, products, skills = load_registry()
+        repos = dict(repos)
+        repos["duplicate_sigi"] = dict(repos["sigi_sd"])
+        with patch("sdka_integrity_audit.load_registry", return_value=(repos, products, skills)):
+            r = audit()
+        self.assertIn("DUPLICATE_REPOSITORY", {i["code"] for i in r["issues"]})
+
 if __name__ == "__main__":
     unittest.main()
