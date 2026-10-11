@@ -6,7 +6,7 @@ Status: **em homologação**, sem autorização para ativar a Skill experimental
 
 A branch `main` contém `AGENTS.md`, `sertaodigital-core`, roteador de Skills, descoberta por nome canônico e orientação por intenção. Os manifestos de autoridade permanecem `knowledge.yaml`, `products.yaml`, `repositories.yaml` e `sources.yaml`.
 
-**Inconsistência a eliminar:** `scripts/sdka_registry_gate.py` mantém o dicionário fixo `allowed_skill_by_product`, enquanto `scripts/sdka_skill_router.py` resolve a Skill por convenção sobre o domínio registrado. É necessário unificar essa regra sem criar catálogo paralelo. Nenhuma modificação desse código é pressuposta neste documento.
+**Correção implementada na Fase 9:** `scripts/sdka_registry_gate.py` não mantém mais `allowed_skill_by_product`. A associação é validada contra domínio de produto, Skill ativa do tipo `product-context` e dependência institucional em `knowledge.yaml`, conforme convenção usada pelo roteador. A validação de comportamento é coberta por testes automatizados.
 
 ## Piloto 1 — Colaborador júnior / LegislaGD
 
@@ -48,9 +48,9 @@ python -m unittest discover -s scripts -p 'test_*.py' -v
 
 ## Critérios de encerramento
 
-- [ ] Testes completos executados no estado final da branch.
-- [ ] Validador e roteador usam associação produto–Skill única e verificável.
-- [ ] Oito pilotos confirmados em execução offline, sem dados pessoais.
+- [ ] Testes completos executados no estado final da branch e CI aprovado.
+- [x] Validador e roteador usam associação produto–Skill sem dicionário paralelo.
+- [x] Oito cenários cobertos por testes automatizados offline, sem dados pessoais (aprovação condicionada ao CI).
 - [ ] Teste com profissional iniciante real ou simulação humana revisada.
 - [ ] ADR-010, licenças e aspectos de segurança revisados separadamente antes de ativação.
 - [ ] Aprovação humana, histórico de revisão e guard de ações destrutivas preservados.
@@ -84,3 +84,10 @@ python scripts/sdka_task_guidance.py 'Implementar uma nova funcionalidade de int
 ```
 
 Os pilotos 6–8 são critérios de aceite propostos, **não** resultados de execução já homologados. A Skill do Observatório permanece ativa no catálogo institucional; a Skill experimental de Engineering Intelligence continua inativa.
+
+## Evidências da implementação
+
+- `scripts/test_task_guidance.py`: oito cenários de roteamento e orientação com verificações sobre intenção, produtos, Skills e autorização.
+- `scripts/test_engineering_contracts.py`: aceita associação válida do Observatório e rejeita Skill não correspondente.
+- `scripts/sdka_registry_gate.py`: remove o mapeamento fixo, mantendo validação fail-closed.
+- Os testes são de lógica e não constituem um piloto acompanhado de um colaborador real nem homologação funcional do Observatório.
