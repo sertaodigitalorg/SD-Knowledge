@@ -15,6 +15,9 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/).
 ### Changed
 
 - Prompt Handoff canônico passa a explicitar resultado esperado, estado de acesso e classificação de segurança
+- Harmonizado o ciclo de vida do Observatório Mandacaru em `IMPLEMENTADO`, `EM IMPLEMENTAÇÃO`, `PLANEJADO`, `CONCEITUAL` e `DESCONTINUADO`, mantendo estados de auditoria como qualificadores
+- Qualificada a autoridade do Observatório Mandacaru como MASTER por domínio implementado e homologado
+- Atualizado o registro de leitura das quatro fontes funcionais MASTER do Observatório Mandacaru em 2026-10-12, sem autorização de escrita
 
 ### Fixed
 

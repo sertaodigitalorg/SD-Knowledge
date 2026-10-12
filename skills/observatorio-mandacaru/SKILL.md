@@ -13,13 +13,13 @@
 
 ## Propósito e identidade
 
-Contextualizar o produto ativo/em desenvolvimento e orientar alterações sem confundir capacidades implementadas, parciais, planejadas ou conceituais. “Observatório Sertão Digital” é nomenclatura anterior; marca atual: **Observatório Mandacaru**. Não renomeie classes, namespaces ou identificadores internos sem necessidade técnica.
+Contextualizar o produto ativo/em desenvolvimento e orientar alterações sem confundir capacidades implementadas, em implementação, planejadas, conceituais ou descontinuadas. “Observatório Sertão Digital” é nomenclatura anterior; marca atual: **Observatório Mandacaru**. Não renomeie classes, namespaces ou identificadores internos sem necessidade técnica.
 
 ## Autoridade e fonte de verdade
 
 - Google Drive: MASTER institucional, estratégico e funcional.
 - GitHub: MASTER técnico, código, APIs, deploy, Skills e ADRs.
-- Observatório Mandacaru: MASTER dos dados estruturados do ecossistema, preservando proveniência/referências às fontes originais.
+- Observatório Mandacaru: MASTER dos dados estruturados nos domínios efetivamente implementados e homologados, preservando proveniência/referências às fontes originais.
 - SD-Knowledge: manifestos, contexto e distribuição de conhecimento.
 - GPT_SOURCE e exports: derivados, nunca substituem a fonte MASTER.
 
@@ -31,7 +31,7 @@ O repositório `sertaodigitalorg/ObservatorioMandacaru` contém MVP com backend 
 
 Busca usa quatro endpoints públicos combinados no Angular; não foi encontrada integração de indexação/Search API com Meilisearch. `CadastroHistorico` cobre parte do fluxo de contribuição/revisão, não toda edição administrativa. Não foram encontrados testes HTTP dos controllers nem implementação de IA/MCP/RAG/vetores/grafo/ETL.
 
-Use os estados da matriz da auditoria do produto: `IMPLEMENTADO`, `PARCIAL`, `PLANEJADO` e `AUSENTE`. Quando apropriado, registre `PROPOSTO/CONCEITUAL`. Código e testes são evidência; roadmap não é.
+Use os estados canônicos de ciclo de vida: `IMPLEMENTADO`, `EM IMPLEMENTAÇÃO`, `PLANEJADO`, `CONCEITUAL` e `DESCONTINUADO`. `PARCIAL`, `AUSENTE` e `NÃO VERIFICADO` podem ser usados como qualificadores de auditoria, com contexto e evidências, mas não substituem o estado de ciclo de vida. Código e testes são evidência; roadmap não é.
 
 ## Arquitetura, domínio e roadmap
 
