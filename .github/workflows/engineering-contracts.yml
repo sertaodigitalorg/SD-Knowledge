@@ -26,6 +26,8 @@ on:
       - 'examples/phase11-2-code-evidence.json'
       - 'scripts/sdka_integrity_audit.py'
       - 'scripts/test_integrity_audit.py'
+      - 'scripts/sdka_governance_report.py'
+      - 'scripts/test_governance_report.py'
       - 'skills/sigi-sd/SKILL.md'
       - 'skills/veredas/SKILL.md'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
@@ -73,3 +75,5 @@ jobs:
         run: python scripts/sdka_integrity_audit.py
       - name: Verify integrity negative scenarios
         run: python -m unittest discover -s scripts -p 'test_integrity_audit.py' -v
+      - name: Verify offline governance report
+        run: python -m unittest discover -s scripts -p 'test_governance_report.py' -v
