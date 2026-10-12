@@ -21,6 +21,9 @@ on:
       - 'scripts/sdka_product_inventory.py'
       - 'scripts/test_product_inventory.py'
       - 'scripts/test_initial_product_skills.py'
+      - 'scripts/sdka_code_evidence.py'
+      - 'scripts/test_code_evidence.py'
+      - 'examples/phase11-2-code-evidence.json'
       - 'skills/sigi-sd/SKILL.md'
       - 'skills/veredas/SKILL.md'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
@@ -62,3 +65,5 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_product_inventory.py' -v
       - name: Validate inactive initial product skills
         run: python -m unittest discover -s scripts -p 'test_initial_product_skills.py' -v
+      - name: Validate phase 11.2 source evidence offline
+        run: python -m unittest discover -s scripts -p 'test_code_evidence.py' -v
