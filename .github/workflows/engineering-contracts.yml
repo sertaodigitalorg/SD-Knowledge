@@ -21,6 +21,8 @@ on:
       - 'scripts/sdka_product_inventory.py'
       - 'scripts/test_product_inventory.py'
       - 'scripts/test_initial_product_skills.py'
+      - 'scripts/sdka_impact_plan.py'
+      - 'scripts/test_impact_plan.py'
       - 'skills/sigi-sd/SKILL.md'
       - 'skills/veredas/SKILL.md'
       - 'skills/sertaodigital-core/workflows/skill-routing-and-onboarding.md'
@@ -62,3 +64,5 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_product_inventory.py' -v
       - name: Validate inactive initial product skills
         run: python -m unittest discover -s scripts -p 'test_initial_product_skills.py' -v
+      - name: Verify phase 14 impact planning
+        run: python -m unittest discover -s scripts -p 'test_impact_plan.py' -v
