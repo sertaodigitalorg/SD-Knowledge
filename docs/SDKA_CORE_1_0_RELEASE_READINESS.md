@@ -4,22 +4,22 @@
 
 ## Linha de base
 
-A `main` contém a estrutura de conhecimento, manifestos oficiais, bootstrap institucional, Skills ativas de núcleo/LegislaGD/Observatório, roteamento, descoberta e testes das fases anteriores. Os itens abaixo são entregas independentes ainda em PRs abertos.
+A `main` contém a estrutura de conhecimento, manifestos oficiais, bootstrap institucional, Skills ativas de núcleo/LegislaGD/Observatório, roteamento, descoberta e testes das fases anteriores. Os PRs #32 a #35 já foram integrados à `main`; permanecem os critérios de validação e registro final para o Core 1.0.
 
 ## Fila de integração
 
 | Ordem sugerida | PR | Entrega | Situação no levantamento |
 | --- | --- | --- | --- |
-| 1 | #32 | Proveniência e registro de evidências | Aberto; revisão/merge pendentes |
-| 2 | #33 | Integridade automática de manifestos | Aberto; revisão/merge pendentes |
-| 3 | #34 | Relatório institucional de governança | Aberto; revisão/merge pendentes |
-| 4 | #35 | Planejamento consultivo de impacto entre produtos | Aberto; revisão/merge pendentes |
+| 1 | #32 | Proveniência e registro de evidências | Mesclado à `main` (confirmado em 12/10/2026) |
+| 2 | #33 | Integridade automática de manifestos | Mesclado à `main` (confirmado em 12/10/2026) |
+| 3 | #34 | Relatório institucional de governança | Mesclado à `main` (confirmado em 12/10/2026) |
+| 4 | #35 | Planejamento consultivo de impacto entre produtos | Mesclado à `main` (confirmado em 12/10/2026) |
 
-A ordem facilita testes incrementais, mas os PRs partiram da `main` e não devem depender de cherry-pick informal. **Após cada merge**, atualizar branches remanescentes pela interface GitHub, resolver conflitos e exigir novos checks no HEAD. Revisões podem ficar obsoletas e precisar ser refeitas. Nunca ignorar a regra do revisor ou o Destructive Action Guard.
+A fila histórica de integração foi concluída. A ordem facilitou testes incrementais; os PRs partiram da `main` e não devem depender de cherry-pick informal. **Após cada merge**, atualizar branches remanescentes pela interface GitHub, resolver conflitos e exigir novos checks no HEAD. Revisões podem ficar obsoletas e precisar ser refeitas. Nunca ignorar a regra do revisor ou o Destructive Action Guard.
 
 ## Critérios verificáveis para declarar SDKA Core 1.0
 
-1. Os quatro PRs incorporados à `main` por revisão e merge autorizados.
+1. Os quatro PRs incorporados à `main` por revisão e merge autorizados (**confirmado para #32–#35 em 12/10/2026**).
 2. `main` possui todos os workflows de conhecimento, lint, engenharia e proteção aprovados sobre os commits finais.
 3. `knowledge.yaml`, `products.yaml`, `repositories.yaml` e `sources.yaml` seguem como manifestos canônicos sem catálogos concorrentes.
 4. Inventário cobre os dez produtos atualmente registrados sem declarar status funcional não comprovado.
@@ -82,3 +82,9 @@ Os caminhos adicionais mínimos: `scripts/sdka_code_evidence.py`, `scripts/test_
 6. Conferir, em `main`, a presença dos **cinco passos adicionais** acima, executar os validadores completos e registrar o SHA final.
 
 **Risco de conflito textual:** possível; ainda não foi feita uma mesclagem efetiva das branches para comprovar se o Git reportará conflito. A resolução deve ser manual/revisada, sem forçar merge e sem reduzir a proteção de branch.
+
+## Atualização de integração — 12/10/2026
+
+A verificação direta do GitHub confirmou os merges: #32 (`7b4ddf889c8083eb9499bca3e692a4af1662b28b`), #33 (`addd2fe8bce6343329739a1aa94f85e118861f59`), #34 (`479f345aa9de8e5d1e57dc12a7c2610f104269d6`) e #35 (`8c81cbe9ef8fcacc13eb3b40600ade01e88aeb9d`). A seção de auditoria datada de 11/10/2026 documenta o risco histórico de sobreposição, não o estado atual dos merges.
+
+Este PR #36 trata apenas do checklist documental e não declara a homologação ou a publicação da versão 1.0. Exigir a aprovação do CI e a revisão prevista no ruleset antes de integrá-lo.
