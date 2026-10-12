@@ -9,7 +9,7 @@ knowledge_architecture:
   - name: observatorio-mandacaru
     type: product-context
     status: active
-    description: "Observatório Mandacaru — inteligência territorial e ecossistêmica e MASTER de dados estruturados"
+    description: "Observatório Mandacaru — inteligência territorial e ecossistêmica e MASTER de dados estruturados por domínio implementado e homologado"
     location: skills/observatorio-mandacaru/
     depends_on:
       - sertaodigital-core

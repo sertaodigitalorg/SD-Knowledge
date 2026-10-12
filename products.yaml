@@ -6,10 +6,10 @@ products:
     type: platform
     status: active
     scope: ecosystem-intelligence
-    description: "Plataforma de inteligência territorial e ecossistêmica; MASTER dos dados estruturados do ecossistema Sertão Digital."
+    description: "Plataforma de inteligência territorial e ecossistêmica; MASTER dos dados estruturados por domínio implementado e homologado no ecossistema Sertão Digital."
     repository: https://github.com/sertaodigitalorg/ObservatorioMandacaru
     drive_reference: "04 – Observatório Mandacaru – Especificação Funcional v1"
-    status_note: "MVP técnico existente; expansão de domínio, governança de conhecimento, IA e integrações permanecem em evolução."
+    status_note: "MVP técnico existente; a autoridade operacional é adquirida por domínio após implementação e homologação; expansão de domínio, governança de conhecimento, IA e integrações permanecem em evolução."
 
   legislagd:
     name: LegislaGD
