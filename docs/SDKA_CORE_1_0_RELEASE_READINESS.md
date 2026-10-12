@@ -45,3 +45,40 @@ A ordem facilita testes incrementais, mas os PRs partiram da `main` e não devem
 5. Declarar Core 1.0 implantado apenas após os passos anteriores.
 
 **Nenhum passo acima autoriza merge automático ou dispensa validação humana de código.**
+
+## Auditoria de sobreposição dos PRs — 11/10/2026
+
+Foi verificada a lista efetiva de arquivos alterados nos PRs #32–#36:
+
+| PR | Arquivos alterados | Sobreposição relevante |
+| --- | --- | --- |
+| #32 | 6 | `.github/workflows/engineering-contracts.yml` |
+| #33 | 4 | `.github/workflows/engineering-contracts.yml` |
+| #34 | 4 | `.github/workflows/engineering-contracts.yml` |
+| #35 | 4 | `.github/workflows/engineering-contracts.yml` |
+| #36 | Este checklist | Nenhuma sobreposição com #32–#35 no momento da análise |
+
+**Risco confirmado:** #32, #33, #34 e #35 partem da mesma linha de base e adicionam gatilhos e passos distintos ao mesmo workflow. A aprovação isolada de CI não comprova que os quatro blocos coexistirão após a integração.
+
+### Contrato mínimo do workflow consolidado
+
+Após os merges devem permanecer **todos** os caminhos observados nos PRs em `on.pull_request.paths` e os seguintes passos adicionais no job de engenharia:
+
+1. `python -m unittest discover -s scripts -p 'test_code_evidence.py' -v` (#32).
+2. `python scripts/sdka_integrity_audit.py` (#33).
+3. `python -m unittest discover -s scripts -p 'test_integrity_audit.py' -v` (#33).
+4. `python -m unittest discover -s scripts -p 'test_governance_report.py' -v` (#34).
+5. `python -m unittest discover -s scripts -p 'test_impact_plan.py' -v` (#35).
+
+Os caminhos adicionais mínimos: `scripts/sdka_code_evidence.py`, `scripts/test_code_evidence.py`, `examples/phase11-2-code-evidence.json`, `scripts/sdka_integrity_audit.py`, `scripts/test_integrity_audit.py`, `scripts/sdka_governance_report.py`, `scripts/test_governance_report.py`, `scripts/sdka_impact_plan.py` e `scripts/test_impact_plan.py`.
+
+### Procedimento seguro de integração
+
+1. Integrar #32 com as revisões exigidas; verificar o novo HEAD de `main`.
+2. Atualizar #33 com `main`, preservando o passo e gatilhos de #32; executar novamente todos os checks e obter as revisões exigidas.
+3. Atualizar #34 preservando passos de #32 e #33; repetir CI e revisão.
+4. Atualizar #35 preservando os passos anteriores; repetir CI e revisão.
+5. Atualizar e integrar #36 ao final, conferindo que seu checklist permanece coerente com o estado realmente integrado.
+6. Conferir, em `main`, a presença dos **cinco passos adicionais** acima, executar os validadores completos e registrar o SHA final.
+
+**Risco de conflito textual:** possível; ainda não foi feita uma mesclagem efetiva das branches para comprovar se o Git reportará conflito. A resolução deve ser manual/revisada, sem forçar merge e sem reduzir a proteção de branch.
